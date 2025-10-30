@@ -1,16 +1,35 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <section class="flex h-screen">
+    <div class="h-full w-[62%]">
+      <img src="/images/door_home.jpg" class="h-full w-full object-cover object-[50%_75%]" />
+    </div>
+    <div class="relative h-full w-[38%] bg-amber-50">
+      <nav aria-label="Sections" class="absolute inset-0">
+        <a href="#estudi" class="font-archivo absolute top-[25%] left-[25%] text-4xl">l’estudi</a>
+        <a href="#work" class="font-archivo absolute top-[40%] right-[30%] text-5xl">WORK</a>
+        <a href="#material" class="font-archivo absolute top-[60%] left-[25%] text-4xl">material</a>
+        <a href="#classes" class="font-archivo absolute right-[35%] bottom-[25%] text-4xl"
+          >classes</a
+        >
+      </nav>
+    </div>
+  </section>
+
+  <section id="intro" class="py-16">
+    <div class="mx-auto max-w-5xl px-6 sm:px-8 lg:px-12">
+      <p class="text-center text-[25px] leading-[32px]">
+        <span class="block"
+          >Norai és un estudi de producció audiovisual al centre de Palma, on el so i la imatge es
+          converteixen en experiències úniques. Com el norai que ferm les barques al port, és el
+          punt d’ancoratge per a qualsevol projecte creatiu. Oferim serveis d’enregistrament,
+          mescla, producció musical i creació de contingut audiovisual.</span
+        >
+        <span class="block">Un espai on les idees prenen forma i troben el seu propi ritme.</span>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
