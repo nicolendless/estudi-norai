@@ -19,7 +19,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <section class="absolute bottom-0 left-0 z-10 w-full bg-zinc-900 py-4">
+  <section class="absolute bottom-0 left-0 z-10 w-full bg-cyan-950 py-4">
     <div class="text-center text-sm tracking-wide text-white uppercase">
       TALLER DE PRODUCCIÓ MÚSICA I ESCOLA DE MÚSICA A PALMA
     </div>
@@ -38,4 +38,54 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </p>
     </div>
   </section>
+
+  <section id="work" class="flex h-[70vh]">
+    <div class="relative flex w-[60%] items-end justify-center bg-cyan-950 p-8">
+      <h2 class="font-archivo text-[12rem] font-extralight text-amber-50">WORKS</h2>
+    </div>
+
+    <!-- Right side (40%) - White background with project title -->
+    <div class="relative w-[50%] bg-white p-8">
+      <img
+        id="falling-image"
+        src="/images/cat.jpg"
+        alt="Work"
+        class="animate-fall absolute top-0 left-[30%] h-60 w-45 object-cover"
+      />
+      <img
+        id="falling-image"
+        src="/images/cat.jpg"
+        alt="Work"
+        class="animate-fall absolute top-[10%] left-[20%] h-60 w-45 object-cover"
+      />
+    </div>
+  </section>
+
+  <script>
+    const workSection = document.getElementById('work');
+    const fallingImage = document.getElementById('falling-image');
+
+    if (workSection && fallingImage) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          console.log(entries);
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Remove the class first to reset the animation
+              fallingImage.classList.remove('animate-fall');
+              // Force a reflow to ensure the class removal is processed
+              void fallingImage.offsetWidth;
+              // Add the class back to trigger the animation
+              fallingImage.classList.add('animate-fall');
+            }
+          });
+        },
+        {
+          threshold: 0.3, // Trigger when 30% of the section is visible
+        },
+      );
+
+      observer.observe(workSection);
+    }
+  </script>
 </BaseLayout>
