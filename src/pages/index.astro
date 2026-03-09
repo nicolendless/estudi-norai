@@ -3,61 +3,193 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout>
-  <section class="flex h-screen">
-    <div class="h-full w-[62%]">
+  <section id="menu" class="flex h-screen">
+    <div class="relative h-full w-[65%]">
       <img src="/images/door_home.jpg" class="h-full w-full object-cover object-[50%_50%]" />
-    </div>
-    <div class="relative h-full w-[38%] bg-amber-50">
-      <nav aria-label="Sections" class="absolute inset-0">
-        <a href="#estudi" class="font-archivo absolute top-[25%] left-[25%] text-4xl">l’estudi</a>
-        <a href="#work" class="font-archivo absolute top-[40%] right-[30%] text-5xl">WORK</a>
-        <a href="#material" class="font-archivo absolute top-[60%] left-[25%] text-4xl">material</a>
-        <a href="#classes" class="font-archivo absolute right-[35%] bottom-[25%] text-4xl"
-          >classes</a
+      <div class="absolute inset-0 flex items-center justify-center pr-4 pl-8 md:pr-8 md:pl-12">
+        <h1
+          class="font-archivo text-center text-5xl leading-tight text-white md:text-6xl lg:text-6xl xl:text-7xl"
         >
+          <span class="block">TALLER DE PRODUCCIÓN MUSICAL Y</span>
+          <span class="block">ESCUELA DE MÚSICA EN PALMA</span>
+        </h1>
+      </div>
+    </div>
+    <div class="relative h-full w-[35%] bg-amber-50">
+      <nav aria-label="Sections" class="absolute inset-0">
+        <!-- LINEA CURVA UNION
+        <svg
+          width="257"
+          height="364"
+          viewBox="0 0 257 364"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0.171875 48.9712C3.17188 43.9712 131.172 -47.0288 163.172 32.9712C188.772 96.9712 235.839 130.305 256.172 138.971C176.172 160.971 14.5719 212.571 8.17188 242.971C0.171875 280.971 247.172 228.971 222.172 289.971C202.172 338.771 201.172 358.971 203.172 362.971"
+            stroke="black"
+            stroke-width="0.4"></path>
+        </svg> -->
+
+        <a
+          href="#servicios"
+          class="font-archivo absolute top-[8%] left-1/2 z-10 -translate-x-1/2 text-center md:top-[12%]"
+        >
+          <span class="block text-xl md:text-2xl lg:text-2xl xl:text-3xl">Ruta</span>
+          <span
+            class="ml-2 block text-sm font-light italic md:ml-4 md:text-base lg:text-lg xl:text-xl"
+            >Servicios que ofrecemos</span
+          >
+        </a>
+        <a
+          href="#conoceme"
+          class="font-archivo absolute top-[25%] right-[25%] z-10 text-center md:top-[30%] md:right-[30%]"
+        >
+          <span class="block text-xl md:text-2xl lg:text-2xl xl:text-3xl">Timonel</span>
+          <span
+            class="ml-2 block text-sm font-light italic md:ml-4 md:text-base lg:text-lg xl:text-xl"
+            >Conóceme</span
+          >
+        </a>
+        <a
+          href="#servicios"
+          class="font-archivo absolute top-[42%] left-[20%] z-10 text-center md:top-[48%] md:left-[25%]"
+        >
+          <span class="block text-xl md:text-2xl lg:text-2xl xl:text-3xl">Embarcación</span>
+          <span
+            class="ml-2 block text-sm font-light italic md:ml-4 md:text-base lg:text-lg xl:text-xl"
+            >El Estudio</span
+          >
+        </a>
+        <a
+          href="#artistas"
+          class="font-archivo absolute top-[60%] right-[25%] z-10 text-center md:top-[66%] md:right-[30%]"
+        >
+          <span class="block text-xl md:text-2xl lg:text-2xl xl:text-3xl">Tripulación</span>
+          <span
+            class="ml-2 block text-sm font-light italic md:ml-4 md:text-base lg:text-lg xl:text-xl"
+            >Artistas / Proyectos</span
+          >
+        </a>
+        <a
+          href="#contacto"
+          class="font-archivo absolute bottom-[8%] left-1/2 z-10 -translate-x-1/2 text-center md:bottom-[12%]"
+        >
+          <span class="block text-xl md:text-2xl lg:text-2xl xl:text-3xl">Póngamos Rumbo</span>
+          <span
+            class="ml-2 block text-sm font-light italic md:ml-4 md:text-base lg:text-lg xl:text-xl"
+            >Trabajemos juntos</span
+          >
+        </a>
       </nav>
     </div>
   </section>
 
-  <section class="absolute bottom-0 left-0 z-10 w-full bg-cyan-950 py-4">
-    <div class="text-center text-sm tracking-wide text-white uppercase">
-      TALLER DE PRODUCCIÓ MÚSICA I ESCOLA DE MÚSICA A PALMA
+  <section id="footer-menu" class="absolute bottom-0 left-0 z-10 w-full bg-cyan-950 py-2">
+    <div class="flex">
+      <div class="w-[70%] pl-8 text-left text-lg text-white">+34 668 900 448</div>
+      <div class="w-[30%] pr-8 text-right text-lg text-white">estudio-norai@gmail.com</div>
     </div>
   </section>
 
-  <section id="intro" class="py-16">
+  <section id="intro" class="pt-20 pb-8">
     <div class="mx-auto max-w-5xl px-6 sm:px-8 lg:px-12">
       <p class="text-center text-[25px] leading-[32px]">
+        Estudi Norai es un espacio de <strong>acompañamiento musical Km0</strong> en el centro de Palma
+        de Mallorca. Como el Norai amarra las embarcaciones a puerto, este es el punto de anclaje para
+        tu proyecto musical.
         <span class="block"
-          >Norai és un estudi de producció audiovisual al centre de Palma, on el so i la imatge es
-          converteixen en experiències úniques. Com el norai que ferm les barques al port, és el
-          punt d’ancoratge per a qualsevol projecte creatiu. Oferim serveis d’enregistrament,
-          mescla, producció musical i creació de contingut audiovisual.</span
+          >Un espacio donde las ideas toman forma y encuentran su propio ritmo.</span
         >
-        <span class="block">Un espai on les idees prenen forma i troben el seu propi ritme.</span>
       </p>
+      <p class="mt-6 text-center underline">
+        <a href="#contacto" class="text-[25px]">Contacta ya</a>
+      </p>
+    </div>
+    <div class="mt-6 flex justify-center">
+      <div class="h-25 w-px bg-black"></div>
     </div>
   </section>
 
-  <section id="work" class="flex h-[70vh]">
-    <div class="relative flex w-[60%] items-end justify-center bg-cyan-950 p-8">
-      <h2 class="font-archivo text-[12rem] font-extralight text-amber-50">WORKS</h2>
+  <section id="servicios" class="mx-12 flex pb-20 md:mx-16 lg:mx-20 xl:mx-24">
+    <div class="flex flex-1 flex-col">
+      <div class="h-[60vh] bg-gray-200">
+        <img src="/images/composicion.jpg" class="h-full w-full object-cover" />
+      </div>
+      <div class="flex flex-1 justify-center border bg-white p-6">
+        <p class="text-center text-2xl text-black">Composición de canciones personalizadas</p>
+      </div>
     </div>
+    <div class="flex flex-1 flex-col">
+      <div class="flex h-[60vh] flex-col justify-between bg-amber-50 p-10 text-center">
+        <p class="mb-4 text-4xl">Acompañamiento musical</p>
+        <div class="px-4">
+          <h2 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+            <span class="block">PRODU</span>
+            <span class="block">CCIÓN</span>
+          </h2>
+        </div>
+      </div>
+      <div class="flex flex-1 justify-center border bg-white p-6">
+        <p class="text-center text-2xl text-black">Norai Sessions</p>
+      </div>
+    </div>
+    <div class="flex flex-1 flex-col">
+      <div class="h-[60vh] bg-gray-200">
+        <img src="/images/formacion.jpg" class="h-full w-full object-cover" />
+      </div>
+      <div class="flex flex-1 justify-center border bg-white p-6">
+        <p class="text-center text-2xl text-black">Formación Musical</p>
+      </div>
+    </div>
+    <div class="flex flex-1 flex-col">
+      <div class="h-[60vh] bg-gray-200">
+        <img src="/images/mezcla.jpg" class="h-full w-full object-cover" />
+      </div>
+      <div class="flex flex-1 justify-center border bg-white p-6">
+        <p class="text-center text-2xl text-black">Mezcla y Mastering</p>
+      </div>
+    </div>
+  </section>
 
-    <!-- Right side (40%) - White background with project title -->
-    <div class="relative w-[50%] bg-white p-8">
-      <img
-        id="falling-image"
-        src="/images/cat.jpg"
-        alt="Work"
-        class="animate-fall absolute top-0 left-[30%] h-60 w-45 object-cover"
-      />
-      <img
-        id="falling-image"
-        src="/images/cat.jpg"
-        alt="Work"
-        class="animate-fall absolute top-[10%] left-[20%] h-60 w-45 object-cover"
-      />
+  <section id="conoceme" class="mx-12 flex py-16 md:mx-16 md:py-24 lg:mx-20 xl:mx-24">
+    <div class="flex flex-1 flex-col justify-center p-8 text-left text-xl md:p-12">
+      <p class="mb-4">
+        Mi pasión por la música viene prácticamente de nacimiento, ya que mis padres se conocieron
+        en una coral. Desde pequeño, he vivido rodeado de música, tanto a nivel pasional como
+        formativo, tomando clases de piano, guitarra y solfeo durante toda mi infancia y
+        adolescencia.
+      </p>
+      <p class="mb-4">
+        Durante la adolescencia inicié mis primeros proyectos musicales, como artista e intérprete.
+        Algunas de estas bandas siguen vigentes a día de hoy. Pese a que mi arranque universitario y
+        laboral fue en el mundo empresarial, poco a poco mi carrera fue girando hacia la música,
+        pasando por Ticketmaster, hasta llegar a graduarme con honores, en
+        <strong>Producción Músical en Barcelona, en la escuela Microfusa.</strong>
+      </p>
+      <p class="mb-4">
+        En 2022, después de finalizar mis estudios en Microfusa y mudarme a Mallorca, decidí dar el
+        paso a abrir mi propio estudio de música, lo que ahora ya conocéis como Estudi Norai. En
+        esta etapa, he podido acompañar a artistas de muchas maneras, en proyectos maravillosos.
+        Además, tengo la suerte de estar ligado a la música también como artista (Norai), intérprete
+        (FincaMusicBand, Fonoll…), organizador de eventos (Rodautors) e incluso como profesor de
+        guitarra y producción.
+      </p>
+    </div>
+    <div class="relative flex min-h-[50vh] flex-1 flex-col md:min-h-[60vh]">
+      <img src="/images/conoceme.png" alt="Timonel" class="h-full w-full object-cover" />
+      <div class="absolute inset-0 flex items-end justify-center pb-6 md:pb-8">
+        <h2 class="font-archivo text-4xl text-white md:text-5xl lg:text-6xl xl:text-7xl">
+          CONÓCEME
+        </h2>
+      </div>
+      <div class="absolute inset-0 flex items-start justify-end pt-10 pr-6 md:pt-14 md:pr-2">
+        <span
+          class="font-archivo origin-center rotate-90 text-base whitespace-nowrap text-white md:text-lg lg:text-2xl"
+        >
+          Timonel
+        </span>
+      </div>
     </div>
   </section>
 
