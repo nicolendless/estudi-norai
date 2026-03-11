@@ -102,8 +102,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           >Un espacio donde las ideas toman forma y encuentran su propio ritmo.</span
         >
       </p>
-      <p class="mt-6 text-center underline">
-        <a href="#contacto" class="text-[25px]">Contacta ya</a>
+      <p class="mt-6 text-center">
+        <a href="#contacto" class="group relative text-[25px] font-bold"
+          >Contacta ya<span
+            class="absolute bottom-0 left-0 h-px w-0 bg-current transition-all duration-300 group-hover:w-full"
+          ></span></a
+        >
       </p>
     </div>
     <div class="mt-6 flex justify-center">
@@ -116,8 +120,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="h-[60vh] bg-gray-200">
         <img src="/images/composicion.jpg" class="h-full w-full object-cover" />
       </div>
-      <div class="flex flex-1 justify-center border bg-white p-6">
-        <p class="text-center text-2xl text-black">Acompañamiento y Producción musical</p>
+      <div
+        class="flex flex-1 cursor-pointer justify-center border bg-white p-6 transition-colors duration-300 hover:bg-cyan-950 hover:text-white"
+      >
+        <p class="text-center text-2xl">Acompañamiento y Producción musical</p>
       </div>
     </div>
     <div class="flex flex-1 flex-col">
@@ -130,24 +136,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </h2>
         </div>
       </div>
-      <div class="flex flex-1 justify-center border bg-white p-6">
-        <p class="text-center text-2xl text-black">Grabación de videoclip en directo</p>
+      <div
+        class="flex flex-1 cursor-pointer justify-center border bg-white p-6 transition-colors duration-300 hover:bg-cyan-950 hover:text-white"
+      >
+        <p class="text-center text-2xl">Grabación de videoclip en directo</p>
       </div>
     </div>
     <div class="flex flex-1 flex-col">
       <div class="h-[60vh] bg-gray-200">
         <img src="/images/formacion.jpg" class="h-full w-full object-cover" />
       </div>
-      <div class="flex flex-1 justify-center border bg-white p-6">
-        <p class="text-center text-2xl text-black">Formación Musical</p>
+      <div
+        class="flex flex-1 cursor-pointer justify-center border bg-white p-6 transition-colors duration-300 hover:bg-cyan-950 hover:text-white"
+      >
+        <p class="text-center text-2xl">Formación Musical</p>
       </div>
     </div>
     <div class="flex flex-1 flex-col">
       <div class="h-[60vh] bg-gray-200">
         <img src="/images/mezcla.jpg" class="h-full w-full object-cover" />
       </div>
-      <div class="flex flex-1 justify-center border bg-white p-6">
-        <p class="text-center text-2xl text-black">Mezcla y Mastering</p>
+      <div
+        class="flex flex-1 cursor-pointer justify-center border bg-white p-6 transition-colors duration-300 hover:bg-cyan-950 hover:text-white"
+      >
+        <p class="text-center text-2xl">Mezcla y Mastering</p>
       </div>
     </div>
   </section>
@@ -193,7 +205,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <section id="embarcacion" class="relative h-[60vh] w-full">
+  <section id="embarcacion" class="relative h-[75vh] w-full">
     <img
       src="/images/embarcacion.jpg"
       alt="El Estudio"
@@ -381,9 +393,10 @@ Deixa'm un missatge"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <div class="relative -mt-2 w-full px-4 py-2 md:px-6 md:py-3">
+        <div class="w-full overflow-hidden">
           <h2
-            class="font-archivo pointer-events-none block w-full text-[16vw] leading-none whitespace-nowrap text-stone-300 md:text-[8.8vw]"
+            class="font-archivo pointer-events-none w-full text-center leading-none text-stone-300"
+            style="font-size: 11vw;"
           >
             VISÍTANOS
           </h2>
@@ -393,8 +406,8 @@ Deixa'm un missatge"
         class="relative flex h-[460px] items-end justify-end pr-6 pb-6 md:h-[560px] md:pr-8 md:pb-8"
       >
         <span
-          class="font-archivo absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12 text-2xl text-zinc-700 md:text-3xl"
-          >o ponte en contacto</span
+          class="group font-archivo absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12 cursor-pointer text-2xl text-zinc-700 md:text-3xl"
+          >o ponte en contacto<span class="ml-1 hidden group-hover:inline"> :)</span></span
         >
         <div class="text-right text-3xl leading-tight text-zinc-800 md:text-4xl">
           <p>C/del Carme, 8</p>
