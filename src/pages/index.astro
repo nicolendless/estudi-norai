@@ -117,7 +117,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <img src="/images/composicion.jpg" class="h-full w-full object-cover" />
       </div>
       <div class="flex flex-1 justify-center border bg-white p-6">
-        <p class="text-center text-2xl text-black">Composición de canciones personalizadas</p>
+        <p class="text-center text-2xl text-black">Acompañamiento y Producción musical</p>
       </div>
     </div>
     <div class="flex flex-1 flex-col">
@@ -131,7 +131,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </div>
       <div class="flex flex-1 justify-center border bg-white p-6">
-        <p class="text-center text-2xl text-black">Norai Sessions</p>
+        <p class="text-center text-2xl text-black">Grabación de videoclip en directo</p>
       </div>
     </div>
     <div class="flex flex-1 flex-col">
@@ -254,7 +254,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <section id="artistas" class="flex h-[75vh] w-full">
     <div class="relative flex w-1/2 flex-col items-center justify-end bg-cyan-950 pb-6 md:pb-8">
-      <h2 class="font-archivo text-7xl text-amber-50 md:text-8xl lg:text-9xl">WORKS</h2>
+      <h2
+        class="font-archivo text-[22vw] leading-none tracking-tight text-amber-50 md:text-[17vw] lg:text-[14vw] xl:text-[12vw]"
+      >
+        WORKS
+      </h2>
       <a href="#contacto" class="font-archivo mt-2 text-lg text-amber-50 underline">Saber más</a>
     </div>
     <div class="relative w-1/2 bg-zinc-100">
@@ -300,9 +304,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section id="contacto" class="relative flex min-h-[68vh] w-full bg-cyan-950 py-10 md:py-14">
     <div class="flex w-1/2 items-center justify-center px-8 md:px-12">
       <form
-        action="mailto:estudio-norai@gmail.com"
+        action="/api/contact"
         method="post"
-        enctype="text/plain"
+        data-contact-form
         class="w-full max-w-md space-y-3"
       >
         <input
@@ -350,11 +354,17 @@ Deixa'm un missatge"
             enviar
           </button>
         </div>
+        <p
+          id="contact-feedback"
+          class="hidden rounded-xl px-4 py-2 text-sm text-amber-50"
+        >
+          
+        </p>
       </form>
     </div>
     <div class="relative flex w-1/2 items-center justify-center px-8 md:px-12">
       <h2
-        class="font-archivo text-center text-7xl leading-[0.95] text-amber-50 md:text-8xl lg:text-9xl"
+        class="font-archivo text-center text-[18vw] leading-[0.95] tracking-tight text-amber-50 md:text-[14vw] lg:text-[11vw] xl:text-[10vw]"
       >
         <span class="block">TRABA</span>
         <span class="block">JEMOS</span>
@@ -370,14 +380,108 @@ Deixa'm un missatge"
     </div>
   </section>
 
+  <section id="visitanos" class="w-full bg-white">
+    <div class="grid grid-cols-1 md:grid-cols-[58%_42%]">
+      <div>
+        <div class="relative">
+          <iframe
+            title="Mapa Estudi Norai"
+            src="https://www.google.com/maps?q=Carrer+del+Carme+8,+Palma+de+Mallorca&output=embed"
+            class="h-[460px] w-full border-0 md:h-[560px]"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="relative -mt-2 w-full px-4 py-2 md:px-6 md:py-3">
+          <h2
+            class="font-archivo pointer-events-none block w-full text-[16vw] leading-none whitespace-nowrap text-stone-300 md:text-[8.8vw]"
+          >
+            VISÍTANOS
+          </h2>
+        </div>
+      </div>
+      <div
+        class="relative flex h-[460px] items-end justify-end pr-6 pb-6 md:h-[560px] md:pr-8 md:pb-8"
+      >
+        <span
+          class="font-archivo absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12 text-2xl text-zinc-700 md:text-3xl"
+          >o ponte en contacto</span
+        >
+        <div class="text-right text-3xl leading-tight text-zinc-800 md:text-4xl">
+          <p>C/del Carme, 8</p>
+          <p>Palma de Mallorca</p>
+          <p>+34 668 900 448</p>
+          <p>estudio-norai@gmail.com</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <script>
     const workSection = document.getElementById('work');
     const fallingImage = document.getElementById('falling-image');
+    const contactForm = document.querySelector('[data-contact-form]');
+    const contactFeedback = document.getElementById('contact-feedback');
+
+    const setContactFeedback = (type: 'ok' | 'error', message: string) => {
+      if (!contactFeedback) {
+        return;
+      }
+
+      contactFeedback.textContent = message;
+      contactFeedback.classList.remove('hidden', 'bg-emerald-800/70', 'bg-red-900/70');
+      contactFeedback.classList.add('block');
+
+      if (type === 'ok') {
+        contactFeedback.classList.add('bg-emerald-800/70');
+      } else {
+        contactFeedback.classList.add('bg-red-900/70');
+      }
+    };
+
+    if (contactForm instanceof HTMLFormElement) {
+      contactForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton?.textContent;
+
+        if (submitButton) {
+          submitButton.setAttribute('disabled', 'true');
+          submitButton.textContent = 'enviando...';
+        }
+
+        try {
+          const response = await fetch(contactForm.action, {
+            method: 'POST',
+            body: new FormData(contactForm),
+            headers: {
+              Accept: 'application/json',
+              'X-Requested-With': 'XMLHttpRequest',
+            },
+          });
+
+          const result = await response.json().catch(() => null);
+
+          if (response.ok && result?.ok) {
+            setContactFeedback('ok', result.message ?? 'Mensaje enviado correctamente.');
+            contactForm.reset();
+          } else {
+            setContactFeedback('error', result?.message ?? 'No se ha podido enviar el mensaje.');
+          }
+        } catch {
+          setContactFeedback('error', 'Error de conexion. Vuelve a intentarlo.');
+        } finally {
+          if (submitButton) {
+            submitButton.removeAttribute('disabled');
+            submitButton.textContent = originalButtonText ?? 'enviar';
+          }
+        }
+      });
+    }
 
     if (workSection && fallingImage) {
       const observer = new IntersectionObserver(
         (entries) => {
-          console.log(entries);
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               // Remove the class first to reset the animation
