@@ -8,7 +8,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <img src="/images/door_home_1.jpg" class="h-full w-full object-cover object-[50%_50%]" />
       <div class="absolute inset-0 flex items-center justify-center pr-4 pl-8 md:pr-8 md:pl-12">
         <h1
-          class="font-archivo text-center text-5xl leading-tight text-white md:text-6xl lg:text-6xl xl:text-7xl"
+          class="font-archivo text-center text-xl leading-tight text-white md:text-2xl lg:text-2xl xl:text-5xl"
         >
           <span class="block">TALLER DE PRODUCCIÓN MUSICAL Y</span>
           <span class="block">ESCUELA DE MÚSICA EN PALMA</span>
@@ -33,51 +33,51 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
         <a
           href="#servicios"
-          class="font-archivo absolute top-[8%] left-1/2 z-10 -translate-x-1/2 text-center md:top-[12%]"
+          class="group font-archivo absolute top-[8%] left-1/2 z-10 -translate-x-1/2 text-center hover:font-bold md:top-[12%]"
         >
           <span class="block text-xl md:text-2xl lg:text-2xl xl:text-3xl">Ruta</span>
           <span
-            class="ml-2 block text-sm font-light italic md:ml-4 md:text-base lg:text-lg xl:text-xl"
+            class="ml-2 block text-sm font-light italic group-hover:font-bold md:ml-4 md:text-base lg:text-lg xl:text-xl"
             >Servicios que ofrecemos</span
           >
         </a>
         <a
           href="#conoceme"
-          class="font-archivo absolute top-[25%] right-[25%] z-10 text-center md:top-[30%] md:right-[30%]"
+          class="group font-archivo absolute top-[25%] right-[25%] z-10 text-center hover:font-bold md:top-[30%] md:right-[30%]"
         >
           <span class="block text-xl md:text-2xl lg:text-2xl xl:text-3xl">Timonel</span>
           <span
-            class="ml-2 block text-sm font-light italic md:ml-4 md:text-base lg:text-lg xl:text-xl"
+            class="ml-2 block text-sm font-light italic group-hover:font-bold md:ml-4 md:text-base lg:text-lg xl:text-xl"
             >Conóceme</span
           >
         </a>
         <a
           href="#embarcacion"
-          class="font-archivo absolute top-[42%] left-[20%] z-10 text-center md:top-[48%] md:left-[25%]"
+          class="group font-archivo absolute top-[42%] left-[20%] z-10 text-center hover:font-bold md:top-[48%] md:left-[25%]"
         >
           <span class="block text-xl md:text-2xl lg:text-2xl xl:text-3xl">Embarcación</span>
           <span
-            class="ml-2 block text-sm font-light italic md:ml-4 md:text-base lg:text-lg xl:text-xl"
+            class="ml-2 block text-sm font-light italic group-hover:font-bold md:ml-4 md:text-base lg:text-lg xl:text-xl"
             >El Estudio</span
           >
         </a>
         <a
           href="#artistas"
-          class="font-archivo absolute top-[60%] right-[25%] z-10 text-center md:top-[66%] md:right-[30%]"
+          class="group font-archivo absolute top-[60%] right-[25%] z-10 text-center hover:font-bold md:top-[66%] md:right-[30%]"
         >
           <span class="block text-xl md:text-2xl lg:text-2xl xl:text-3xl">Tripulación</span>
           <span
-            class="ml-2 block text-sm font-light italic md:ml-4 md:text-base lg:text-lg xl:text-xl"
+            class="ml-2 block text-sm font-light italic group-hover:font-bold md:ml-4 md:text-base lg:text-lg xl:text-xl"
             >Artistas / Proyectos</span
           >
         </a>
         <a
           href="#contacto"
-          class="font-archivo absolute bottom-[8%] left-1/2 z-10 -translate-x-1/2 text-center md:bottom-[12%]"
+          class="group font-archivo absolute bottom-[8%] left-1/2 z-10 -translate-x-1/2 text-center hover:font-bold md:bottom-[12%]"
         >
           <span class="block text-xl md:text-2xl lg:text-2xl xl:text-3xl">Póngamos Rumbo</span>
           <span
-            class="ml-2 block text-sm font-light italic md:ml-4 md:text-base lg:text-lg xl:text-xl"
+            class="ml-2 block text-sm font-light italic group-hover:font-bold md:ml-4 md:text-base lg:text-lg xl:text-xl"
             >Trabajemos juntos</span
           >
         </a>
@@ -303,12 +303,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <section id="contacto" class="relative flex min-h-[68vh] w-full bg-cyan-950 py-10 md:py-14">
     <div class="flex w-1/2 items-center justify-center px-8 md:px-12">
-      <form
-        action="/api/contact"
-        method="post"
-        data-contact-form
-        class="w-full max-w-md space-y-3"
-      >
+      <form action="/api/contact" method="post" data-contact-form class="w-full max-w-md space-y-3">
         <input
           type="text"
           name="nombre"
@@ -354,12 +349,7 @@ Deixa'm un missatge"
             enviar
           </button>
         </div>
-        <p
-          id="contact-feedback"
-          class="hidden rounded-xl px-4 py-2 text-sm text-amber-50"
-        >
-          
-        </p>
+        <p id="contact-feedback" class="hidden rounded-xl px-4 py-2 text-sm text-amber-50"></p>
       </form>
     </div>
     <div class="relative flex w-1/2 items-center justify-center px-8 md:px-12">
