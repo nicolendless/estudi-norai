@@ -61,8 +61,8 @@ export const POST: APIRoute = async ({ request }) => {
       text: [
         `Nombre: ${nombre}`,
         `Email: ${email}`,
-        `Telefono: ${telefono || '-'}`,
-        `Acepta recibir novedades comerciales: ${comerciales ? 'Si' : 'No'}`,
+        `Teléfono: ${telefono || '-'}`,
+        `Acepta recibir novedades comerciales: ${comerciales ? 'Sí' : 'No'}`,
         '',
         'Mensaje:',
         mensaje || '-',

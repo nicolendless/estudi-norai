@@ -41,11 +41,11 @@ if (contactForm) {
         setFeedback('error', result?.message ?? 'No se ha podido enviar el mensaje.');
       }
     } catch {
-      setFeedback('error', 'Error de conexion. Vuelve a intentarlo.');
+      setFeedback('error', 'Error de conexión. Vuelve a intentarlo.');
     } finally {
       if (submitButton) {
         submitButton.disabled = false;
-        submitButton.textContent = originalText ?? 'enviar';
+        submitButton.textContent = originalText ?? 'Enviar';
       }
     }
   });
