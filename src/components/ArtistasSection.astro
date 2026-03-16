@@ -13,27 +13,38 @@
         <img
           src="/images/works_1.png"
           alt="Proyecto"
-          class="absolute top-[18%] left-[20%] z-10 h-[40%] w-[35%] object-cover"
+          class="work-card absolute top-[18%] left-[16%] z-[80] h-[40%] w-[35%] object-cover"
+          style="--drop-delay: 0.05s;"
         />
         <img
-          src="/images/works_1.png"
+          src="/images/works_2.png"
           alt="Proyecto"
-          class="absolute top-[4%] left-[36%] z-30 h-[45%] w-[38%] object-cover"
+          class="work-card absolute top-[2%] left-[38%] z-30 h-[45%] w-[38%] object-cover"
+          style="--drop-delay: 0.2s;"
         />
         <img
-          src="/images/works_1.png"
+          src="/images/works_3.png"
           alt="Proyecto"
-          class="absolute top-[20%] right-[18%] z-20 h-[37%] w-[34%] object-cover"
+          class="work-card absolute top-[22%] right-[12%] z-[70] h-[37%] w-[34%] object-cover"
+          style="--drop-delay: 0.35s;"
         />
         <img
-          src="/images/works_1.png"
+          src="/images/works_4.png"
           alt="Proyecto"
-          class="absolute bottom-[7%] left-[27%] z-40 h-[40%] w-[36%] object-cover"
+          class="work-card absolute bottom-[5%] left-[24%] z-40 h-[40%] w-[36%] object-cover"
+          style="--drop-delay: 0.5s;"
         />
         <img
-          src="/images/works_1.png"
+          src="/images/works_5.png"
           alt="Proyecto"
-          class="absolute right-[17%] bottom-[10%] z-50 h-[38%] w-[35%] object-cover"
+          class="work-card absolute right-[13%] bottom-[7%] z-50 h-[38%] w-[35%] object-cover"
+          style="--drop-delay: 0.65s;"
+        />
+        <img
+          src="/images/works_6.png"
+          alt="Proyecto"
+          class="work-card absolute top-[34%] left-[4%] z-25 h-[34%] w-[30%] object-cover"
+          style="--drop-delay: 0.8s;"
         />
       </div>
     </div>
@@ -46,3 +57,61 @@
     </div>
   </div>
 </section>
+
+<style>
+  .work-card {
+    opacity: 0;
+    transform: translateY(-140px) scale(0.95) rotate(-4deg);
+    animation-delay: var(--drop-delay, 0s);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .work-card.drop-in {
+    animation: drop-from-sky 0.75s ease-out forwards;
+    animation-delay: var(--drop-delay, 0s);
+  }
+
+  @keyframes drop-from-sky {
+    0% {
+      opacity: 0;
+      transform: translateY(-140px) scale(0.95) rotate(-4deg);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1) rotate(0deg);
+    }
+  }
+</style>
+
+<script>
+  const artistasSection = document.querySelector('#artistas');
+  const workCards = Array.from(document.querySelectorAll<HTMLElement>('#artistas .work-card'));
+
+  const replayDropAnimation = () => {
+    workCards.forEach((card) => {
+      card.classList.remove('drop-in');
+      // Force reflow so the same animation can be replayed.
+      void card.offsetWidth;
+      card.classList.add('drop-in');
+    });
+  };
+
+  if (artistasSection && workCards.length > 0) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            replayDropAnimation();
+          } else {
+            workCards.forEach((card) => card.classList.remove('drop-in'));
+          }
+        });
+      },
+      {
+        threshold: 0.35,
+      }
+    );
+
+    observer.observe(artistasSection);
+  }
+</script>
