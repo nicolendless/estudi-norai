@@ -1,16 +1,30 @@
-<section id="menu" class="flex h-screen">
-  <div class="relative h-full w-[65%]">
-    <img src="/images/door_home_1.jpg" class="h-full w-full object-cover object-[50%_50%]" />
+<section id="menu" class="relative md:flex md:h-screen">
+  <button
+    type="button"
+    aria-label="Abrir menú"
+    data-hero-menu-toggle
+    class="fixed top-5 left-5 z-[60] inline-flex h-12 w-12 items-center justify-center rounded-full bg-amber-50/95 text-zinc-900 md:hidden"
+  >
+    <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"></path>
+    </svg>
+  </button>
+
+  <div class="relative h-[78vh] w-full md:h-full md:w-[65%]">
+    <img
+      src="/images/door_home_1.jpg"
+      class="block h-full w-full object-cover object-[58%_50%] md:object-[50%_50%]"
+    />
     <div class="absolute inset-0 flex items-center justify-center pr-4 pl-8 md:pr-8 md:pl-12">
       <h1
-        class="font-archivo text-center text-xl leading-tight text-white md:text-2xl lg:text-2xl xl:text-5xl"
+        class="font-archivo text-center text-lg leading-tight text-white md:text-2xl lg:text-2xl xl:text-5xl"
       >
         <span class="block">TALLER DE PRODUCCIÓN MUSICAL Y</span>
         <span class="block">ESCUELA DE MÚSICA EN PALMA</span>
       </h1>
     </div>
   </div>
-  <div class="relative h-full w-[35%] overflow-hidden bg-amber-50">
+  <div class="relative hidden h-full w-[35%] overflow-hidden bg-amber-50 md:block">
     <nav aria-label="Sections" class="font-archivo absolute inset-0 text-zinc-800">
       <svg
         width="255"
@@ -79,11 +93,74 @@
       </a>
     </nav>
   </div>
-</section>
 
-<section id="footer-menu" class="absolute bottom-0 left-0 z-10 w-full bg-cyan-950 py-2">
-  <div class="flex">
-    <div class="w-[70%] pl-8 text-left text-lg text-white">+34 668 900 448</div>
-    <div class="w-[30%] pr-8 text-right text-lg text-white">estudio-norai@gmail.com</div>
+  <div id="hero-mobile-menu" class="fixed inset-0 z-50 hidden bg-amber-50 px-8 py-20 md:hidden">
+    <button
+      type="button"
+      aria-label="Cerrar menú"
+      data-hero-menu-close
+      class="fixed top-5 left-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-zinc-900 text-amber-50"
+    >
+      <svg viewBox="0 0 24 24" class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="1.9">
+        <path d="M6 6l12 12M18 6l-12 12" stroke-linecap="round"></path>
+      </svg>
+    </button>
+
+    <nav class="font-archivo flex h-full flex-col items-start justify-center gap-5 text-zinc-900">
+      <a href="#servicios" class="block w-full border-b border-zinc-900/20 pb-2 text-3xl"
+        >SERVICIOS</a
+      >
+      <a href="#conoceme" class="block w-full border-b border-zinc-900/20 pb-2 text-3xl">BIO</a>
+      <a href="#artistas" class="block w-full border-b border-zinc-900/20 pb-2 text-3xl"
+        >PROYECTOS</a
+      >
+      <a href="#embarcacion" class="block w-full border-b border-zinc-900/20 pb-2 text-3xl"
+        >ESTUDIO</a
+      >
+      <a href="#contacto" class="block w-full border-b border-zinc-900/20 pb-2 text-3xl"
+        >TRABAJEMOS JUNTOS</a
+      >
+    </nav>
   </div>
 </section>
+
+<section id="footer-menu" class="w-full bg-cyan-950 py-2 md:absolute md:bottom-0 md:left-0 md:z-10">
+  <div class="flex items-center justify-between gap-3 px-4 text-xs text-white md:px-8 md:text-lg">
+    <div class="text-left">+34 668 900 448</div>
+    <div class="text-right">estudio-norai@gmail.com</div>
+  </div>
+</section>
+
+<script>
+  const menuToggle = document.querySelector<HTMLButtonElement>('[data-hero-menu-toggle]');
+  const menuClose = document.querySelector<HTMLButtonElement>('[data-hero-menu-close]');
+  const mobileMenu = document.getElementById('hero-mobile-menu');
+  const mobileLinks = Array.from(
+    document.querySelectorAll<HTMLAnchorElement>('#hero-mobile-menu a'),
+  );
+
+  const closeMenu = () => {
+    if (!mobileMenu) return;
+    mobileMenu.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+    document.body.classList.remove('hero-menu-open');
+    menuToggle?.classList.remove('invisible');
+    window.dispatchEvent(new Event('scroll'));
+  };
+
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+      document.body.classList.add('hero-menu-open');
+      menuToggle.classList.add('invisible');
+      window.dispatchEvent(new Event('scroll'));
+    });
+  }
+
+  if (menuClose) {
+    menuClose.addEventListener('click', closeMenu);
+  }
+
+  mobileLinks.forEach((link) => link.addEventListener('click', closeMenu));
+</script>
