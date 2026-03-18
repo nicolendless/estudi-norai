@@ -7,6 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://estudi-norai.vercel.app',
+  security: { checkOrigin: false },
   output: 'server',
   adapter: vercel(),
   vite: {
