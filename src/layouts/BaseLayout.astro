@@ -61,15 +61,28 @@ import '../styles/global.css';
     <script>
       const logo = document.querySelector<HTMLImageElement>('[data-site-logo]');
 
-      const sectionThemes: Record<string, 'light' | 'dark'> = {
+      const mobileSectionThemes: Record<string, 'light' | 'dark'> = {
         menu: 'light',
         intro: 'dark',
         servicios: 'dark',
-        conoceme: 'dark',
+        conoceme: 'light',
         embarcacion: 'light',
         material: 'dark',
         spotify: 'dark',
-        artistas: 'light',
+        artistas: 'dark',
+        contacto: 'light',
+        visitanos: 'dark',
+      };
+
+      const desktopSectionThemes: Record<string, 'light' | 'dark'> = {
+        menu: 'dark',
+        intro: 'dark',
+        servicios: 'dark',
+        conoceme: 'light',
+        embarcacion: 'light',
+        material: 'dark',
+        spotify: 'dark',
+        artistas: 'dark',
         contacto: 'light',
         visitanos: 'dark',
       };
@@ -101,7 +114,8 @@ import '../styles/global.css';
           }
         }
 
-        applyLogoTheme(sectionThemes[activeId] ?? 'dark');
+        const themeMap = window.innerWidth >= 768 ? desktopSectionThemes : mobileSectionThemes;
+        applyLogoTheme(themeMap[activeId] ?? 'dark');
       };
 
       window.addEventListener('scroll', updateLogoTheme, { passive: true });
@@ -117,6 +131,7 @@ import '../styles/global.css';
   }
 
   .site-logo-light {
-    filter: brightness(0) invert(1);
+    filter: brightness(0) saturate(100%) invert(95%) sepia(23%) saturate(475%) hue-rotate(322deg)
+      brightness(101%) contrast(92%);
   }
 </style>
