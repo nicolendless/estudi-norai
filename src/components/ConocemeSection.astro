@@ -1,5 +1,8 @@
-<section id="conoceme" class="ml-12 flex pt-16 pb-0 md:ml-16 md:pt-24 md:pb-0 lg:ml-20 xl:ml-24">
-  <div class="flex flex-1 flex-col p-10 text-left text-xl">
+<section
+  id="conoceme"
+  class="pt-12 pb-0 md:pt-20 lg:ml-20 lg:mr-0 lg:grid lg:grid-cols-2 lg:items-start lg:pt-8 xl:ml-24 xl:mr-0"
+>
+  <div class="hidden flex-1 flex-col p-8 text-left text-lg lg:flex lg:pt-6 lg:pr-10 lg:pb-0 lg:pl-0 lg:text-xl xl:pr-12">
     <p class="mb-4">
       Mi pasión por la música viene prácticamente de nacimiento, ya que mis padres se conocieron en
       una coral. Desde pequeño, he vivido rodeado de música, tanto a nivel pasional como formativo,
@@ -21,17 +24,61 @@
       guitarra y producción.
     </p>
   </div>
-  <div class="relative flex min-h-[50vh] flex-1 flex-col md:min-h-[60vh]">
-    <img src="/images/conoceme.png" alt="Timonel" class="h-full w-full object-cover" />
-    <div class="absolute inset-0 flex items-end justify-center pb-6 md:pb-8">
-      <h2 class="font-archivo text-4xl text-white md:text-5xl lg:text-6xl xl:text-7xl">CONÓCEME</h2>
+
+  <div class="relative h-[54vh] w-full bg-stone-100 lg:aspect-square lg:h-auto">
+    <img
+      src="/images/conoceme.png"
+      alt="Timonel"
+      class="absolute inset-0 h-full w-full object-cover lg:object-contain"
+    />
+    <div
+      class="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/55 via-black/20 to-transparent md:h-40"
+    >
     </div>
-    <div class="absolute top-0 right-6 pt-16 md:top-0 md:right-5 md:pt-15">
+    <div class="absolute inset-0 flex items-end justify-center pb-5 md:pb-8 lg:pb-6">
+      <h2 class="font-archivo text-5xl text-amber-50 sm:text-6xl lg:text-[5.5rem] xl:text-[6.5rem]">
+        CONÓCEME
+      </h2>
+    </div>
+    <div class="absolute top-0 right-4 pt-10 sm:right-5 sm:pt-14 md:right-6 lg:right-5 lg:pt-15">
       <span
-        class="font-archivo inline-block text-base text-white [writing-mode:vertical-rl] md:text-lg lg:text-2xl"
+        class="font-archivo inline-block text-sm text-amber-50 [writing-mode:vertical-rl] sm:text-base lg:text-2xl"
       >
         Timonel
       </span>
     </div>
+  </div>
+
+  <div class="px-3 pt-3 pb-12 sm:px-6 md:px-10 lg:hidden">
+    <p class="text-base leading-7 text-zinc-800 sm:text-lg sm:leading-8">
+      Mi pasión por la música viene prácticamente de nacimiento, ya que mis padres se conocieron en
+      una coral. Desde pequeño, he vivido rodeado de música, tanto a nivel pasional como formativo,
+      tomando clases de piano, guitarra y solfeo durante toda mi infancia y adolescencia.
+    </p>
+
+    <details class="group mt-4">
+      <summary class="font-archivo inline-flex cursor-pointer text-lg text-zinc-900 underline">
+        <span class="group-open:hidden">Leer más</span>
+        <span class="hidden group-open:inline">Leer menos</span>
+      </summary>
+
+      <div class="mt-4 space-y-4 text-base leading-7 text-zinc-800 sm:text-lg sm:leading-8">
+        <p>
+          Durante la adolescencia inicié mis primeros proyectos musicales, como artista e
+          intérprete. Algunas de estas bandas siguen vigentes a día de hoy. Pese a que mi arranque
+          universitario y laboral fue en el mundo empresarial, poco a poco mi carrera fue girando
+          hacia la música, pasando por Ticketmaster, hasta llegar a graduarme con honores, en
+          <strong>Producción Musical en Barcelona, en la escuela Microfusa.</strong>
+        </p>
+        <p>
+          En 2022, después de finalizar mis estudios en Microfusa y mudarme a Mallorca, decidí dar
+          el paso a abrir mi propio estudio de música, lo que ahora ya conocéis como Estudi Norai.
+          En esta etapa, he podido acompañar a artistas de muchas maneras, en proyectos
+          maravillosos. Además, tengo la suerte de estar ligado a la música también como artista
+          (Norai), intérprete (FincaMusicBand, Fonoll…), organizador de eventos (Rodautors) e
+          incluso como profesor de guitarra y producción.
+        </p>
+      </div>
+    </details>
   </div>
 </section>
