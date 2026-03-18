@@ -36,7 +36,7 @@ export const POST: APIRoute = async ({ request }) => {
     const port = Number(import.meta.env.SMTP_PORT ?? '587');
     const user = import.meta.env.SMTP_USER;
     const pass = import.meta.env.SMTP_PASS;
-    const toEmail = import.meta.env.CONTACT_TO_EMAIL ?? 'estudio-norai@gmail.com';
+    const toEmail = import.meta.env.CONTACT_TO_EMAIL ?? 'estudionorai@gmail.com';
 
     if (!host || !user || !pass) {
       console.error('Contact form email service is not configured correctly');

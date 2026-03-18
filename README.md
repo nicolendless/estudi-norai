@@ -1,43 +1,55 @@
-# Astro Starter Kit: Minimal
+# Estudi Norai
 
-```sh
-npm create astro@latest -- --template minimal
+Website for Estudi Norai, a music studio offering composition, production, mixing, mastering, and music education services.
+
+## Tech Stack
+
+- [Astro](https://astro.build) — Static site generator
+- [Tailwind CSS](https://tailwindcss.com) — Styling
+- [Vercel](https://vercel.com) — Deployment
+- [Nodemailer](https://nodemailer.com) — Contact form emails
+
+## Project Structure
+
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
 /
 ├── public/
+│   └── images/          # Static assets
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/      # Astro components
+│   ├── layouts/
+│   ├── pages/
+│   │   ├── index.astro
+│   │   └── api/
+│   │       └── contact.ts  # Contact form API
+│   ├── scripts/
+│   └── styles/
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Commands
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+| Command | Action |
+| :------ | :----- |
+| `npm install` | Install dependencies |
+| `npm run dev` | Start dev server at `localhost:4321` |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build locally |
+| `npm run format` | Format code with Prettier |
+| `npm run format:check` | Check code formatting |
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Deployment
 
-## 🧞 Commands
+The site is configured for deployment on Vercel. Push to your main branch to trigger a deploy.
 
-All commands are run from the root of the project, from a terminal:
+## Contact Form
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+The contact form sends emails via the `/api/contact` endpoint. Set these environment variables for production:
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Variable | Description |
+| :------- | :---------- |
+| `SMTP_HOST` | SMTP server host |
+| `SMTP_PORT` | SMTP port (default: 587) |
+| `SMTP_USER` | SMTP username |
+| `SMTP_PASS` | SMTP password |
+| `CONTACT_TO_EMAIL` | Recipient email (default: estudionorai@gmail.com) |
