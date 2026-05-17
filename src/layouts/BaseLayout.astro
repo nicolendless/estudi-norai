@@ -1,11 +1,18 @@
 ---
 import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  logoMode?: 'scroll' | 'fixed-dark' | 'fixed-light';
+}
+
+const { title = 'Estudi Norai', logoMode = 'scroll' } = Astro.props;
 ---
 
-<html>
+<html lang="es">
   <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://fonts.googleapis.com/css2?family=Archivo:wght@200;300;400;500;600;700&display=swap"
@@ -13,30 +20,15 @@ import '../styles/global.css';
     />
   </head>
 
-  <body class="font-archivo font-extralight">
+  <body class="font-archivo font-extralight" data-logo-mode={logoMode}>
     <header class="pointer-events-none fixed inset-x-0 top-0 z-[60]">
-      <!-- <button
-        type="button"
-        aria-label="Open menu"
-        class="pointer-events-auto absolute top-4 left-6 inline-flex h-12 w-12 items-center justify-center"
-      >
-        <svg
-          viewBox="0 0 24 24"
-          class="h-12 w-12"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1"
-        >
-          <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"></path>
-        </svg>
-      </button> -->
       <div class="flex justify-end px-4 pt-5 md:px-8 md:pt-8">
         <a href="/" class="pointer-events-auto">
           <img
             src="/images/logo.svg"
             alt="Estudi Norai logo"
             data-site-logo
-            class="site-logo h-14 w-auto transition-[filter] duration-300 md:h-16"
+            class="site-logo h-18 w-auto transition-[filter] duration-300 md:h-20"
           />
         </a>
       </div>
@@ -60,6 +52,7 @@ import '../styles/global.css';
 
     <script>
       const logo = document.querySelector<HTMLImageElement>('[data-site-logo]');
+      const logoMode = document.body.dataset.logoMode ?? 'scroll';
 
       const mobileSectionThemes: Record<string, 'light' | 'dark'> = {
         menu: 'light',
@@ -93,7 +86,7 @@ import '../styles/global.css';
         logo.classList.toggle('site-logo-light', theme === 'light');
       };
 
-      const updateLogoTheme = () => {
+      const updateScrollLogoTheme = () => {
         if (!logo) return;
 
         if (document.body.classList.contains('hero-menu-open')) {
@@ -118,9 +111,15 @@ import '../styles/global.css';
         applyLogoTheme(themeMap[activeId] ?? 'dark');
       };
 
-      window.addEventListener('scroll', updateLogoTheme, { passive: true });
-      window.addEventListener('resize', updateLogoTheme);
-      updateLogoTheme();
+      if (logoMode === 'fixed-dark') {
+        applyLogoTheme('dark');
+      } else if (logoMode === 'fixed-light') {
+        applyLogoTheme('light');
+      } else {
+        window.addEventListener('scroll', updateScrollLogoTheme, { passive: true });
+        window.addEventListener('resize', updateScrollLogoTheme);
+        updateScrollLogoTheme();
+      }
     </script>
   </body>
 </html>

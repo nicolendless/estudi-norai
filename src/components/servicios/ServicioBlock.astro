@@ -1,0 +1,18 @@
+---
+import type { Service } from '../../data/services';
+
+type Props = Service;
+
+const { slug, detailTitle, detailSubtitle } = Astro.props;
+---
+
+<section
+  id={slug}
+  class="scroll-mt-24 border-b border-zinc-200 px-6 py-16 md:px-16 lg:px-20"
+>
+  <h2 class="font-archivo text-3xl font-light text-[#202d35] md:text-4xl">
+    {detailTitle}
+  </h2>
+  {detailSubtitle && <p class="mt-1 text-xl text-[#202d35]">{detailSubtitle}</p>}
+  <p class="mt-6 text-lg text-zinc-600">Contenido próximamente.</p>
+</section>

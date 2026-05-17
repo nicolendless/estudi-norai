@@ -1,0 +1,26 @@
+---
+interface Props {
+  active?: 'servicios';
+}
+
+const { active } = Astro.props;
+---
+
+<nav
+  aria-label="Principal"
+  class="flex flex-wrap items-center justify-center gap-8 border-b border-zinc-200 px-6 py-6 text-[#202d35] md:gap-16 md:px-16 md:py-8 lg:px-20"
+>
+  <a
+    href="/servicios"
+    class:list={[
+      'font-archivo text-2xl md:text-3xl',
+      active === 'servicios' ? 'font-semibold underline' : 'font-extralight',
+    ]}
+  >
+    SERVICIOS
+  </a>
+  <a href="/#embarcacion" class="font-archivo text-2xl font-extralight md:text-3xl">
+    L'ESTUDI
+  </a>
+  <a href="/#artistas" class="font-archivo text-2xl font-light md:text-3xl"> WORKS </a>
+</nav>

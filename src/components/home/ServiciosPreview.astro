@@ -1,0 +1,41 @@
+---
+import { services } from '../../data/services';
+---
+
+<section
+  id="servicios"
+  class="mx-4 flex flex-col gap-4 pb-14 sm:mx-6 md:mx-16 md:flex-row md:gap-0 md:pb-20 lg:mx-20 xl:mx-24"
+>
+  {
+    services.map((service) => (
+      <a
+        href={`/servicios#${service.slug}`}
+        class="group flex flex-1 flex-col focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-950"
+      >
+        {service.previewVariant === 'sessions' ? (
+          <div class="flex h-[36vh] flex-col bg-amber-50 p-5 text-center transition-colors group-hover:bg-amber-100/80 md:h-[60vh] md:p-10">
+            <div class="mt-auto px-2 md:px-4">
+              <img
+                src={service.previewImage}
+                alt="Estudi Norai"
+                class="mx-auto w-full max-w-md"
+              />
+              <p class="tracking mt-4 text-center text-3xl text-zinc-900 md:text-4xl">SESSIONS</p>
+            </div>
+          </div>
+        ) : (
+          <div class="h-[36vh] overflow-hidden bg-gray-200 md:h-[60vh]">
+            <img
+              src={service.previewImage}
+              alt=""
+              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            />
+          </div>
+        )}
+        <div class="flex min-h-[5.75rem] items-center justify-center border bg-white p-5 text-center transition-colors duration-300 group-hover:bg-cyan-950 group-hover:text-white md:h-[10rem] md:p-6">
+          <p class="text-xl md:text-2xl">{service.previewTitle}</p>
+        </div>
+      </a>
+    ))
+  }
+</section>
