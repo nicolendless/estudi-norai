@@ -1,18 +1,107 @@
 ---
-import type { Service } from '../../data/services';
+import type { Service, ServiceTheme } from '../../data/services';
 
 type Props = Service;
 
-const { slug, detailTitle, detailSubtitle } = Astro.props;
+const {
+  slug,
+  detailTitle,
+  detailSubtitle,
+  detailImage,
+  imageOverlayLines,
+  imagePosition,
+  panelTheme,
+  body,
+} = Astro.props;
+
+const panelStyles: Record<ServiceTheme, string> = {
+  dark: 'bg-[#202d35] text-white',
+  light: 'bg-[#f5efe6] text-[#202d35]',
+  cream: 'bg-[#ece4d9] text-[#202d35]',
+  outlined: 'border border-[#202d35] bg-white text-[#202d35]',
+};
+
+const imageFirst = imagePosition === 'left';
 ---
 
-<section
-  id={slug}
-  class="scroll-mt-24 border-b border-zinc-200 px-6 py-16 md:px-16 lg:px-20"
->
-  <h2 class="font-archivo text-3xl font-light text-[#202d35] md:text-4xl">
-    {detailTitle}
-  </h2>
-  {detailSubtitle && <p class="mt-1 text-xl text-[#202d35]">{detailSubtitle}</p>}
-  <p class="mt-6 text-lg text-zinc-600">Contenido próximamente.</p>
-</section>
+<article id={slug} class="scroll-mt-28 py-6 md:py-8">
+  <div class="mx-4 max-w-[90rem] md:mx-16 lg:mx-20 xl:mx-24">
+    <a
+      href="#contacto"
+      class="font-archivo mb-4 inline-block text-2xl font-extralight text-[#202d35] underline"
+    >
+      Pide más información
+    </a>
+
+    <div
+      class:list={[
+        'grid min-h-[22rem] lg:grid-cols-2',
+        !imageFirst && 'lg:[&>*:first-child]:order-2',
+      ]}
+    >
+      <div class="relative min-h-[36vh] lg:min-h-full">
+        <img src={detailImage} alt="" class="absolute inset-0 h-full w-full object-cover" />
+        {
+          imageOverlayLines && (
+            <div class="absolute inset-0 flex items-center justify-center p-6">
+              <p class="font-archivo text-center text-5xl leading-none font-light text-[#f5efe6] sm:text-6xl md:text-7xl lg:text-8xl">
+                {imageOverlayLines.map((line) => (
+                  <span class="block">{line}</span>
+                ))}
+              </p>
+            </div>
+          )
+        }
+      </div>
+
+      <div
+        class:list={[
+          'flex flex-col justify-center px-6 py-10 sm:px-10 sm:py-12 lg:px-12 lg:py-14',
+          panelStyles[panelTheme],
+        ]}
+      >
+        <h2 class="font-archivo font-light">
+          {
+            slug === 'composicion' ? (
+              <>
+                <span class="block text-3xl uppercase">{detailTitle}</span>
+                {detailSubtitle && (
+                  <span class="mt-1 block text-4xl uppercase sm:text-5xl">{detailSubtitle}</span>
+                )}
+              </>
+            ) : slug === 'norai-sessions' ? (
+              <>
+                <span class="block text-4xl sm:text-5xl">{detailTitle}</span>
+                {detailSubtitle && (
+                  <span class="mt-2 block text-3xl font-extralight sm:text-4xl">{detailSubtitle}</span>
+                )}
+              </>
+            ) : slug === 'clases' ? (
+              <>
+                <span class="block text-4xl uppercase sm:text-5xl">{detailTitle}</span>
+                {detailSubtitle && (
+                  <span class="mt-1 block text-2xl uppercase sm:text-3xl">{detailSubtitle}</span>
+                )}
+              </>
+            ) : (
+              <>
+                <span class="block text-4xl uppercase leading-tight sm:text-5xl">{detailTitle}</span>
+                {detailSubtitle && (
+                  <span class="block text-4xl uppercase leading-tight sm:text-5xl">{detailSubtitle}</span>
+                )}
+              </>
+            )
+          }
+        </h2>
+
+        <p class="mt-6 text-lg leading-relaxed font-light">
+          {
+            body.map((segment) =>
+              segment.bold ? <strong class="font-bold">{segment.text}</strong> : segment.text,
+            )
+          }
+        </p>
+      </div>
+    </div>
+  </div>
+</article>

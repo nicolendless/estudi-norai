@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ServiciosNav from '../../components/servicios/ServiciosNav.astro';
 import ServicioBlock from '../../components/servicios/ServicioBlock.astro';
+import ContactoSection from '../../components/shared/ContactoSection.astro';
+import VisitanosSection from '../../components/shared/VisitanosSection.astro';
 import { services } from '../../data/services';
 ---
 
@@ -10,6 +12,8 @@ import { services } from '../../data/services';
   {services.map((service) => (
     <ServicioBlock {...service} />
   ))}
+  <ContactoSection />
+  <VisitanosSection />
 </BaseLayout>
 
 <script>
