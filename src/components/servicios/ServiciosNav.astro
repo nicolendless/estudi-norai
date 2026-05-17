@@ -2,42 +2,40 @@
 interface Props {
   active?: 'servicios';
 }
-
-const { active } = Astro.props;
-
-const links = [
-  { href: '/servicios', label: 'SERVICIOS', key: 'servicios' as const },
-  { href: '/#embarcacion', label: "L'ESTUDI", key: null },
-  { href: '/#artistas', label: 'WORKS', key: null },
-];
 ---
 
-<header class="border-b border-zinc-200 bg-white">
-  <div
-    class="mx-4 flex flex-col gap-6 py-6 md:mx-16 md:flex-row md:items-center md:justify-between md:py-8 lg:mx-20 xl:mx-24"
-  >
-    <a href="/" class="shrink-0">
+<header class="bg-white">
+  <div class="w-full px-4 pt-8 pb-10 md:px-16 md:pt-9 md:pb-12 lg:px-20 xl:px-24">
+    <a href="/" class="inline-block">
       <img
         src="/images/logo.svg"
         alt="Estudi Norai"
-        class="site-logo site-logo-dark h-14 w-auto md:h-[4.5rem]"
+        class="site-logo site-logo-dark h-[3.75rem] w-auto max-w-[8.8rem] md:h-[4.8125rem] md:max-w-[141px]"
       />
     </a>
 
-    <nav aria-label="Principal" class="flex flex-wrap items-center gap-6 md:gap-12 lg:gap-20">
-      {
-        links.map(({ href, label, key }) => (
-          <a
-            href={href}
-            class:list={[
-              'font-archivo text-[clamp(1.25rem,3vw,1.875rem)] text-[#202d35]',
-              active === key ? 'font-semibold underline' : key === null && label === 'WORKS' ? 'font-light' : 'font-extralight',
-            ]}
-          >
-            {label}
-          </a>
-        ))
-      }
+    <nav
+      aria-label="Principal"
+      class="mt-5 grid w-full grid-cols-3 items-center gap-4 text-[#202d35] md:mt-6"
+    >
+      <a
+        href="/servicios"
+        class="font-archivo text-left text-[clamp(1.125rem,2.5vw,1.875rem)] leading-none font-semibold"
+      >
+        SERVICIOS
+      </a>
+      <a
+        href="/#embarcacion"
+        class="font-archivo text-center text-[clamp(1.125rem,2.5vw,1.875rem)] leading-none font-extralight"
+      >
+        L'ESTUDI
+      </a>
+      <a
+        href="/#artistas"
+        class="font-archivo text-right text-[clamp(1.125rem,2.5vw,1.875rem)] leading-none font-light"
+      >
+        WORKS
+      </a>
     </nav>
   </div>
 </header>
