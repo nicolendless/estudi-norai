@@ -76,7 +76,7 @@ export const services: Service[] = [
     previewVariant: 'sessions',
     detailTitle: 'Norai Sessions',
     detailSubtitle: 'Grabación de directos',
-    detailImage: '/images/composicion.jpg',
+    detailImage: '/images/servicios/norai-sessions.jpg',
     imagePosition: 'left',
     panelTheme: 'outlined',
     body: [
@@ -99,7 +99,7 @@ export const services: Service[] = [
     previewVariant: 'image',
     detailTitle: 'Composición de canciones',
     detailSubtitle: 'PERSONALIZADAS',
-    detailImage: '/images/composicion.jpg',
+    detailImage: '/images/servicios/composicion.jpg',
     imagePosition: 'right',
     panelTheme: 'dark',
     body: [
@@ -122,7 +122,7 @@ export const services: Service[] = [
     previewVariant: 'image',
     detailTitle: 'Clases de guitarra',
     detailSubtitle: 'y/o producción musical',
-    detailImage: '/images/formacion.jpg',
+    detailImage: '/images/servicios/clases.jpg',
     imagePosition: 'left',
     panelTheme: 'cream',
     body: [

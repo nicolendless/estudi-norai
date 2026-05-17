@@ -4,23 +4,40 @@ interface Props {
 }
 
 const { active } = Astro.props;
+
+const links = [
+  { href: '/servicios', label: 'SERVICIOS', key: 'servicios' as const },
+  { href: '/#embarcacion', label: "L'ESTUDI", key: null },
+  { href: '/#artistas', label: 'WORKS', key: null },
+];
 ---
 
-<nav
-  aria-label="Principal"
-  class="flex flex-wrap items-center justify-center gap-8 border-b border-zinc-200 px-6 py-6 text-[#202d35] md:gap-16 md:px-16 md:py-8 lg:px-20"
->
-  <a
-    href="/servicios"
-    class:list={[
-      'font-archivo text-2xl md:text-3xl',
-      active === 'servicios' ? 'font-semibold underline' : 'font-extralight',
-    ]}
+<header class="border-b border-zinc-200 bg-white">
+  <div
+    class="mx-4 flex flex-col gap-6 py-6 md:mx-16 md:flex-row md:items-center md:justify-between md:py-8 lg:mx-20 xl:mx-24"
   >
-    SERVICIOS
-  </a>
-  <a href="/#embarcacion" class="font-archivo text-2xl font-extralight md:text-3xl">
-    L'ESTUDI
-  </a>
-  <a href="/#artistas" class="font-archivo text-2xl font-light md:text-3xl"> WORKS </a>
-</nav>
+    <a href="/" class="shrink-0">
+      <img
+        src="/images/logo.svg"
+        alt="Estudi Norai"
+        class="site-logo site-logo-dark h-14 w-auto md:h-[4.5rem]"
+      />
+    </a>
+
+    <nav aria-label="Principal" class="flex flex-wrap items-center gap-6 md:gap-12 lg:gap-20">
+      {
+        links.map(({ href, label, key }) => (
+          <a
+            href={href}
+            class:list={[
+              'font-archivo text-[clamp(1.25rem,3vw,1.875rem)] text-[#202d35]',
+              active === key ? 'font-semibold underline' : key === null && label === 'WORKS' ? 'font-light' : 'font-extralight',
+            ]}
+          >
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>

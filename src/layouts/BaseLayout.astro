@@ -4,9 +4,10 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   logoMode?: 'scroll' | 'fixed-dark' | 'fixed-light';
+  hideHeaderLogo?: boolean;
 }
 
-const { title = 'Estudi Norai', logoMode = 'scroll' } = Astro.props;
+const { title = 'Estudi Norai', logoMode = 'scroll', hideHeaderLogo = false } = Astro.props;
 ---
 
 <html lang="es">
@@ -21,18 +22,22 @@ const { title = 'Estudi Norai', logoMode = 'scroll' } = Astro.props;
   </head>
 
   <body class="font-archivo font-extralight" data-logo-mode={logoMode}>
-    <header class="pointer-events-none fixed inset-x-0 top-0 z-[60]">
-      <div class="flex justify-end px-4 pt-5 md:px-8 md:pt-8">
-        <a href="/" class="pointer-events-auto">
-          <img
-            src="/images/logo.svg"
-            alt="Estudi Norai logo"
-            data-site-logo
-            class="site-logo h-18 w-auto transition-[filter] duration-300 md:h-20"
-          />
-        </a>
-      </div>
-    </header>
+    {
+      !hideHeaderLogo && (
+        <header class="pointer-events-none fixed inset-x-0 top-0 z-[60]">
+          <div class="flex justify-end px-4 pt-5 md:px-8 md:pt-8">
+            <a href="/" class="pointer-events-auto">
+              <img
+                src="/images/logo.svg"
+                alt="Estudi Norai logo"
+                data-site-logo
+                class="site-logo h-18 w-auto transition-[filter] duration-300 md:h-20"
+              />
+            </a>
+          </div>
+        </header>
+      )
+    }
     <main>
       <slot />
     </main>

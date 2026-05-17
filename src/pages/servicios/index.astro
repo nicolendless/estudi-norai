@@ -8,7 +8,7 @@ import VisitanosSection from '../../components/shared/VisitanosSection.astro';
 import { services } from '../../data/services';
 ---
 
-<BaseLayout title="Servicios — Estudi Norai" logoMode="fixed-dark">
+<BaseLayout title="Servicios — Estudi Norai" logoMode="fixed-dark" hideHeaderLogo>
   <ServiciosNav active="servicios" />
   {services.map((service) => (
     <ServicioBlock {...service} />
