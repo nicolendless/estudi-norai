@@ -1,15 +1,27 @@
-<section
-  id="spotify"
-  class="mx-8 my-10 flex items-center justify-center rounded-2xl bg-white px-6 py-10 md:mx-12 md:my-14 md:min-h-[50vh] md:px-8 lg:mx-16 xl:mx-20"
->
-  <div class="w-full max-w-3xl">
-    <iframe
-      title="Spotify Player"
-      src="https://open.spotify.com/embed/playlist/6lFwLBYJZyImPdd8u8WwYU?utm_source=generator"
-      class="h-[152px] w-full sm:h-[232px] md:h-[352px]"
-      frameborder="0"
-      allowfullscreen=""
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      loading="lazy"></iframe>
+---
+import { pageGutter } from '../../data/layout';
+
+interface Props {
+  variant?: 'home' | 'subpage';
+}
+
+const { variant = 'home' } = Astro.props;
+
+const iframeClass = 'h-[152px] w-full sm:h-[232px] md:h-[352px]';
+---
+
+<section id="spotify" class="bg-white py-10 md:py-14">
+  <div class={pageGutter}>
+    <div class="mx-auto w-full max-w-[1120px]">
+      <iframe
+        title="Spotify Player"
+        src="https://open.spotify.com/embed/playlist/6lFwLBYJZyImPdd8u8WwYU?utm_source=generator"
+        class={iframeClass}
+        frameborder="0"
+        allowfullscreen=""
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+      />
+    </div>
   </div>
 </section>
