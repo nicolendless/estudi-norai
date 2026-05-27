@@ -1,0 +1,40 @@
+---
+import { crew } from '../../data/works';
+import { pageGutter, sectionTitleLg } from '../../data/layout';
+---
+
+<section id="tripulacion" class="scroll-mt-6 bg-white pt-[90px]">
+  <div class={pageGutter}>
+    <h2 class={sectionTitleLg}>Tripulación</h2>
+
+    <ul class="mt-[23px] grid grid-cols-1 gap-x-4 gap-y-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-y-[94px]">
+      {
+        crew.map((member) => (
+          <li>
+            <div class="aspect-[309/352] overflow-hidden bg-zinc-100">
+              <img
+                src={member.image}
+                alt={member.name}
+                class="h-full w-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="font-archivo mt-3.5 text-2xl font-extralight text-[#202d35]">{member.name}</h3>
+            <p class="mt-0.5 text-[15px] leading-normal font-extralight text-[#202d35]">
+              {member.bio}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-[74px] flex justify-center">
+      <a
+        href="/servicios#norai-sessions"
+        class="font-archivo flex h-[67px] min-w-[441px] items-center justify-center border border-[#202d35] bg-[#202d35] px-8 text-[30px] font-normal text-[#f5efe6]"
+      >
+        Descúbre Norai Sessions
+      </a>
+    </div>
+  </div>
+</section>

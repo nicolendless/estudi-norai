@@ -1,0 +1,23 @@
+---
+import { studioPhotos } from '../../data/works';
+import { pageGutter, sectionTitleLg } from '../../data/layout';
+---
+
+<section id="estudio-fotos" class="scroll-mt-6 bg-white pt-[21px]">
+  <div class={pageGutter}>
+    <h2 class={sectionTitleLg}>
+      <span>Estudio</span>
+      <span class="ml-3 text-[30px] font-normal">moments</span>
+    </h2>
+
+    <div class="mt-[63px] grid grid-cols-2 gap-x-2.5 gap-y-3 md:grid-cols-3">
+      {
+        studioPhotos.map((src) => (
+          <div class="aspect-[350/435] overflow-hidden bg-zinc-100">
+            <img src={src} alt="" class="h-full w-full object-cover" loading="lazy" />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

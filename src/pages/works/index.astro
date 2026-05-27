@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNav from '../../components/shared/SiteNav.astro';
+import TripulacionSection from '../../components/works/TripulacionSection.astro';
+import EstudioFotosSection from '../../components/works/EstudioFotosSection.astro';
+import NoraiSessionsSection from '../../components/works/NoraiSessionsSection.astro';
+import SpotifySection from '../../components/home/SpotifySection.astro';
+import ContactoSection from '../../components/shared/ContactoSection.astro';
+import VisitanosSection from '../../components/shared/VisitanosSection.astro';
+---
+
+<BaseLayout title="Works — Estudi Norai" logoMode="fixed-dark" hideHeaderLogo>
+  <SiteNav active="works" />
+  <TripulacionSection />
+  <EstudioFotosSection />
+  <NoraiSessionsSection />
+  <SpotifySection variant="subpage" />
+  <ContactoSection />
+  <VisitanosSection />
+</BaseLayout>

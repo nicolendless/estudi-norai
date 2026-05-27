@@ -1,0 +1,37 @@
+---
+import { sessionsQuote, sessionsQuoteAuthor, sessionsThumb } from '../../data/works';
+import { pageGutter, sectionTitleLg } from '../../data/layout';
+---
+
+<section id="norai-sessions" class="scroll-mt-6 bg-white pt-[86px]">
+  <div class={pageGutter}>
+    <p class="font-archivo text-[30px] font-normal text-[#202d35]">last</p>
+    <h2 class:list={[sectionTitleLg, 'mt-2']}>Norai Sessions</h2>
+
+    <div class="mt-[21px] grid grid-cols-1 gap-8 sm:grid-cols-2 lg:gap-[61px]">
+      <div class="aspect-[588/347] overflow-hidden bg-zinc-100">
+        <img
+          src={sessionsThumb}
+          alt="Norai Sessions"
+          class="h-full w-full object-cover"
+          loading="lazy"
+        />
+      </div>
+      <div class="aspect-[588/347] overflow-hidden bg-zinc-100">
+        <img
+          src={sessionsThumb}
+          alt="Norai Sessions"
+          class="h-full w-full object-cover"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <blockquote
+      class="font-archivo mx-auto mt-[110px] max-w-[762px] text-center text-[25px] leading-8 font-extralight text-[#202d35]"
+    >
+      {sessionsQuote}
+      <span class="mt-2 block font-semibold">{sessionsQuoteAuthor}</span>
+    </blockquote>
+  </div>
+</section>
