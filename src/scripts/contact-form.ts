@@ -19,7 +19,7 @@ if (contactForm) {
 
     if (submitButton) {
       submitButton.disabled = true;
-      submitButton.textContent = 'enviando...';
+      submitButton.textContent = 'Enviando...';
     }
 
     try {
