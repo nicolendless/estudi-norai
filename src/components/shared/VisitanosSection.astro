@@ -1,33 +1,38 @@
 <section id="visitanos" class="w-full bg-white">
-  <div class="grid grid-cols-1 md:grid-cols-[62%_38%]">
-    <div>
-      <div class="relative">
-        <iframe
-          title="Mapa Estudi Norai"
-          src="https://www.google.com/maps?q=Carrer+del+Vi,+3A,+Palma&output=embed"
-          class="h-[464px] w-full border-0 md:h-[464px]"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-      <div class="mt-[166px] w-full overflow-hidden md:mt-[166px]">
-        <h2
-          class="font-archivo pointer-events-none w-full text-center text-[18vw] leading-none text-stone-300 md:text-[11vw]"
-        >
-          VISÍTANOS
-        </h2>
-      </div>
+  <div class="md:grid md:grid-cols-[55%_45%] md:grid-rows-[455px_auto]">
+    <div class="md:col-start-1 md:row-start-1">
+      <iframe
+        title="Mapa Estudi Norai"
+        src="https://www.google.com/maps?q=Carrer+del+Vi,+3A,+Palma&output=embed"
+        class="h-[420px] w-full border-0 md:h-[455px]"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-    <div class="relative flex min-h-[464px] items-end justify-end pr-8 pb-8 md:min-h-[630px] md:pr-12 md:pb-12">
-      <span
-        class="group font-archivo absolute top-[28%] left-[38%] -translate-x-1/2 -translate-y-1/2 -rotate-12 cursor-pointer text-2xl text-zinc-700 md:top-[42%] md:left-[45%] md:text-3xl"
-        >o ponte en contacto<span class="ml-1 hidden group-hover:inline"> :)</span></span
+    <div
+      class="relative flex min-h-[260px] items-end justify-end px-6 pb-8 md:col-start-2 md:row-start-1 md:min-h-0 md:px-10 md:pb-10"
+    >
+      <a
+        href="#contacto"
+        class="group font-archivo absolute top-[42%] left-[32%] inline-block -translate-x-1/2 -translate-y-1/2 -rotate-[15deg] cursor-pointer text-center text-[clamp(1.125rem,2vw,1.625rem)] leading-tight font-light text-[#202d35]"
       >
-      <div class="text-right text-3xl leading-tight text-zinc-800 md:text-4xl">
+        <span class="block">o ponte</span>
+        <span class="block"
+          >en contacto<span class="ml-1 hidden group-hover:inline">:)</span></span
+        >
+      </a>
+      <div class="font-archivo text-right text-[clamp(1.25rem,2.5vw,1.875rem)] leading-tight font-light text-[#202d35]">
         <p>Carrer del Vi, 3A</p>
         <p>Palma</p>
         <p>+34 666 72 21 61</p>
         <p>estudionorai@gmail.com</p>
       </div>
+    </div>
+    <div class="overflow-hidden md:col-start-1 md:row-start-2">
+      <h2
+        class="font-archivo pointer-events-none w-full text-center text-[clamp(3.5rem,11.5vw,10.25rem)] leading-none font-light text-[#e5d9c7]"
+      >
+        VISÍTANOS
+      </h2>
     </div>
   </div>
 </section>

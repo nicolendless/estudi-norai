@@ -1,8 +1,8 @@
 ---
 const fieldClass =
-  'font-archivo w-full rounded-full bg-[#f5efe6] px-6 py-3 text-center text-[#202d35] placeholder:text-[#202d35] outline-none';
+  'font-archivo w-full rounded-full bg-[#f5efe6] px-6 py-3 text-center text-[18px] font-light text-[#202d35] placeholder:text-[#202d35] outline-none shadow-[inset_0_0_4px_rgba(0,0,0,0.25)]';
 const checkboxClass =
-  'mt-0.5 size-4 shrink-0 appearance-none rounded-full border-0 bg-[#f5efe6] checked:bg-[#f5efe6]';
+  'mt-1 h-[14px] w-[17px] shrink-0 cursor-pointer appearance-none rounded-full border-0 bg-[#f5efe6] checked:bg-[#f5efe6] shadow-[inset_0_0_4px_rgba(0,0,0,0.25)]';
 
 interface Props {
   showEmbarcate?: boolean;
@@ -13,10 +13,10 @@ const { showEmbarcate = true } = Astro.props;
 
 <section
   id="contacto"
-  class="relative flex min-h-[539px] w-full flex-col bg-[#202d35] pt-[83px] pb-[83px] lg:flex-row"
+  class="relative flex min-h-[544px] w-full flex-col bg-[#202d35] pt-[83px] pb-[83px] lg:flex-row"
 >
   <div class="order-2 flex w-full items-center justify-center px-4 md:px-16 lg:order-1 lg:w-1/2 lg:px-20 xl:px-24">
-    <form action="/api/contact" method="post" data-contact-form class="w-full max-w-[423px] space-y-3">
+    <form action="/api/contact" method="post" data-contact-form class="w-full max-w-[423px] space-y-2">
       <input type="text" name="nombre" placeholder="Nombre*" required class={fieldClass} />
       <input type="email" name="email" placeholder="E-mail*" required class={fieldClass} />
       <input type="tel" name="telefono" placeholder="Teléfono" class={fieldClass} />
@@ -26,17 +26,17 @@ const { showEmbarcate = true } = Astro.props;
           name="mensaje"
           rows="5"
           placeholder="Proyecto / Idea&#10;Déjame un mensaje"
-          class="font-archivo w-full resize-none rounded-3xl bg-[#f5efe6] px-6 pt-5 pb-14 text-center text-[#202d35] placeholder:text-[#202d35] outline-none"
+          class="font-archivo w-full resize-none rounded-[28px] bg-[#f5efe6] px-6 pt-5 pb-14 text-center text-[18px] font-light text-[#202d35] placeholder:text-[#202d35] outline-none shadow-[inset_0_0_4px_rgba(0,0,0,0.25)]"
         ></textarea>
         <button
           type="submit"
-          class="font-archivo absolute right-4 bottom-4 rounded-full bg-[#202d35] px-6 py-1.5 text-sm font-light text-[#f5efe6] hover:bg-[#2a3a45]"
+          class="font-archivo absolute right-4 bottom-3 rounded-full bg-[#202d35] px-5 py-1 text-[13px] font-bold tracking-wide text-[#f5efe6] uppercase shadow-[inset_0_0_4px_rgba(0,0,0,0.25)] hover:bg-[#2a3a45]"
         >
           Enviar
         </button>
       </div>
 
-      <div class="space-y-3 pt-2 text-left text-sm font-light text-[#f5efe6] md:text-base">
+      <div class="space-y-1 pt-2 text-left text-[18px] font-light text-[#f5efe6]">
         <label class="flex items-start gap-3">
           <input type="checkbox" name="politica" class={checkboxClass} required />
           <span>Acepto la política de protección de datos</span>
@@ -53,7 +53,7 @@ const { showEmbarcate = true } = Astro.props;
 
   <div class="order-1 relative flex w-full items-center justify-center px-4 pb-8 md:px-16 md:pb-10 lg:order-2 lg:w-1/2 lg:px-20 lg:pb-0 xl:px-24">
     <h2
-      class="font-archivo text-center text-[16vw] leading-[0.95] tracking-tight text-[#e5d9c7] sm:text-[14vw] md:text-[12vw] lg:text-[11vw] xl:text-[10vw]"
+      class="font-archivo text-center text-[clamp(3.75rem,11.5vw,10.3125rem)] leading-[0.97] font-light tracking-[-0.05em] text-[#e5d9c7]"
     >
       <span class="block">TRABA</span>
       <span class="block">JEMOS</span>
@@ -64,9 +64,7 @@ const { showEmbarcate = true } = Astro.props;
   {
     showEmbarcate && (
       <div class="absolute top-0 right-4 hidden pt-10 md:right-5 md:pt-14 lg:block">
-        <span
-          class="font-archivo inline-block text-base text-[#e5d9c7] [writing-mode:vertical-rl] md:text-lg lg:text-2xl"
-        >
+        <span class="font-archivo inline-block text-[25px] font-normal text-[#e5d9c7] [writing-mode:vertical-rl]">
           Embárcate
         </span>
       </div>
