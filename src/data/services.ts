@@ -71,7 +71,7 @@ export const services: Service[] = [
   },
   {
     slug: 'norai-sessions',
-    previewTitle: 'Grabación de videoclip en directo',
+    previewTitle: 'Grabación de videoclip\nen directo',
     previewImage: '/images/logo_simple.svg',
     previewVariant: 'sessions',
     detailTitle: 'Norai Sessions',
@@ -117,7 +117,7 @@ export const services: Service[] = [
   },
   {
     slug: 'clases',
-    previewTitle: 'Clases de guitarra y/o producción musical',
+    previewTitle: 'Formación musical\nGuitarra, producción, combo',
     previewImage: '/images/formacion.jpg',
     previewVariant: 'image',
     detailTitle: 'Clases de guitarra',

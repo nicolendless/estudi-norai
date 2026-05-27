@@ -1,0 +1,187 @@
+---
+const intro =
+  'Mi pasión por la música viene prácticamente de nacimiento, ya que mis padres se conocieron en una coral. Desde pequeño, he vivido rodeado de música, tanto a nivel pasional como formativo.';
+
+const career =
+  'Durante la adolescencia inicié mis primeros proyectos musicales, como artista e intérprete. Pese a que mi arranque universitario y laboral fue en el mundo empresarial, poco a poco mi carrera fue girando hacia la música, pasando por Ticketmaster, hasta llegar a graduarme con honores, en <strong>Producción Musical en Barcelona</strong>, en la escuela Microfusa.';
+
+const studio =
+  'En 2022, decidí mudarme a Mallorca para abrir mi propio estudio de música en la isla, lo que ahora ya conocéis como <strong class="font-extrabold">Estudi Norai.</strong> Desde este espacio, he podido acompañar a artistas de muchas maneras, en proyectos maravillosos. Además, tengo la suerte de seguir ligado a la música también como artista (Norai), intérprete (FincaMusicBand, Fonoll…), organizador de eventos (Rodautors) e incluso como profesor de guitarra y producción.';
+
+const cellClass = 'relative aspect-square w-full overflow-hidden';
+const creamTitle = 'text-[#e5d9c7]';
+const conocemeTitleClass = `font-archivo text-5xl leading-none tracking-tight ${creamTitle} sm:text-6xl lg:text-[5.5rem] xl:text-[6rem]`;
+const worksTitleClass = `font-archivo text-[22vw] leading-none tracking-tight ${creamTitle} md:text-[17vw] lg:text-[14vw] xl:text-[12vw]`;
+---
+
+<section class="conoceme-works w-full pt-12 md:grid md:grid-cols-2 md:pt-20 lg:pt-16">
+  <div
+    id="conoceme"
+    class:list={[cellClass, 'order-2 flex flex-col px-5 py-8 sm:px-8 md:order-1 md:px-10 md:py-10 lg:px-14']}
+  >
+    <div class="space-y-3 text-base leading-7 text-zinc-900 md:text-lg md:leading-8">
+      <p>{intro}</p>
+      <div class="hidden md:block md:space-y-3">
+        <p set:html={career} />
+        <p set:html={studio} />
+      </div>
+      <details class="group md:hidden">
+        <summary class="font-archivo inline-flex cursor-pointer text-lg text-zinc-900 underline">
+          <span class="group-open:hidden">Leer más</span>
+          <span class="hidden group-open:inline">Leer menos</span>
+        </summary>
+        <div class="mt-4 space-y-4">
+          <p set:html={career} />
+          <p set:html={studio} />
+        </div>
+      </details>
+    </div>
+    <img
+      src="/images/figma/signature.svg"
+      alt=""
+      class="mt-auto h-16 w-auto max-w-[16.125rem] shrink-0 self-end object-contain pt-6 md:h-24 md:pt-8"
+      loading="lazy"
+    />
+  </div>
+
+  <div class:list={[cellClass, 'order-1 bg-stone-100 md:order-2']}>
+    <img
+      src="/images/conoceme.png"
+      alt="Timonel"
+      class="absolute inset-0 h-full w-full object-cover"
+    />
+    <div
+      class="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/55 via-black/20 to-transparent"
+    >
+    </div>
+    <div class="absolute inset-x-0 bottom-0 flex justify-center pb-5 md:pb-6 lg:pb-8">
+      <h2 class={conocemeTitleClass}>CONÓCEME</h2>
+    </div>
+    <div class="absolute top-0 right-4 pt-8 sm:right-5 sm:pt-10 md:pt-12 lg:pt-14">
+      <span
+        class:list={[
+          'font-archivo inline-block text-sm [writing-mode:vertical-rl] md:text-base lg:text-2xl',
+          creamTitle,
+        ]}
+      >
+        Timonel
+      </span>
+    </div>
+  </div>
+
+  <div
+    id="artistas"
+    class:list={[
+      cellClass,
+      'order-3 flex flex-col items-center justify-end bg-[#202d35] pb-6 md:order-3 md:pb-8',
+    ]}
+  >
+    <h2 class={worksTitleClass}>WORKS</h2>
+    <a href="/works" class:list={['font-archivo mt-2 text-lg underline', creamTitle]}>Saber más</a>
+  </div>
+
+  <div class:list={[cellClass, 'order-4 bg-white md:order-4']}>
+    <div class="absolute inset-0 flex items-center justify-center">
+      <div class="relative aspect-square w-[88%]">
+        <img
+          src="/images/works_1.png"
+          alt="Proyecto"
+          class="work-card absolute top-[18%] left-[16%] z-[80] h-[40%] w-[35%] object-cover"
+          style="--drop-delay: 0.05s;"
+        />
+        <img
+          src="/images/works_2.png"
+          alt="Proyecto"
+          class="work-card absolute top-[2%] left-[38%] z-30 h-[45%] w-[38%] object-cover"
+          style="--drop-delay: 0.2s;"
+        />
+        <img
+          src="/images/works_3.png"
+          alt="Proyecto"
+          class="work-card absolute top-[22%] right-[12%] z-[70] h-[37%] w-[34%] object-cover"
+          style="--drop-delay: 0.35s;"
+        />
+        <img
+          src="/images/works_4.png"
+          alt="Proyecto"
+          class="work-card absolute bottom-[5%] left-[24%] z-40 h-[40%] w-[36%] object-cover"
+          style="--drop-delay: 0.5s;"
+        />
+        <img
+          src="/images/works_5.png"
+          alt="Proyecto"
+          class="work-card absolute right-[13%] bottom-[7%] z-50 h-[38%] w-[35%] object-cover"
+          style="--drop-delay: 0.65s;"
+        />
+        <img
+          src="/images/works_6.png"
+          alt="Proyecto"
+          class="work-card absolute top-[34%] left-[4%] z-25 h-[34%] w-[30%] object-cover"
+          style="--drop-delay: 0.8s;"
+        />
+      </div>
+    </div>
+    <div class="absolute top-0 right-4 pt-8 sm:right-5 sm:pt-10 md:pt-12 lg:pt-14">
+      <span
+        class="font-archivo inline-block text-base text-[#202d35] [writing-mode:vertical-rl] md:text-lg lg:text-2xl"
+      >
+        Tripulación
+      </span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .work-card {
+    opacity: 0;
+    transform: scale(0.96);
+    animation-delay: var(--drop-delay, 0s);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .work-card.drop-in {
+    animation: appear-in 0.55s ease-out forwards;
+    animation-delay: var(--drop-delay, 0s);
+  }
+
+  @keyframes appear-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>
+
+<script>
+  const artistasSection = document.querySelector('#artistas');
+  const workCards = Array.from(document.querySelectorAll<HTMLElement>('.conoceme-works .work-card'));
+
+  const replayDropAnimation = () => {
+    workCards.forEach((card) => {
+      card.classList.remove('drop-in');
+      void card.offsetWidth;
+      card.classList.add('drop-in');
+    });
+  };
+
+  if (artistasSection && workCards.length > 0) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            replayDropAnimation();
+          } else {
+            workCards.forEach((card) => card.classList.remove('drop-in'));
+          }
+        });
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(artistasSection);
+  }
+</script>
