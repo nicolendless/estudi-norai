@@ -25,10 +25,10 @@ export const services: Service[] = [
   {
     slug: 'acompanamiento',
     previewTitle: 'Acompañamiento y Producción musical',
-    previewImage: '/images/prod_musical.jpg',
+    previewImage: '/images/servicios/acompanamiento.jpg',
     previewVariant: 'image',
     detailTitle: 'Acompañamiento musical',
-    detailImage: '/images/prod_musical.jpg',
+    detailImage: '/images/servicios/acompanamiento.jpg',
     imageOverlayLines: ['PRODU', 'CCIÓN'],
     imagePosition: 'left',
     panelTheme: 'dark',
@@ -45,11 +45,11 @@ export const services: Service[] = [
   {
     slug: 'mezcla-mastering',
     previewTitle: 'Mezcla y mastering',
-    previewImage: '/images/mezcla_mastering.jpg',
+    previewImage: '/images/servicios/mezcla-mastering.jpg',
     previewVariant: 'image',
     detailTitle: 'Mezcla y',
     detailSubtitle: 'MASTERING',
-    detailImage: '/images/mezcla_mastering.jpg',
+    detailImage: '/images/servicios/mezcla-mastering.jpg',
     imagePosition: 'right',
     panelTheme: 'light',
     body: [
