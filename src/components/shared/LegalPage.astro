@@ -1,0 +1,68 @@
+---
+import type { LegalPage } from '../../data/legal';
+import ContactoSection from './ContactoSection.astro';
+import VisitanosSection from './VisitanosSection.astro';
+import { pageGutter } from '../../data/layout';
+
+interface Props {
+  page: LegalPage;
+}
+
+const { page } = Astro.props;
+---
+
+<section class="relative h-[clamp(280px,40vw,501px)] w-full overflow-hidden bg-[#202d35]">
+  <img
+    src="/images/legal/hero.jpg"
+    alt=""
+    class="absolute inset-0 h-full w-full object-cover object-center"
+  />
+  <a
+    href="/"
+    class="absolute top-[clamp(16px,2vw,22px)] right-[clamp(16px,2vw,27px)] z-10"
+  >
+    <img
+      src="/images/logo.svg"
+      alt="Estudio Norai"
+      class="h-[clamp(48px,6vw,77px)] w-auto brightness-0 invert"
+    />
+  </a>
+  <h1
+    class="font-archivo absolute inset-x-0 z-10 text-center font-thin tracking-wide text-white"
+    style="top: clamp(120px, 17vw, 251px); font-size: clamp(28px, 3vw, 40px); line-height: 1;"
+  >
+    {page.title}
+  </h1>
+</section>
+
+<section class="bg-white pb-10 sm:pb-12 md:pb-16">
+  <div class={pageGutter}>
+    <article
+      class="relative z-10 mx-auto -mt-12 max-w-[1237px] bg-[#f5efe6] font-extralight text-black sm:-mt-16 md:-mt-20 lg:-mt-[120px]"
+      style="padding-left: clamp(20px, 8vw, 139px); padding-right: clamp(20px, 8vw, 139px); padding-top: clamp(32px, 6vw, 117px); padding-bottom: clamp(32px, 6vw, 117px); font-size: clamp(15px, 1.73vw, 25px); line-height: clamp(24px, 2.22vw, 32px);"
+    >
+      {
+        page.sections.map((section) => (
+          <section class="mb-[1em] last:mb-0">
+            {section.title && (
+              <p class="font-archivo mb-[0.5em] font-bold">{section.title}</p>
+            )}
+            {section.paragraphs?.map((paragraph) => (
+              <p class="whitespace-pre-line">{paragraph}</p>
+            ))}
+            {section.bullets && (
+              <ul class="list-disc pl-[clamp(20px,2.5vw,37.5px)]">
+                {section.bullets.map((bullet) => (
+                  <li>{bullet}</li>
+                ))}
+              </ul>
+            )}
+          </section>
+        ))
+      }
+    </article>
+  </div>
+</section>
+
+<ContactoSection />
+<VisitanosSection />

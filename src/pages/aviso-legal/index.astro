@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LegalPage from '../../components/shared/LegalPage.astro';
+import { avisoLegal } from '../../data/legal';
+---
+
+<BaseLayout title="Aviso legal — Estudio Norai" hideHeaderLogo>
+  <LegalPage page={avisoLegal} />
+</BaseLayout>

@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LegalPage from '../../components/shared/LegalPage.astro';
+import { politicaPrivacidad } from '../../data/legal';
+---
+
+<BaseLayout title="Política de privacidad — Estudio Norai" hideHeaderLogo>
+  <LegalPage page={politicaPrivacidad} />
+</BaseLayout>
