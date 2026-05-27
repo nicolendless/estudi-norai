@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNav from '../../components/shared/SiteNav.astro';
+import LestudiHero from '../../components/lestudi/LestudiHero.astro';
+import EmbarcacionRooms from '../../components/lestudi/EmbarcacionRooms.astro';
+import EquipoSection from '../../components/lestudi/EquipoSection.astro';
+import SpotifySection from '../../components/home/SpotifySection.astro';
+import MaterialSection from '../../components/home/MaterialSection.astro';
+import NoraiIllustration from '../../components/lestudi/NoraiIllustration.astro';
+import ContactoSection from '../../components/shared/ContactoSection.astro';
+import VisitanosSection from '../../components/shared/VisitanosSection.astro';
+---
+
+<BaseLayout title="L'estudi — Estudi Norai" logoMode="fixed-dark" hideHeaderLogo>
+  <SiteNav active="lestudi" />
+  <LestudiHero />
+  <EmbarcacionRooms />
+  <EquipoSection />
+  <SpotifySection variant="subpage" />
+  <MaterialSection />
+  <NoraiIllustration />
+  <ContactoSection showEmbarcate={false} />
+  <VisitanosSection />
+</BaseLayout>

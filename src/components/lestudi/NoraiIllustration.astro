@@ -1,0 +1,23 @@
+---
+import { boatIllustrationImage } from '../../data/lestudi';
+import { pageGutter } from '../../data/layout';
+---
+
+<section class="relative bg-white py-6 md:py-10 lg:py-14">
+  <div class="absolute top-10 right-4 z-10 hidden md:top-14 md:right-8 lg:block xl:right-12">
+    <span
+      class="font-archivo inline-block text-base text-[#202d35] [writing-mode:vertical-rl] md:text-lg lg:text-2xl"
+    >
+      Embárcate
+    </span>
+  </div>
+
+  <div class:list={[pageGutter, 'flex justify-center']}>
+    <img
+      src={boatIllustrationImage}
+      alt=""
+      class="h-auto w-full max-w-[576px] object-contain"
+      loading="lazy"
+    />
+  </div>
+</section>

@@ -1,0 +1,21 @@
+---
+import { heroBackgroundImage, heroLettersImage } from '../../data/lestudi';
+---
+
+<section id="hero" class="relative w-full bg-[#202d35]">
+  <div class="relative h-[50vh] min-h-[420px] w-full overflow-hidden md:h-[743px]">
+    <img
+      src={heroBackgroundImage}
+      alt=""
+      class="absolute inset-0 h-full w-full object-cover object-[center_30%]"
+    />
+    <div class="pointer-events-none absolute inset-0 flex items-center justify-center">
+      <img
+        src={heroLettersImage}
+        alt=""
+        class="h-auto w-[min(120%,1912px)] max-w-none object-contain"
+        loading="eager"
+      />
+    </div>
+  </div>
+</section>

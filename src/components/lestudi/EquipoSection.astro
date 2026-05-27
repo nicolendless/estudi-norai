@@ -1,0 +1,32 @@
+---
+import { equipoBrandsImage } from '../../data/lestudi';
+import { pageGutter, sectionTitleLestudi } from '../../data/layout';
+---
+
+<section id="equipo" class="scroll-mt-6 bg-white py-10 md:py-12">
+  <div class={pageGutter}>
+    <h2 class={sectionTitleLestudi}>Equipo</h2>
+
+    <p class="font-archivo mt-10 text-center text-xl font-light text-[#202d35] md:text-2xl">
+      Equipo de grabación
+    </p>
+
+    <div class="mt-4 overflow-hidden">
+      <img
+        src={equipoBrandsImage}
+        alt="Marcas de equipo e instrumentos disponibles"
+        class="w-full object-contain"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="mt-14 flex flex-col items-center gap-5">
+      <a
+        href="#material"
+        class="font-archivo flex h-[60px] w-[282px] items-center justify-center bg-[#202d35] text-lg text-[#f5efe6] underline"
+      >
+        Saber más
+      </a>
+    </div>
+  </div>
+</section>

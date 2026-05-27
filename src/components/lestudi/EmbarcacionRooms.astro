@@ -1,0 +1,51 @@
+---
+import { sala2Copy, sala2Images, salaPrincipalCopy, salaPrincipalImages } from '../../data/lestudi';
+import { pageGutter, roomPanel, sectionTitleLestudi } from '../../data/layout';
+---
+
+<section id="embarcacion" class="scroll-mt-6 bg-white py-10 md:py-12">
+  <div class={pageGutter}>
+    <h2 class={sectionTitleLestudi}>Embarcación</h2>
+
+    <div class="mt-4 grid grid-cols-2 gap-px sm:grid-cols-4">
+      {
+        salaPrincipalImages.map((src) => (
+          <div class="aspect-[309/354] overflow-hidden bg-zinc-100">
+            <img src={src} alt="" class="h-full w-full object-cover" loading="lazy" />
+          </div>
+        ))
+      }
+    </div>
+
+    <div class:list={[roomPanel, 'mt-5 bg-[#202d35] text-[#f5efe6]']}>
+      <h3 class="font-archivo text-2xl font-bold underline decoration-1 underline-offset-4">
+        Sala principal
+      </h3>
+      <p class="font-archivo mt-4 max-w-xl text-xl font-thin leading-normal">
+        {salaPrincipalCopy.lead}
+      </p>
+      <p class="font-archivo mt-4 max-w-xl text-sm font-thin leading-normal">
+        {salaPrincipalCopy.detail}
+      </p>
+    </div>
+
+    <div class="mt-5 grid grid-cols-2 gap-px sm:grid-cols-4">
+      {
+        sala2Images.map((src) => (
+          <div class="aspect-[309/354] overflow-hidden bg-zinc-100">
+            <img src={src} alt="" class="h-full w-full object-cover" loading="lazy" />
+          </div>
+        ))
+      }
+    </div>
+
+    <div class:list={[roomPanel, 'mt-5 bg-[#ece4d9] text-[#202d35]']}>
+      <h3 class="font-archivo text-2xl font-bold">Sala 2</h3>
+      <p class="font-archivo mt-4 max-w-xl text-xl font-thin leading-normal">{sala2Copy.lead}</p>
+      <p class="font-archivo mt-4 max-w-xl text-xl font-thin leading-normal">
+        <span class="font-bold">+</span>
+        {` ${sala2Copy.detail}`}
+      </p>
+    </div>
+  </div>
+</section>
