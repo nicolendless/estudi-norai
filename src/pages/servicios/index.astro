@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ServiciosNav from '../../components/servicios/ServiciosNav.astro';
+import SiteNav from '../../components/shared/SiteNav.astro';
 import ServicioBlock from '../../components/servicios/ServicioBlock.astro';
 import MaterialSection from '../../components/home/MaterialSection.astro';
 import ContactoSection from '../../components/shared/ContactoSection.astro';
@@ -9,7 +9,7 @@ import { services } from '../../data/services';
 ---
 
 <BaseLayout title="Servicios — Estudi Norai" logoMode="fixed-dark" hideHeaderLogo>
-  <ServiciosNav active="servicios" />
+  <SiteNav active="servicios" />
   {services.map((service) => (
     <ServicioBlock {...service} />
   ))}

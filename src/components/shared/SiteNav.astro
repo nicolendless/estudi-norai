@@ -1,0 +1,58 @@
+---
+import { navShell } from '../../data/layout';
+
+export type NavPage = 'servicios' | 'lestudi' | 'works';
+
+interface Props {
+  active?: NavPage;
+}
+
+const { active } = Astro.props;
+
+const linkBase =
+  'font-archivo text-[clamp(1.125rem,2.5vw,1.875rem)] leading-none text-[#202d35]';
+---
+
+<header class="bg-white">
+  <div class={navShell}>
+    <a href="/" class="inline-block">
+      <img
+        src="/images/logo.svg"
+        alt="Estudi Norai"
+        class="site-logo site-logo-dark h-[4.8125rem] w-auto max-w-[141px]"
+      />
+    </a>
+
+    <nav
+      aria-label="Principal"
+      class="mt-3 grid w-full grid-cols-3 items-center gap-4"
+    >
+      <a
+        href="/servicios"
+        class:list={[
+          linkBase,
+          'text-left',
+          active === 'servicios' ? 'font-semibold' : 'font-extralight',
+        ]}
+      >
+        SERVICIOS
+      </a>
+      <a
+        href="/lestudi"
+        class:list={[
+          linkBase,
+          'text-center',
+          active === 'lestudi' ? 'font-semibold' : 'font-extralight',
+        ]}
+      >
+        L'ESTUDI
+      </a>
+      <a
+        href="/works"
+        class:list={[linkBase, 'text-right', active === 'works' ? 'font-semibold' : 'font-light']}
+      >
+        WORKS
+      </a>
+    </nav>
+  </div>
+</header>
