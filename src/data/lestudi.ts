@@ -24,6 +24,40 @@ export const sala2Copy = {
   detail: 'Estudio Norai también cuenta con un baño equipado.',
 };
 
+/** Spec card data — placeholder figures, ajustar con datos reales. */
+export type RoomSpec = { label: string; value: string };
+
+export const salaPrincipalSpecs: RoomSpec[] = [
+  { label: 'Aforo', value: '6 músicos' },
+  { label: 'Superficie', value: '32 m²' },
+  { label: 'Altura', value: '3,4 m' },
+  { label: 'Control room', value: 'SSL Big Six' },
+];
+
+export const sala2Specs: RoomSpec[] = [
+  { label: 'Aforo', value: '4 músicos' },
+  { label: 'Superficie', value: '18 m²' },
+  { label: 'Altura', value: '3,2 m' },
+  { label: 'Uso', value: 'Ensayos y demos' },
+];
+
+export const heroTagline = 'Donde tu proyecto encuentra su rumbo';
+
+export type EquipoCategory = {
+  title: string;
+  brands: string[];
+};
+
+/** Placeholder mientras no separemos el banner en logos individuales. */
+export const equipoCategories: EquipoCategory[] = [
+  { title: 'Micrófonos', brands: ['Neumann', 'Shure', 'AKG'] },
+  { title: 'Outboard', brands: ['SSL', 'Universal Audio', 'API'] },
+  { title: 'Monitores', brands: ['Genelec', 'Yamaha'] },
+  { title: 'Instrumentos', brands: ['Fender', 'Gibson', 'Heritage Audio'] },
+];
+
+export const equipoQuote = 'Equipo elegido a oído, no por marca.';
+
 export const equipoBrandsImage = '/images/lestudi/equipo-brands.png';
 export const instrumentsBandImage = '/images/lestudi/instruments-band.png';
 export const boatIllustrationImage = '/images/lestudi/boat-illustration.png';

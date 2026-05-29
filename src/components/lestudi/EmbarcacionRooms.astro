@@ -1,51 +1,128 @@
 ---
-import { sala2Copy, sala2Images, salaPrincipalCopy, salaPrincipalImages } from '../../data/lestudi';
-import { pageGutter, roomPanel, sectionTitleLestudi } from '../../data/layout';
+import {
+  sala2Copy,
+  sala2Images,
+  sala2Specs,
+  salaPrincipalCopy,
+  salaPrincipalImages,
+  salaPrincipalSpecs,
+} from '../../data/lestudi';
+import { pageGutter, sectionTitleLestudi } from '../../data/layout';
+
+const rooms = [
+  {
+    name: 'Sala principal',
+    images: salaPrincipalImages,
+    copy: salaPrincipalCopy,
+    specs: salaPrincipalSpecs,
+    theme: {
+      bg: 'bg-[#202d35]',
+      text: 'text-[#f5efe6]',
+      muted: 'text-[#f5efe6]/70',
+      rule: 'bg-[#f5efe6]/30',
+      divide: 'divide-[#f5efe6]/15',
+    },
+  },
+  {
+    name: 'Sala 2',
+    images: sala2Images,
+    copy: sala2Copy,
+    specs: sala2Specs,
+    theme: {
+      bg: 'bg-[#ece4d9]',
+      text: 'text-[#202d35]',
+      muted: 'text-[#202d35]/60',
+      rule: 'bg-[#202d35]/30',
+      divide: 'divide-[#202d35]/15',
+    },
+  },
+];
 ---
 
-<section id="embarcacion" class="scroll-mt-6 bg-white py-10 md:py-12">
-  <div class={pageGutter}>
-    <h2 class={sectionTitleLestudi}>Embarcación</h2>
+<section id="embarcacion" class="scroll-mt-6">
+  <div class="flex flex-col">
+    {
+      rooms.map((room, index) => (
+        <article class:list={['relative w-full', room.theme.bg, room.theme.text]}>
+          <div class:list={[pageGutter, index === 0 ? 'pt-10 pb-10 md:pt-14 md:pb-12' : 'py-10 md:py-12']}>
+            <div class="mx-auto max-w-[1100px]">
+              {index === 0 && (
+                <h2 class:list={[sectionTitleLestudi, '!text-[#f5efe6]']}>Embarcación</h2>
+              )}
 
-    <div class="mt-4 grid grid-cols-2 gap-px sm:grid-cols-4">
-      {
-        salaPrincipalImages.map((src) => (
-          <div class="aspect-[309/354] overflow-hidden bg-zinc-100">
-            <img src={src} alt="" class="h-full w-full object-cover" loading="lazy" />
+              <header
+                class:list={[
+                  'flex items-baseline gap-4',
+                  index === 0 ? 'mt-8 md:mt-12' : '',
+                ]}
+              >
+                <h3 class="font-archivo text-[clamp(1.25rem,2vw,1.75rem)] font-light tracking-wider uppercase">
+                  {room.name}
+                </h3>
+                <div class:list={['h-px flex-1', room.theme.rule]} />
+              </header>
+
+              <div class="mt-5 flex flex-col gap-3 md:mt-7 md:gap-4">
+                <div class="aspect-[3/1] overflow-hidden">
+                  <img
+                    src={room.images[0]}
+                    alt=""
+                    class="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div class="grid grid-cols-3 gap-3 md:gap-4">
+                  {room.images.slice(1, 4).map((src) => (
+                    <div class="aspect-[4/3] overflow-hidden">
+                      <img src={src} alt="" class="h-full w-full object-cover" loading="lazy" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div class="mt-6 grid gap-6 md:mt-8 md:grid-cols-[1.4fr_1fr] md:gap-10">
+                <div>
+                  <p class="font-archivo max-w-xl text-[clamp(0.95rem,1.25vw,1.125rem)] font-thin leading-relaxed">
+                    {room.copy.lead}
+                  </p>
+                  <p
+                    class:list={[
+                      'font-archivo mt-3 max-w-xl text-sm font-thin leading-relaxed',
+                      room.theme.muted,
+                    ]}
+                  >
+                    {room.copy.detail}
+                  </p>
+                </div>
+
+                <dl class:list={['flex flex-col divide-y text-xs font-light', room.theme.divide]}>
+                  {room.specs.map((spec) => (
+                    <div class="flex items-baseline justify-between gap-4 py-2">
+                      <dt class:list={['font-archivo uppercase tracking-wider', room.theme.muted]}>
+                        {spec.label}
+                      </dt>
+                      <dd class="font-archivo text-right text-base font-thin">{spec.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+
+              <div class="mt-5 flex justify-end md:mt-7">
+                <a
+                  href="#contacto"
+                  class:list={[
+                    'font-archivo inline-flex items-center gap-2 text-sm font-light tracking-wider uppercase underline-offset-4 hover:underline',
+                  ]}
+                >
+                  Reserva esta sala
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
           </div>
-        ))
-      }
-    </div>
-
-    <div class:list={[roomPanel, 'mt-5 bg-[#202d35] text-[#f5efe6]']}>
-      <h3 class="font-archivo text-2xl font-bold underline decoration-1 underline-offset-4">
-        Sala principal
-      </h3>
-      <p class="font-archivo mt-4 max-w-xl text-xl font-thin leading-normal">
-        {salaPrincipalCopy.lead}
-      </p>
-      <p class="font-archivo mt-4 max-w-xl text-sm font-thin leading-normal">
-        {salaPrincipalCopy.detail}
-      </p>
-    </div>
-
-    <div class="mt-5 grid grid-cols-2 gap-px sm:grid-cols-4">
-      {
-        sala2Images.map((src) => (
-          <div class="aspect-[309/354] overflow-hidden bg-zinc-100">
-            <img src={src} alt="" class="h-full w-full object-cover" loading="lazy" />
-          </div>
-        ))
-      }
-    </div>
-
-    <div class:list={[roomPanel, 'mt-5 bg-[#ece4d9] text-[#202d35]']}>
-      <h3 class="font-archivo text-2xl font-bold">Sala 2</h3>
-      <p class="font-archivo mt-4 max-w-xl text-xl font-thin leading-normal">{sala2Copy.lead}</p>
-      <p class="font-archivo mt-4 max-w-xl text-xl font-thin leading-normal">
-        <span class="font-bold">+</span>
-        {` ${sala2Copy.detail}`}
-      </p>
-    </div>
+        </article>
+      ))
+    }
   </div>
 </section>

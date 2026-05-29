@@ -7,15 +7,46 @@ import { heroBackgroundImage, heroLettersImage } from '../../data/lestudi';
     <img
       src={heroBackgroundImage}
       alt=""
-      class="absolute inset-0 h-full w-full object-cover object-[center_30%]"
+      class="absolute inset-0 h-full w-full object-cover object-center"
     />
-    <div class="pointer-events-none absolute inset-0 flex items-center justify-center">
-      <img
-        src={heroLettersImage}
-        alt=""
-        class="h-auto w-[min(120%,1912px)] max-w-none object-contain"
-        loading="eager"
-      />
+    <div class="norai-marquee pointer-events-none absolute inset-0 flex items-center overflow-hidden">
+      <div class="norai-track flex">
+        <img
+          src={heroLettersImage}
+          alt="NORAI"
+          class="norai-piece h-auto w-[min(120%,1912px)] max-w-none shrink-0 object-contain"
+          loading="eager"
+        />
+        <img
+          src={heroLettersImage}
+          alt=""
+          aria-hidden="true"
+          class="norai-piece h-auto w-[min(120%,1912px)] max-w-none shrink-0 object-contain"
+          loading="eager"
+        />
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .norai-track {
+    will-change: transform;
+    animation: norai-scroll 12s linear infinite;
+  }
+
+  @keyframes norai-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .norai-track {
+      animation: none;
+    }
+  }
+</style>
