@@ -4,8 +4,8 @@ import CookieBlockedEmbed from './CookieBlockedEmbed.astro';
 ---
 
 <section id="visitanos" class="w-full bg-white">
-  <div class="md:grid md:grid-cols-[55%_45%] md:grid-rows-[455px_auto]">
-    <div class="md:col-start-1 md:row-start-1">
+  <div class="md:grid md:grid-cols-[55%_45%]">
+    <div class="visitanos-map-column flex min-w-0 flex-col overflow-visible">
       <CookieBlockedEmbed
         category="marketing"
         src="https://www.google.com/maps?q=Carrer+del+Vi,+3A,+Palma&output=embed"
@@ -16,9 +16,17 @@ import CookieBlockedEmbed from './CookieBlockedEmbed.astro';
         placeholderTitle="Mapa de Google"
         placeholderText="Para mostrar el mapa necesitamos tu consentimiento para cargar contenido externo de Google Maps."
       />
+      <div class="overflow-visible py-3 pr-3 md:py-4 md:pr-4">
+        <h2
+          class="font-archivo pointer-events-none w-full text-left text-[clamp(2.5rem,11.5vw,10.25rem)] leading-none font-light tracking-normal text-[#e5d9c7]"
+        >
+          VISÍTANOS
+        </h2>
+      </div>
     </div>
+
     <div
-      class="relative flex min-h-0 flex-col items-end justify-end gap-6 px-6 py-8 md:col-start-2 md:row-start-1 md:min-h-[260px] md:gap-0 md:px-10 md:pb-10 md:py-0"
+      class="relative flex min-h-0 flex-col items-end justify-end gap-6 px-6 py-8 md:min-h-[455px] md:gap-0 md:px-10 md:pb-10 md:py-0"
     >
       <a
         href="#contacto"
@@ -55,13 +63,6 @@ import CookieBlockedEmbed from './CookieBlockedEmbed.astro';
         <p>+34 666 72 21 61</p>
         <p>estudionorai@gmail.com</p>
       </div>
-    </div>
-    <div class="overflow-hidden md:col-start-1 md:row-start-2">
-      <h2
-        class="font-archivo pointer-events-none w-full text-center text-[clamp(2.5rem,11.5vw,10.25rem)] leading-none font-light text-[#e5d9c7]"
-      >
-        VISÍTANOS
-      </h2>
     </div>
   </div>
 </section>
