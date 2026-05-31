@@ -135,6 +135,7 @@ export type Translations = {
     marketingCheckbox: string;
     headingLine1: string;
     headingLine2: string;
+    headingLine3: string;
     success: string;
     error: string;
     connectionError: string;
