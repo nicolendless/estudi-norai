@@ -1,12 +1,21 @@
+---
+import { socialLinks } from '../../data/social';
+import CookieBlockedEmbed from './CookieBlockedEmbed.astro';
+---
+
 <section id="visitanos" class="w-full bg-white">
   <div class="md:grid md:grid-cols-[55%_45%] md:grid-rows-[455px_auto]">
     <div class="md:col-start-1 md:row-start-1">
-      <iframe
-        title="Mapa Estudi Norai"
+      <CookieBlockedEmbed
+        category="marketing"
         src="https://www.google.com/maps?q=Carrer+del+Vi,+3A,+Palma&output=embed"
+        title="Mapa Estudi Norai"
+        wrapperClass="h-[420px] w-full md:h-[455px]"
         class="h-[420px] w-full border-0 md:h-[455px]"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
+        referrerPolicy="no-referrer-when-downgrade"
+        placeholderTitle="Mapa de Google"
+        placeholderText="Para mostrar el mapa necesitamos tu consentimiento para cargar contenido externo de Google Maps."
+      />
     </div>
     <div
       class="relative flex min-h-[260px] items-end justify-end px-6 pb-8 md:col-start-2 md:row-start-1 md:min-h-0 md:px-10 md:pb-10"
@@ -21,6 +30,26 @@
         >
       </a>
       <div class="font-archivo text-right text-[clamp(1.25rem,2.5vw,1.875rem)] leading-tight font-light text-[#202d35]">
+        <div class="mb-4 flex items-center justify-end" aria-label="Redes sociales">
+          <a
+            href={socialLinks.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="relative z-10 block size-[34px] shrink-0"
+            aria-label="Instagram de Estudi Norai"
+          >
+            <img src="/images/visitanos/instagram.svg" alt="" class="size-[34px]" loading="lazy" />
+          </a>
+          <a
+            href={socialLinks.youtube}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="relative z-0 -ml-7 block h-9 w-[74px] shrink-0"
+            aria-label="Canal de YouTube de Estudi Norai"
+          >
+            <img src="/images/visitanos/youtube.svg" alt="" class="h-9 w-[74px]" loading="lazy" />
+          </a>
+        </div>
         <p>Carrer del Vi, 3A</p>
         <p>Palma</p>
         <p>+34 666 72 21 61</p>
