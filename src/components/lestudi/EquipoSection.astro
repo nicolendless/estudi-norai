@@ -1,5 +1,5 @@
 ---
-import { equipoBrandsImage, equipoCategories, equipoQuote } from '../../data/lestudi';
+import { equipoBrandsImage } from '../../data/lestudi';
 import { pageGutter, sectionTitleLestudi } from '../../data/layout';
 ---
 
@@ -7,55 +7,13 @@ import { pageGutter, sectionTitleLestudi } from '../../data/layout';
   <div class={pageGutter}>
     <h2 class={sectionTitleLestudi}>Equipo</h2>
 
-    <div class="mx-auto mt-8 max-w-[1100px]">
-      <header class="flex items-baseline gap-4">
-        <h3 class="font-archivo text-[clamp(1.25rem,2vw,1.75rem)] font-light tracking-wider text-[#202d35] uppercase">
-          Equipo de grabación
-        </h3>
-        <div class="h-px flex-1 bg-[#202d35]/30"></div>
-      </header>
-
-      <blockquote
-        class="font-archivo mt-8 max-w-2xl text-[clamp(1.125rem,1.8vw,1.5rem)] leading-snug font-thin text-[#202d35] italic"
-      >
-        “{equipoQuote}”
-      </blockquote>
-
-      <div class="mt-10 overflow-hidden">
-        <img
-          src={equipoBrandsImage}
-          alt="Marcas de equipo e instrumentos disponibles"
-          class="w-full object-contain"
-          loading="lazy"
-        />
-      </div>
-
-      <ul class="mt-12 grid grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
-        {
-          equipoCategories.map((category) => (
-            <li>
-              <p class="font-archivo text-[0.7rem] font-semibold tracking-[0.25em] text-[#202d35]/60 uppercase">
-                {category.title}
-              </p>
-              <ul class="mt-2 space-y-0.5">
-                {category.brands.map((brand) => (
-                  <li class="font-archivo text-base font-thin text-[#202d35]">{brand}</li>
-                ))}
-              </ul>
-            </li>
-          ))
-        }
-      </ul>
-
-      <div class="mt-12 flex flex-col items-center gap-5">
-        <a
-          href="#material"
-          class="font-archivo inline-flex items-center gap-2 px-6 py-2.5 text-sm font-light tracking-wider text-[#202d35] uppercase ring-1 ring-[#202d35] transition-colors hover:bg-[#202d35] hover:text-[#f5efe6]"
-        >
-          Ver todo el material
-          <span aria-hidden="true">→</span>
-        </a>
-      </div>
+    <div class="mt-8 overflow-hidden">
+      <img
+        src={equipoBrandsImage}
+        alt="Marcas de equipo e instrumentos disponibles"
+        class="w-full object-contain"
+        loading="lazy"
+      />
     </div>
   </div>
 </section>

@@ -43,21 +43,6 @@ export const sala2Specs: RoomSpec[] = [
 
 export const heroTagline = 'Donde tu proyecto encuentra su rumbo';
 
-export type EquipoCategory = {
-  title: string;
-  brands: string[];
-};
-
-/** Placeholder mientras no separemos el banner en logos individuales. */
-export const equipoCategories: EquipoCategory[] = [
-  { title: 'Micrófonos', brands: ['Neumann', 'Shure', 'AKG'] },
-  { title: 'Outboard', brands: ['SSL', 'Universal Audio', 'API'] },
-  { title: 'Monitores', brands: ['Genelec', 'Yamaha'] },
-  { title: 'Instrumentos', brands: ['Fender', 'Gibson', 'Heritage Audio'] },
-];
-
-export const equipoQuote = 'Equipo elegido a oído, no por marca.';
-
 export const equipoBrandsImage = '/images/lestudi/equipo-brands.png';
 export const instrumentsBandImage = '/images/lestudi/instruments-band.png';
 export const boatIllustrationImage = '/images/lestudi/boat-illustration.png';
