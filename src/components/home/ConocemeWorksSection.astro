@@ -1,4 +1,6 @@
 ---
+import { tripulacionCollage } from '../../data/tripulacionCollage';
+
 const intro =
   'Mi pasión por la música viene prácticamente de nacimiento, ya que mis padres se conocieron en una coral. Desde pequeño, he vivido rodeado de música, tanto a nivel pasional como formativo.';
 
@@ -82,43 +84,17 @@ const worksTitleClass = `font-archivo text-[22vw] leading-none tracking-tight ${
 
   <div class:list={[cellClass, 'order-4 bg-white md:order-4']}>
     <div class="absolute inset-0 flex items-center justify-center">
-      <div class="relative aspect-square w-[88%]">
-        <img
-          src="/images/works_1.png"
-          alt="Proyecto"
-          class="work-card absolute top-[18%] left-[16%] z-[80] h-[40%] w-[35%] object-cover"
-          style="--drop-delay: 0.05s;"
-        />
-        <img
-          src="/images/works_2.png"
-          alt="Proyecto"
-          class="work-card absolute top-[2%] left-[38%] z-30 h-[45%] w-[38%] object-cover"
-          style="--drop-delay: 0.2s;"
-        />
-        <img
-          src="/images/works_3.png"
-          alt="Proyecto"
-          class="work-card absolute top-[22%] right-[12%] z-[70] h-[37%] w-[34%] object-cover"
-          style="--drop-delay: 0.35s;"
-        />
-        <img
-          src="/images/works_4.png"
-          alt="Proyecto"
-          class="work-card absolute bottom-[5%] left-[24%] z-40 h-[40%] w-[36%] object-cover"
-          style="--drop-delay: 0.5s;"
-        />
-        <img
-          src="/images/works_5.png"
-          alt="Proyecto"
-          class="work-card absolute right-[13%] bottom-[7%] z-50 h-[38%] w-[35%] object-cover"
-          style="--drop-delay: 0.65s;"
-        />
-        <img
-          src="/images/works_6.png"
-          alt="Proyecto"
-          class="work-card absolute top-[34%] left-[4%] z-25 h-[34%] w-[30%] object-cover"
-          style="--drop-delay: 0.8s;"
-        />
+      <div class="relative aspect-[707/626] w-[88%]">
+        {
+          tripulacionCollage.map((photo) => (
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              class="work-card absolute object-cover"
+              style={`left: ${photo.left}; top: ${photo.top}; width: ${photo.width}; height: ${photo.height}; z-index: ${photo.zIndex}; --drop-delay: ${photo.dropDelay};`}
+            />
+          ))
+        }
       </div>
     </div>
     <div class="absolute top-0 right-4 pt-8 sm:right-5 sm:pt-10 md:pt-12 lg:pt-14">
