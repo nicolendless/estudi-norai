@@ -1,16 +1,73 @@
+---
+import { pageGutter } from '../../data/layout';
+
+/** Figma ICONES_FINALS — tira continua de 19 logos (4212×216). */
+const logosStripSrc = '/images/instruments/icones-finals.png';
+---
+
 <section id="material" class="w-full bg-white py-10 md:py-14">
-  <div class="mx-4 flex flex-col items-end gap-3 text-right md:mx-16 lg:mx-20 xl:mx-24">
-    <h2 class="font-archivo max-w-md text-[clamp(1.5rem,4vw,1.875rem)] font-light leading-tight text-[#202d35]">
-      instruments i material disponible
-    </h2>
-    <a href="#contacto" class="font-archivo text-lg text-[#202d35] underline">Saber más</a>
+  <div class:list={[pageGutter, 'flex flex-col items-end']}>
+    <div class="w-full max-w-[84.375rem] text-right">
+      <h2 class="font-archivo text-[30px] leading-[1.09] font-light text-[#202d35]">
+        Instrumentos y material disponible
+      </h2>
+      <a
+        href="#contacto"
+        class="font-archivo mt-2 inline-block text-[18px] leading-[1.09] text-[#202d35] underline"
+      >
+        Saber más
+      </a>
+    </div>
   </div>
-  <div class="mt-8 overflow-hidden px-4 md:mt-10 md:px-8">
-    <img
-      src="/images/figma/brand-logos.png"
-      alt="Marcas de equipo e instrumentos disponibles"
-      class="mx-auto w-full max-w-6xl object-contain"
-      loading="lazy"
-    />
+
+  <div class="logos-bar mt-[15px]" aria-label="Logos de marcas de instrumentos">
+    <div class="logos-bar__track">
+      <img
+        src={logosStripSrc}
+        alt="Neumann, Apogee, Gibson, Fender, Heritage Audio y más marcas disponibles"
+        class="logos-bar__strip"
+        width={4096}
+        height={210}
+        loading="eager"
+        decoding="async"
+      />
+    </div>
   </div>
 </section>
+
+<style>
+  .logos-bar {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .logos-bar::after {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: 0;
+    z-index: 1;
+    width: clamp(4rem, 12vw, 8rem);
+    background: linear-gradient(to right, transparent, #ffffff);
+    pointer-events: none;
+  }
+
+  .logos-bar__track {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-inline: clamp(1rem, 4vw, 6rem) clamp(4rem, 12vw, 8rem);
+  }
+
+  .logos-bar__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .logos-bar__strip {
+    display: block;
+    height: clamp(4.5rem, 15vw, 13.5rem);
+    width: auto;
+    max-width: none;
+  }
+</style>
