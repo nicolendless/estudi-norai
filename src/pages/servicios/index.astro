@@ -6,10 +6,15 @@ import InstrumentosIllustrationSection from '../../components/shared/Instrumento
 import ContactoSection from '../../components/shared/ContactoSection.astro';
 import VisitanosSection from '../../components/shared/VisitanosSection.astro';
 import { services } from '../../data/services';
+
+export const prerender = true;
 ---
 
-<BaseLayout title="Servicios — Estudi Norai" logoMode="fixed-dark" hideHeaderLogo>
+<BaseLayout seoKey="servicios" logoMode="fixed-dark" hideHeaderLogo>
   <SiteNav active="servicios" />
+  <h1 class="sr-only">
+    Servicios de estudio de grabación, producción musical y clases en Palma de Mallorca
+  </h1>
   {services.map((service) => (
     <ServicioBlock {...service} />
   ))}

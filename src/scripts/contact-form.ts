@@ -1,3 +1,9 @@
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 const contactForm = document.querySelector<HTMLFormElement>('[data-contact-form]');
 const contactFeedback = document.getElementById('contact-feedback');
 
@@ -37,6 +43,13 @@ if (contactForm) {
       if (response.ok && result?.ok) {
         setFeedback('ok', result.message ?? 'Mensaje enviado correctamente.');
         contactForm.reset();
+
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'generate_lead', {
+            event_category: 'contact',
+            event_label: 'contact_form',
+          });
+        }
       } else {
         setFeedback('error', result?.message ?? 'No se ha podido enviar el mensaje.');
       }

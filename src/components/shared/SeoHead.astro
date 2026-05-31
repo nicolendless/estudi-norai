@@ -1,0 +1,62 @@
+---
+import {
+  absoluteAssetUrl,
+  absoluteUrl,
+  siteConfig,
+  type PageSeo,
+} from '../../data/seo';
+
+interface Props {
+  seo: PageSeo;
+  site: string;
+  pathname: string;
+  structuredData?: Record<string, unknown>;
+}
+
+const { seo, site, pathname, structuredData } = Astro.props;
+
+const canonical = absoluteUrl(site, pathname);
+const description = seo.description;
+const ogImage = absoluteAssetUrl(site, seo.ogImage ?? siteConfig.defaultOgImage);
+const robots = seo.noindex ? 'noindex, follow' : 'index, follow';
+const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+---
+
+<meta name="description" content={description} />
+<meta name="robots" content={robots} />
+<link rel="canonical" href={canonical} />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<meta name="theme-color" content="#202d35" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={siteConfig.name} />
+<meta property="og:locale" content={siteConfig.locale} />
+<meta property="og:title" content={seo.title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:alt" content={`${siteConfig.name} — ${siteConfig.tagline}`} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={seo.title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+{
+  googleVerification && (
+    <meta name="google-site-verification" content={googleVerification} />
+  )
+}
+
+{
+  structuredData && (
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  )
+}
+
+{
+  gaMeasurementId && (
+    <meta name="norai:ga-id" content={gaMeasurementId} />
+  )
+}

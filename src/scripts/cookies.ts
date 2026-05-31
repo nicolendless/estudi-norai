@@ -109,12 +109,41 @@ const disableEmbeds = (category: 'analytics' | 'marketing') => {
   });
 };
 
+const loadGoogleAnalytics = () => {
+  const measurementId = document.body.dataset.gaId;
+  if (!measurementId || document.querySelector('[data-cookie-analytics-loaded]')) return;
+
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+  script.dataset.cookieAnalyticsLoaded = 'true';
+  document.head.appendChild(script);
+
+  const inline = document.createElement('script');
+  inline.dataset.cookieAnalyticsLoaded = 'true';
+  inline.textContent = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${measurementId}', { anonymize_ip: true });
+  `;
+  document.head.appendChild(inline);
+};
+
+const disableGoogleAnalytics = () => {
+  document
+    .querySelectorAll<HTMLElement>('[data-cookie-analytics-loaded]')
+    .forEach((node) => node.remove());
+};
+
 export const applyConsent = (consent: CookieConsentState) => {
   loadGoogleFonts();
 
   if (consent.analytics) {
+    loadGoogleAnalytics();
     activateEmbeds('analytics');
   } else {
+    disableGoogleAnalytics();
     disableEmbeds('analytics');
   }
 

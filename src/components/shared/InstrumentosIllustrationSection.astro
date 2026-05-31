@@ -5,27 +5,33 @@ const illustrationSrc = '/images/servicios/norai-instruments-03.png';
 
 <section id="material" class="w-full bg-[#f5efe6]">
   <div class="material-panel" aria-labelledby="material-heading">
-    <img
-      src={illustrationSrc}
-      alt="Instrumentos y material del estudio"
-      class="material-panel__art"
-      width={1446}
-      height={457}
-      loading="lazy"
-    />
     <div class="material-panel__copy">
       <h2
         id="material-heading"
-        class="font-archivo text-[30px] leading-[1.09] font-light text-[#202d35]"
+        class="font-archivo text-[clamp(1.375rem,5.2vw,1.875rem)] leading-[1.15] font-light text-[#202d35] md:text-[30px] md:leading-[1.09]"
       >
         Instrumentos y material disponible
       </h2>
       <a
         href="#contacto"
-        class="material-panel__link font-archivo mt-2 inline-block text-[18px] leading-[1.09] text-[#202d35] underline"
+        class="material-panel__link font-archivo mt-2 inline-block text-base text-[#202d35] underline md:text-[18px] md:leading-[1.09]"
       >
         Saber más
       </a>
+    </div>
+
+    <div class="material-panel__scroll" aria-label="Ilustraciones de instrumentos">
+      <div class="material-panel__track">
+        <img
+          src={illustrationSrc}
+          alt="Instrumentos y material del estudio"
+          class="material-panel__art"
+          width={1446}
+          height={457}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
     </div>
   </div>
 </section>
@@ -34,25 +40,9 @@ const illustrationSrc = '/images/servicios/norai-instruments-03.png';
   .material-panel {
     position: relative;
     width: 100%;
-    aspect-ratio: 1446 / 457;
-    min-height: clamp(16rem, 31.6vw, 28.5625rem);
-  }
-
-  .material-panel__art {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: left center;
   }
 
   .material-panel__copy {
-    position: absolute;
-    left: 3.45%;
-    top: 6.18%;
-    width: 93.04%;
-    text-align: right;
     pointer-events: none;
   }
 
@@ -60,13 +50,94 @@ const illustrationSrc = '/images/servicios/norai-instruments-03.png';
     pointer-events: auto;
   }
 
-  @media (max-width: 767px) {
-    .material-panel__copy h2 {
-      font-size: clamp(1.25rem, 5vw, 1.875rem);
+  /* Desktop: panel Figma con texto sobre la ilustración */
+  @media (min-width: 768px) {
+    .material-panel {
+      aspect-ratio: 1446 / 457;
+      min-height: clamp(16rem, 31.6vw, 28.5625rem);
     }
 
-    .material-panel__link {
-      font-size: 1rem;
+    .material-panel__copy {
+      position: absolute;
+      z-index: 1;
+      left: 3.45%;
+      top: 6.18%;
+      width: 93.04%;
+      padding: 0;
+      text-align: right;
+    }
+
+    .material-panel__scroll {
+      position: absolute;
+      inset: 0;
+    }
+
+    .material-panel__track {
+      height: 100%;
+      width: 100%;
+    }
+
+    .material-panel__art {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left center;
+    }
+  }
+
+  /* Móvil: ~3 iconos visibles, scroll horizontal con fade */
+  @media (max-width: 767px) {
+    .material-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      padding-block: 1.5rem 1.75rem;
+    }
+
+    .material-panel__copy {
+      position: static;
+      padding-inline: 1rem;
+      text-align: left;
+      pointer-events: auto;
+    }
+
+    .material-panel__scroll {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .material-panel__scroll::after {
+      content: '';
+      position: absolute;
+      inset-block: 0;
+      inset-inline-end: 0;
+      z-index: 1;
+      width: clamp(3rem, 14vw, 5rem);
+      background: linear-gradient(to right, transparent, #f5efe6);
+      pointer-events: none;
+    }
+
+    .material-panel__track {
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-inline: 1rem clamp(3rem, 14vw, 5rem);
+    }
+
+    .material-panel__track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .material-panel__art {
+      --strip-h: clamp(11.5rem, 50vw, 14rem);
+      display: block;
+      height: var(--strip-h);
+      width: auto;
+      max-width: none;
+      margin-inline-start: calc(-275 / 914 * var(--strip-h));
+      object-fit: contain;
+      object-position: left center;
     }
   }
 </style>

@@ -9,10 +9,12 @@ import InstrumentosIllustrationSection from '../../components/shared/Instrumento
 import NoraiIllustration from '../../components/lestudi/NoraiIllustration.astro';
 import ContactoSection from '../../components/shared/ContactoSection.astro';
 import VisitanosSection from '../../components/shared/VisitanosSection.astro';
+export const prerender = true;
 ---
 
-<BaseLayout title="L'estudi — Estudi Norai" logoMode="fixed-dark" hideHeaderLogo>
+<BaseLayout seoKey="lestudi" logoMode="fixed-dark" hideHeaderLogo>
   <SiteNav active="lestudi" />
+  <h1 class="sr-only">L'estudi: salas de grabación y equipamiento profesional en Palma</h1>
   <LestudiHero />
   <EmbarcacionRooms />
   <EquipoSection />

@@ -3,12 +3,12 @@ import { sessionsQuote, sessionsQuoteAuthor, sessionsThumb } from '../../data/wo
 import { pageGutter, sectionTitleLg } from '../../data/layout';
 ---
 
-<section id="norai-sessions" class="scroll-mt-6 bg-white pt-[86px]">
+<section id="norai-sessions" class="scroll-mt-6 bg-white pt-12 md:pt-[86px]">
   <div class={pageGutter}>
-    <p class="font-archivo text-[30px] font-normal text-[#202d35]">last</p>
-    <h2 class:list={[sectionTitleLg, 'mt-2']}>Norai Sessions</h2>
+    <p class="font-archivo text-[clamp(1.125rem,3vw,1.875rem)] font-normal text-[#202d35]">last</p>
+    <h2 class:list={[sectionTitleLg, 'mt-1 md:mt-2']}>Norai Sessions</h2>
 
-    <div class="mt-[21px] grid grid-cols-1 gap-8 sm:grid-cols-2 lg:gap-[61px]">
+    <div class="mt-5 grid grid-cols-1 gap-6 sm:grid-cols-2 md:mt-[21px] lg:gap-[61px]">
       <div class="aspect-[588/347] overflow-hidden bg-zinc-100">
         <img
           src={sessionsThumb}
@@ -28,7 +28,7 @@ import { pageGutter, sectionTitleLg } from '../../data/layout';
     </div>
 
     <blockquote
-      class="font-archivo mx-auto mt-[110px] max-w-[762px] text-center text-[25px] leading-8 font-extralight text-[#202d35]"
+      class="font-archivo mx-auto mt-12 max-w-[762px] text-center text-[clamp(1rem,3.5vw,1.5625rem)] leading-relaxed font-extralight text-[#202d35] md:mt-[110px] md:leading-8"
     >
       {sessionsQuote}
       <span class="mt-2 block font-semibold">{sessionsQuoteAuthor}</span>

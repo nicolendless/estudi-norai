@@ -2,8 +2,10 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import LegalPage from '../../components/shared/LegalPage.astro';
 import { avisoLegal } from '../../data/legal';
+
+export const prerender = true;
 ---
 
-<BaseLayout title="Aviso legal — Estudio Norai" hideHeaderLogo>
+<BaseLayout seoKey="avisoLegal" hideHeaderLogo>
   <LegalPage page={avisoLegal} />
 </BaseLayout>

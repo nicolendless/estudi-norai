@@ -34,11 +34,11 @@ const imageFirst = imagePosition === 'left';
       ]}
     >
       <div class="relative min-h-[36vh] lg:min-h-full">
-        <img src={detailImage} alt="" class="absolute inset-0 h-full w-full object-cover" />
+        <img src={detailImage} alt={detailTitle} class="absolute inset-0 h-full w-full object-cover" />
         {
           imageOverlayLines && (
-            <div class="absolute inset-0 flex items-center justify-center p-6">
-              <p class="font-archivo text-center text-5xl leading-none font-light text-[#f5efe6] sm:text-6xl md:text-7xl lg:text-8xl">
+            <div class="absolute inset-0 flex items-center justify-center p-4 sm:p-6">
+              <p class="font-archivo text-center text-3xl leading-none font-light text-[#f5efe6] sm:text-5xl md:text-7xl lg:text-8xl">
                 {imageOverlayLines.map((line) => (
                   <span class="block">{line}</span>
                 ))}
@@ -100,7 +100,7 @@ const imageFirst = imagePosition === 'left';
 
     <a
       href="#contacto"
-      class="font-archivo mt-4 inline-block text-2xl font-extralight text-[#202d35] underline"
+      class="font-archivo mt-4 inline-block text-lg font-extralight text-[#202d35] underline sm:text-2xl"
     >
       Pide más información
     </a>

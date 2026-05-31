@@ -1,24 +1,55 @@
 ---
 import '../styles/global.css';
 import CookieConsent from '../components/shared/CookieConsent.astro';
+import SeoHead from '../components/shared/SeoHead.astro';
+import { getStructuredData, pagesSeo, type PageSeo } from '../data/seo';
 
 interface Props {
   title?: string;
+  description?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  seoKey?: keyof typeof pagesSeo;
   logoMode?: 'scroll' | 'fixed-dark' | 'fixed-light';
   hideHeaderLogo?: boolean;
 }
 
-const { title = 'Estudi Norai', logoMode = 'scroll', hideHeaderLogo = false } = Astro.props;
+const {
+  title,
+  description,
+  ogImage,
+  noindex,
+  seoKey = 'home',
+  logoMode = 'scroll',
+  hideHeaderLogo = false,
+} = Astro.props;
+
+const site = Astro.site?.href ?? 'https://www.estudinorai.com';
+const pathname = Astro.url.pathname;
+const pageSeo: PageSeo = {
+  ...pagesSeo[seoKey],
+  ...(title ? { title } : {}),
+  ...(description ? { description } : {}),
+  ...(ogImage ? { ogImage } : {}),
+  ...(noindex !== undefined ? { noindex } : {}),
+};
+const structuredData = seoKey === 'home' ? getStructuredData(site) : undefined;
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 ---
 
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <title>{title}</title>
+    <title>{pageSeo.title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <SeoHead seo={pageSeo} site={site} pathname={pathname} structuredData={structuredData} />
   </head>
 
-  <body class="font-archivo font-extralight" data-logo-mode={logoMode}>
+  <body
+    class="font-archivo font-extralight"
+    data-logo-mode={logoMode}
+    data-ga-id={gaMeasurementId ?? undefined}
+  >
     {
       !hideHeaderLogo && (
         <header class="pointer-events-none fixed inset-x-0 top-0 z-[60]">
@@ -51,8 +82,6 @@ const { title = 'Estudi Norai', logoMode = 'scroll', hideHeaderLogo = false } = 
         <button type="button" data-cookie-open-settings class="underline">
           Configurar cookies
         </button>
-        <span>-</span>
-        <a href="#" class="underline">Política de privacidad de la app</a>
       </div>
     </footer>
 

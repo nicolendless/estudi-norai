@@ -9,9 +9,11 @@ import HomeInstrumentosSection from '../components/home/HomeInstrumentosSection.
 import SpotifySection from '../components/home/SpotifySection.astro';
 import ContactoSection from '../components/shared/ContactoSection.astro';
 import VisitanosSection from '../components/shared/VisitanosSection.astro';
+
+export const prerender = true;
 ---
 
-<BaseLayout>
+<BaseLayout seoKey="home">
   <HeroSection />
   <IntroSection />
   <ServiciosPreview />
