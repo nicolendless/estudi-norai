@@ -1,5 +1,12 @@
 ---
-import { services } from '../../data/services';
+import { getTranslations, localizedPath, type Locale } from '../../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
 ---
 
 <section
@@ -7,9 +14,9 @@ import { services } from '../../data/services';
   class="mx-4 flex flex-col gap-4 pb-14 sm:mx-6 md:mx-16 md:flex-row md:gap-0 md:pb-20 lg:mx-20 xl:mx-24"
 >
   {
-    services.map((service) => (
+    t.services.map((service) => (
       <a
-        href={`/servicios#${service.slug}`}
+        href={localizedPath(`/servicios#${service.slug}`, locale)}
         class="group flex flex-1 flex-col focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-950"
       >
         {service.previewVariant === 'sessions' ? (
@@ -17,7 +24,7 @@ import { services } from '../../data/services';
             <div class="mt-auto px-2 md:px-4">
               <img
                 src={service.previewImage}
-                alt="Estudi Norai"
+                alt={t.footer.logoAlt}
                 class="mx-auto w-full max-w-md"
               />
               <p class="tracking mt-4 text-center text-3xl text-zinc-900 md:text-4xl">SESSIONS</p>

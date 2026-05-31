@@ -1,7 +1,19 @@
+---
+import { getTranslations, localizedPath, type Locale } from '../../i18n';
+import LanguageSwitcher from '../shared/LanguageSwitcher.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+---
+
 <section id="menu" class="relative md:flex md:h-screen">
   <button
     type="button"
-    aria-label="Abrir menú"
+    aria-label={t.hero.openMenu}
     data-hero-menu-toggle
     class="fixed top-5 left-5 z-[60] inline-flex h-12 w-12 items-center justify-center rounded-full bg-amber-50/95 text-zinc-900 md:hidden"
   >
@@ -10,26 +22,41 @@
     </svg>
   </button>
 
+  <div
+    class="fixed top-[5.25rem] right-4 z-[60] md:hidden"
+    data-home-lang-switcher
+  >
+    <LanguageSwitcher
+      locale={locale}
+      currentPath={Astro.url.pathname}
+      tone="light"
+      class="language-switcher--light"
+    />
+  </div>
+
   <div class="relative h-[78vh] w-full md:h-full md:w-[65%]">
     <img
       src="/images/door_home_1.jpg"
-      alt="Entrada del estudio de grabación Estudi Norai en Palma de Mallorca"
+      alt={t.hero.imageAlt}
       class="block h-full w-full object-cover object-[58%_50%] md:object-[50%_50%]"
     />
     <div class="absolute inset-0 flex items-center justify-center pr-4 pl-8 md:pr-8 md:pl-12">
       <h1 class="font-archivo text-center font-thin leading-tight text-white">
         <span class="block text-[clamp(1.25rem,3.5vw,2.5rem)] leading-[1.15]">
-          ESTUDIO DE GRABACIÓN, CREACIÓN
+          {t.hero.h1Line1}
         </span>
         <span class="block text-[clamp(1.25rem,3.5vw,2.5rem)] leading-[1.15]">
-          Y APRENDIZAJE MUSICAL
+          {t.hero.h1Line2}
         </span>
-        <span class="mt-2 block text-[clamp(1rem,2vw,1.5625rem)]">Estudi ‘Km 0’</span>
+        <span class="mt-2 block text-[clamp(1rem,2vw,1.5625rem)]">{t.hero.h1Tagline}</span>
       </h1>
     </div>
   </div>
   <div class="relative hidden h-full w-[35%] overflow-hidden bg-amber-50 md:block">
-    <nav aria-label="Sections" class="font-archivo absolute inset-0 text-zinc-800">
+    <div class="absolute top-8 left-8 z-20">
+      <LanguageSwitcher locale={locale} currentPath={Astro.url.pathname} />
+    </div>
+    <nav aria-label={t.nav.ariaSections} class="font-archivo absolute inset-0 text-zinc-800">
       <svg
         width="255"
         height="306"
@@ -48,37 +75,40 @@
       </svg>
 
       <a
-        href="/servicios"
+        href={localizedPath('/servicios', locale)}
         class="group absolute top-[20%] left-[35%] z-10 text-center md:top-[21%]"
       >
         <span class="block text-[clamp(1.25rem,2.2vw,2.1rem)] leading-none group-hover:font-bold"
-          >SERVICIOS</span
+          >{t.hero.servicios}</span
         >
-        <span class="-mt-0.5 block text-xs group-hover:font-bold md:text-sm">Rumbo</span>
+        <span class="-mt-0.5 block text-xs group-hover:font-bold md:text-sm">{t.hero.serviciosSub}</span>
       </a>
 
       <a href="#conoceme" class="group absolute top-[33%] left-[16%] z-10 text-center md:top-[35%]">
         <span class="block text-[clamp(1.2rem,2.1vw,2rem)] leading-none group-hover:font-bold"
-          >BIO</span
+          >{t.hero.bio}</span
         >
-        <span class="-mt-0.5 block text-xs group-hover:font-bold md:text-sm">Timonel</span>
-      </a>
-
-      <a href="/works" class="group absolute top-[53%] right-[8%] z-10 text-center">
-        <span class="block text-[clamp(1.25rem,2.2vw,2.1rem)] leading-none group-hover:font-bold"
-          >PROYECTOS</span
-        >
-        <span class="-mt-0.5 block text-xs group-hover:font-bold md:text-sm">Tripulación</span>
+        <span class="-mt-0.5 block text-xs group-hover:font-bold md:text-sm">{t.hero.bioSub}</span>
       </a>
 
       <a
-        href="/lestudi"
+        href={localizedPath('/works', locale)}
+        class="group absolute top-[53%] right-[8%] z-10 text-center"
+      >
+        <span class="block text-[clamp(1.25rem,2.2vw,2.1rem)] leading-none group-hover:font-bold"
+          >{t.hero.proyectos}</span
+        >
+        <span class="-mt-0.5 block text-xs group-hover:font-bold md:text-sm">{t.hero.proyectosSub}</span>
+      </a>
+
+      <a
+        href={localizedPath('/lestudi', locale)}
         class="group absolute top-[57%] left-[16%] z-10 text-center md:top-[60%]"
       >
         <span class="block text-[clamp(1.2rem,2.1vw,2rem)] leading-none group-hover:font-bold"
-          >ESTUDIO</span
+          >{t.hero.estudio}</span
         >
-        <span class="-mt-0.5 block text-xs group-hover:font-bold md:text-sm">Embarcación</span>
+        <span class="-mt-0.5 block text-xs group-hover:font-bold md:text-sm">{t.hero.estudioSub}</span>
       </a>
 
       <a
@@ -86,22 +116,25 @@
         class="group absolute bottom-[12%] left-1/2 z-10 -translate-x-1/2 text-center md:bottom-[14%]"
       >
         <span class="block text-[clamp(1.25rem,2.2vw,2.1rem)] leading-[0.9] group-hover:font-bold">
-          TRABAJEMOS
+          {t.hero.trabajemos}
         </span>
         <span
           class="mt-1 block text-[clamp(1.25rem,2.2vw,2.1rem)] leading-[0.9] group-hover:font-bold"
         >
-          JUNTOS
+          {t.hero.trabajemosLine2}
         </span>
-        <span class="-mt-0.5 block text-xs group-hover:font-bold md:text-sm">Sube a bordo</span>
+        <span class="-mt-0.5 block text-xs group-hover:font-bold md:text-sm">{t.hero.trabajemosSub}</span>
       </a>
     </nav>
   </div>
 
   <div id="hero-mobile-menu" class="fixed inset-0 z-50 hidden bg-amber-50 px-8 py-20 md:hidden">
+    <div class="absolute top-5 right-5">
+      <LanguageSwitcher locale={locale} currentPath={Astro.url.pathname} />
+    </div>
     <button
       type="button"
-      aria-label="Cerrar menú"
+      aria-label={t.hero.closeMenu}
       data-hero-menu-close
       class="fixed top-5 left-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-zinc-900 text-amber-50"
     >
@@ -111,14 +144,24 @@
     </button>
 
     <nav class="font-archivo flex h-full flex-col items-start justify-center gap-5 text-zinc-900">
-      <a href="/servicios" class="block w-full border-b border-zinc-900/20 pb-2 text-3xl"
-        >SERVICIOS</a
+      <a
+        href={localizedPath('/servicios', locale)}
+        class="block w-full border-b border-zinc-900/20 pb-2 text-3xl"
+        >{t.hero.mobileServicios}</a
       >
-      <a href="#conoceme" class="block w-full border-b border-zinc-900/20 pb-2 text-3xl">BIO</a>
-      <a href="/works" class="block w-full border-b border-zinc-900/20 pb-2 text-3xl">PROYECTOS</a>
-      <a href="/lestudi" class="block w-full border-b border-zinc-900/20 pb-2 text-3xl">ESTUDIO</a>
+      <a href="#conoceme" class="block w-full border-b border-zinc-900/20 pb-2 text-3xl"
+        >{t.hero.mobileBio}</a
+      >
+      <a
+        href={localizedPath('/works', locale)}
+        class="block w-full border-b border-zinc-900/20 pb-2 text-3xl">{t.hero.mobileProyectos}</a
+      >
+      <a
+        href={localizedPath('/lestudi', locale)}
+        class="block w-full border-b border-zinc-900/20 pb-2 text-3xl">{t.hero.mobileEstudio}</a
+      >
       <a href="#contacto" class="block w-full border-b border-zinc-900/20 pb-2 text-3xl"
-        >TRABAJEMOS JUNTOS</a
+        >{t.hero.mobileTrabajemos}</a
       >
     </nav>
   </div>

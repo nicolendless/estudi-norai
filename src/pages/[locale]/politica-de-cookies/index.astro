@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import LegalPage from '../../../components/shared/LegalPage.astro';
+import { getLocaleFromParams } from '../../../i18n';
+import { localeStaticPaths } from '../../../i18n/routing';
+
+export const prerender = true;
+export const getStaticPaths = localeStaticPaths;
+
+const locale = getLocaleFromParams(Astro.params.locale)!;
+---
+
+<BaseLayout locale={locale} seoKey="cookies" hideHeaderLogo>
+  <LegalPage locale={locale} pageKey="politicaCookies" />
+</BaseLayout>

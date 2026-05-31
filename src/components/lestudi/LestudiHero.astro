@@ -1,5 +1,12 @@
 ---
 import { heroBackgroundImage, heroLettersImage } from '../../data/lestudi';
+import type { Locale } from '../../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale: _locale } = Astro.props;
 ---
 
 <section id="hero" class="relative w-full bg-[#202d35]">

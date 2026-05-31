@@ -1,6 +1,14 @@
 ---
 import { boatIllustrationImage } from '../../data/lestudi';
 import { pageGutter } from '../../data/layout';
+import { getTranslations, type Locale } from '../../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
 ---
 
 <section class="relative bg-white py-6 md:py-10 lg:py-14">
@@ -8,7 +16,7 @@ import { pageGutter } from '../../data/layout';
     <span
       class="font-archivo inline-block text-base text-[#202d35] [writing-mode:vertical-rl] md:text-lg lg:text-2xl"
     >
-      Embárcate
+      {t.common.embarcate}
     </span>
   </div>
 

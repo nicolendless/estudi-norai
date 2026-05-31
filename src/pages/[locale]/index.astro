@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSection from '../../components/home/HeroSection.astro';
+import IntroSection from '../../components/home/IntroSection.astro';
+import ServiciosPreview from '../../components/home/ServiciosPreview.astro';
+import ConocemeWorksSection from '../../components/home/ConocemeWorksSection.astro';
+import EmbarcacionSection from '../../components/home/EmbarcacionSection.astro';
+import HomeInstrumentosSection from '../../components/home/HomeInstrumentosSection.astro';
+import SpotifySection from '../../components/home/SpotifySection.astro';
+import ContactoSection from '../../components/shared/ContactoSection.astro';
+import VisitanosSection from '../../components/shared/VisitanosSection.astro';
+import { getLocaleFromParams } from '../../i18n';
+import { localeStaticPaths } from '../../i18n/routing';
+
+export const prerender = true;
+export const getStaticPaths = localeStaticPaths;
+
+const locale = getLocaleFromParams(Astro.params.locale)!;
+---
+
+<BaseLayout locale={locale} seoKey="home">
+  <HeroSection locale={locale} />
+  <IntroSection locale={locale} />
+  <ServiciosPreview locale={locale} />
+  <ConocemeWorksSection locale={locale} />
+  <EmbarcacionSection locale={locale} />
+  <SpotifySection locale={locale} />
+  <HomeInstrumentosSection locale={locale} />
+  <ContactoSection locale={locale} />
+  <VisitanosSection locale={locale} />
+</BaseLayout>

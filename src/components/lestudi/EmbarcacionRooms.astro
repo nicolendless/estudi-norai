@@ -1,20 +1,30 @@
 ---
 import {
-  sala2Copy,
   sala2Images,
-  sala2Specs,
-  salaPrincipalCopy,
   salaPrincipalImages,
-  salaPrincipalSpecs,
 } from '../../data/lestudi';
 import { pageGutter, sectionTitleLestudi } from '../../data/layout';
+import { getTranslations, type Locale } from '../../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+const { specs } = t.lestudi;
 
 const rooms = [
   {
-    name: 'Sala principal',
+    name: t.lestudi.mainRoom,
     images: salaPrincipalImages,
-    copy: salaPrincipalCopy,
-    specs: salaPrincipalSpecs,
+    copy: { lead: t.lestudi.mainRoomLead, detail: t.lestudi.mainRoomDetail },
+    specs: [
+      { label: specs.capacity, value: specs.mainCapacity },
+      { label: specs.surface, value: specs.mainSurface },
+      { label: specs.height, value: specs.mainHeight },
+      { label: specs.controlRoom, value: specs.mainControl },
+    ],
     theme: {
       bg: 'bg-[#202d35]',
       text: 'text-[#f5efe6]',
@@ -24,10 +34,15 @@ const rooms = [
     },
   },
   {
-    name: 'Sala 2',
+    name: t.lestudi.room2,
     images: sala2Images,
-    copy: sala2Copy,
-    specs: sala2Specs,
+    copy: { lead: t.lestudi.room2Lead, detail: t.lestudi.room2Detail },
+    specs: [
+      { label: specs.capacity, value: specs.room2Capacity },
+      { label: specs.surface, value: specs.room2Surface },
+      { label: specs.height, value: specs.room2Height },
+      { label: specs.usage, value: specs.room2Usage },
+    ],
     theme: {
       bg: 'bg-[#ece4d9]',
       text: 'text-[#202d35]',
@@ -47,7 +62,7 @@ const rooms = [
           <div class:list={[pageGutter, index === 0 ? 'pt-10 pb-10 md:pt-14 md:pb-12' : 'py-10 md:py-12']}>
             <div class="mx-auto max-w-[1100px]">
               {index === 0 && (
-                <h2 class:list={[sectionTitleLestudi, '!text-[#f5efe6]']}>Embarcación</h2>
+                <h2 class:list={[sectionTitleLestudi, '!text-[#f5efe6]']}>{t.lestudi.embarcacionTitle}</h2>
               )}
 
               <header
@@ -115,7 +130,7 @@ const rooms = [
                     'font-archivo inline-flex items-center gap-2 text-sm font-light tracking-wider uppercase underline-offset-4 hover:underline',
                   ]}
                 >
-                  Reserva esta sala
+                  {t.lestudi.reserveRoom}
                   <span aria-hidden="true">→</span>
                 </a>
               </div>

@@ -1,48 +1,61 @@
+---
+import { getTranslations, localizedPath, type Locale } from '../../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+---
+
 <section id="artistas" class="flex min-h-[92vh] w-full flex-col md:h-[75vh] md:min-h-0 md:flex-row">
   <div class="relative flex min-h-[32vh] w-full flex-col items-center justify-end bg-cyan-950 pb-6 md:min-h-0 md:w-1/2 md:pb-8">
     <h2
       class="font-archivo text-[22vw] leading-none tracking-tight text-amber-50 md:text-[17vw] lg:text-[14vw] xl:text-[12vw]"
     >
-      WORKS
+      {t.home.worksTitle}
     </h2>
-    <a href="/works" class="font-archivo mt-2 text-lg text-amber-50 underline">Saber más</a>
+    <a href={localizedPath('/works', locale)} class="font-archivo mt-2 text-lg text-amber-50 underline"
+      >{t.home.worksSaberMas}</a
+    >
   </div>
   <div class="relative h-[60vh] w-full bg-white md:h-auto md:w-1/2">
     <div class="absolute inset-0 flex items-center justify-center">
       <div class="relative h-[82%] w-[88%] md:h-[78%] md:w-[66%]">
         <img
           src="/images/works_1.png"
-          alt="Proyecto"
+          alt={t.home.projectAlt}
           class="work-card absolute top-[18%] left-[16%] z-[80] h-[40%] w-[35%] object-cover"
           style="--drop-delay: 0.05s;"
         />
         <img
           src="/images/works_2.png"
-          alt="Proyecto"
+          alt={t.home.projectAlt}
           class="work-card absolute top-[2%] left-[38%] z-30 h-[45%] w-[38%] object-cover"
           style="--drop-delay: 0.2s;"
         />
         <img
           src="/images/works_3.png"
-          alt="Proyecto"
+          alt={t.home.projectAlt}
           class="work-card absolute top-[22%] right-[12%] z-[70] h-[37%] w-[34%] object-cover"
           style="--drop-delay: 0.35s;"
         />
         <img
           src="/images/works_4.png"
-          alt="Proyecto"
+          alt={t.home.projectAlt}
           class="work-card absolute bottom-[5%] left-[24%] z-40 h-[40%] w-[36%] object-cover"
           style="--drop-delay: 0.5s;"
         />
         <img
           src="/images/works_5.png"
-          alt="Proyecto"
+          alt={t.home.projectAlt}
           class="work-card absolute right-[13%] bottom-[7%] z-50 h-[38%] w-[35%] object-cover"
           style="--drop-delay: 0.65s;"
         />
         <img
           src="/images/works_6.png"
-          alt="Proyecto"
+          alt={t.home.projectAlt}
           class="work-card absolute top-[34%] left-[4%] z-25 h-[34%] w-[30%] object-cover"
           style="--drop-delay: 0.8s;"
         />
@@ -52,7 +65,7 @@
       <span
         class="font-archivo inline-block text-base text-zinc-900 [writing-mode:vertical-rl] md:text-lg lg:text-2xl"
       >
-        Tripulación
+        {t.home.worksSub}
       </span>
     </div>
   </div>
@@ -90,7 +103,6 @@
   const replayDropAnimation = () => {
     workCards.forEach((card) => {
       card.classList.remove('drop-in');
-      // Force reflow so the same animation can be replayed.
       void card.offsetWidth;
       card.classList.add('drop-in');
     });

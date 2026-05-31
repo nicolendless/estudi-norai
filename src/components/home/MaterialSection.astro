@@ -1,11 +1,22 @@
+---
+import { getTranslations, type Locale } from '../../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+---
+
 <section id="material" class="w-full bg-amber-50 px-4 py-8 md:px-16 md:py-12 lg:px-20 xl:px-24">
   <div class="flex justify-center text-center md:justify-end md:text-right">
     <div>
       <h2 class="font-archivo text-[2rem] leading-tight text-zinc-800 md:text-4xl">
-        Instrumentos y material disponible
+        {t.instruments.title}
       </h2>
       <a href="#contacto" class="font-archivo mt-2 inline-block text-lg text-zinc-700 underline">
-        Saber más</a
+        {t.instruments.saberMas}</a
       >
     </div>
   </div>
@@ -52,4 +63,3 @@
     </div>
   </div>
 </section>
-

@@ -5,11 +5,11 @@ import sitemap from '@astrojs/sitemap';
 
 import tailwindcss from '@tailwindcss/vite';
 
-const noindexPaths = [
-  '/aviso-legal/',
-  '/politica-de-privacidad/',
-  '/politica-de-cookies/',
-  '/404/',
+const noindexSegments = [
+  'aviso-legal',
+  'politica-de-privacidad',
+  'politica-de-cookies',
+  '404',
 ];
 
 // https://astro.build/config
@@ -20,7 +20,7 @@ export default defineConfig({
   adapter: vercel(),
   integrations: [
     sitemap({
-      filter: (page) => !noindexPaths.some((path) => page.includes(path)),
+      filter: (page) => !noindexSegments.some((segment) => page.includes(`/${segment}`)),
     }),
   ],
   vite: {

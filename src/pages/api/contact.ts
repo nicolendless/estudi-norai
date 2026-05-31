@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import nodemailer from 'nodemailer';
+import { getTranslations, isLocale, type Locale } from '../../i18n';
 
 const requiredField = (value: FormDataEntryValue | null) => {
   if (typeof value !== 'string') {
@@ -7,6 +8,13 @@ const requiredField = (value: FormDataEntryValue | null) => {
   }
 
   return value.trim();
+};
+
+const resolveLocale = (value: FormDataEntryValue | null): Locale => {
+  if (typeof value === 'string' && isLocale(value)) {
+    return value;
+  }
+  return 'es';
 };
 
 export const POST: APIRoute = async ({ request }) => {
@@ -20,6 +28,8 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     const formData = await request.formData();
+    const locale = resolveLocale(formData.get('locale'));
+    const t = getTranslations(locale);
 
     const nombre = requiredField(formData.get('nombre'));
     const email = requiredField(formData.get('email'));
@@ -29,7 +39,7 @@ export const POST: APIRoute = async ({ request }) => {
     const comerciales = formData.get('comerciales');
 
     if (!nombre || !email || !politica) {
-      return jsonResponse(false, 'Faltan campos obligatorios.', 400);
+      return jsonResponse(false, t.api.missingFields, 400);
     }
 
     const host = import.meta.env.SMTP_HOST;
@@ -40,7 +50,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     if (!host || !user || !pass) {
       console.error('Contact form email service is not configured correctly');
-      return jsonResponse(false, 'No se ha podido enviar el mensaje.', 500);
+      return jsonResponse(false, t.api.sendError, 500);
     }
 
     const transporter = nodemailer.createTransport({
@@ -62,6 +72,7 @@ export const POST: APIRoute = async ({ request }) => {
         `Nombre: ${nombre}`,
         `Email: ${email}`,
         `Teléfono: ${telefono || '-'}`,
+        `Idioma: ${locale}`,
         `Acepta recibir novedades comerciales: ${comerciales ? 'Sí' : 'No'}`,
         '',
         'Mensaje:',
@@ -69,9 +80,9 @@ export const POST: APIRoute = async ({ request }) => {
       ].join('\n'),
     });
 
-    return jsonResponse(true, 'Mensaje enviado correctamente.');
+    return jsonResponse(true, t.api.sendSuccess);
   } catch (error) {
     console.error('Error sending contact form email', error);
-    return jsonResponse(false, 'No se ha podido enviar el mensaje.', 500);
+    return jsonResponse(false, getTranslations('es').api.sendError, 500);
   }
 };

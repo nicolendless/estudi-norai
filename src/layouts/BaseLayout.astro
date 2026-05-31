@@ -2,62 +2,74 @@
 import '../styles/global.css';
 import CookieConsent from '../components/shared/CookieConsent.astro';
 import SeoHead from '../components/shared/SeoHead.astro';
-import { getStructuredData, pagesSeo, type PageSeo } from '../data/seo';
+import { getPageSeo, getStructuredData, type PageSeoKey } from '../data/seo';
+import { getTranslations, htmlLang, localizedPath, type Locale } from '../i18n';
 
 interface Props {
+  locale: Locale;
+  seoKey?: PageSeoKey;
   title?: string;
   description?: string;
   ogImage?: string;
   noindex?: boolean;
-  seoKey?: keyof typeof pagesSeo;
   logoMode?: 'scroll' | 'fixed-dark' | 'fixed-light';
   hideHeaderLogo?: boolean;
 }
 
 const {
+  locale,
+  seoKey = 'home',
   title,
   description,
   ogImage,
   noindex,
-  seoKey = 'home',
   logoMode = 'scroll',
   hideHeaderLogo = false,
 } = Astro.props;
 
+const t = getTranslations(locale);
 const site = Astro.site?.href ?? 'https://www.estudinorai.com';
 const pathname = Astro.url.pathname;
-const pageSeo: PageSeo = {
-  ...pagesSeo[seoKey],
+const pageSeo = {
+  ...getPageSeo(locale, seoKey),
   ...(title ? { title } : {}),
   ...(description ? { description } : {}),
   ...(ogImage ? { ogImage } : {}),
   ...(noindex !== undefined ? { noindex } : {}),
 };
-const structuredData = seoKey === 'home' ? getStructuredData(site) : undefined;
+const structuredData = seoKey === 'home' ? getStructuredData(site, locale) : undefined;
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const homePath = localizedPath('/', locale);
 ---
 
-<html lang="es">
+<html lang={htmlLang[locale]}>
   <head>
     <meta charset="utf-8" />
     <title>{pageSeo.title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <SeoHead seo={pageSeo} site={site} pathname={pathname} structuredData={structuredData} />
+    <SeoHead
+      seo={pageSeo}
+      site={site}
+      pathname={pathname}
+      locale={locale}
+      structuredData={structuredData}
+    />
   </head>
 
   <body
     class="font-archivo font-extralight"
     data-logo-mode={logoMode}
+    data-locale={locale}
     data-ga-id={gaMeasurementId ?? undefined}
   >
     {
       !hideHeaderLogo && (
         <header class="pointer-events-none fixed inset-x-0 top-0 z-[60]">
           <div class="flex justify-end px-4 pt-5 md:px-8 md:pt-8">
-            <a href="/" class="pointer-events-auto">
+            <a href={homePath} class="pointer-events-auto">
               <img
                 src="/images/logo.svg"
-                alt="Estudi Norai logo"
+                alt={t.footer.logoAlt}
                 data-site-logo
                 class="site-logo h-18 w-auto transition-[filter] duration-300 md:h-20"
               />
@@ -71,25 +83,40 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
     </main>
     <footer class="w-full bg-white px-4 py-6 text-center text-sm text-zinc-800 md:px-6">
       <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
-        <span>@Copyright Estudio Norai</span>
+        <span>{t.footer.copyright}</span>
         <span>-</span>
-        <a href="/aviso-legal" class="underline">Aviso legal</a>
+        <a href={localizedPath('/aviso-legal', locale)} class="underline">{t.footer.avisoLegal}</a>
         <span>-</span>
-        <a href="/politica-de-privacidad" class="underline">Política de privacidad</a>
+        <a href={localizedPath('/politica-de-privacidad', locale)} class="underline"
+          >{t.footer.privacidad}</a
+        >
         <span>-</span>
-        <a href="/politica-de-cookies" class="underline">Política de cookies</a>
+        <a href={localizedPath('/politica-de-cookies', locale)} class="underline"
+          >{t.footer.cookies}</a
+        >
         <span>-</span>
         <button type="button" data-cookie-open-settings class="underline">
-          Configurar cookies
+          {t.footer.configureCookies}
         </button>
       </div>
     </footer>
 
-    <CookieConsent />
+    <CookieConsent locale={locale} />
 
     <script>
       const logo = document.querySelector<HTMLImageElement>('[data-site-logo]');
+      const homeLangSwitchers = document.querySelectorAll<HTMLElement>('[data-home-lang-switcher]');
       const logoMode = document.body.dataset.logoMode ?? 'scroll';
+
+      const applyLogoTheme = (theme: 'light' | 'dark') => {
+        if (logo) {
+          logo.classList.toggle('site-logo-dark', theme === 'dark');
+          logo.classList.toggle('site-logo-light', theme === 'light');
+        }
+        homeLangSwitchers.forEach((switcher) => {
+          switcher.classList.toggle('language-switcher--light', theme === 'light');
+        });
+      };
 
       const mobileSectionThemes: Record<string, 'light' | 'dark'> = {
         menu: 'light',
@@ -117,14 +144,8 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
         visitanos: 'dark',
       };
 
-      const applyLogoTheme = (theme: 'light' | 'dark') => {
-        if (!logo) return;
-        logo.classList.toggle('site-logo-dark', theme === 'dark');
-        logo.classList.toggle('site-logo-light', theme === 'light');
-      };
-
       const updateScrollLogoTheme = () => {
-        if (!logo) return;
+        if (!logo && homeLangSwitchers.length === 0) return;
 
         if (document.body.classList.contains('hero-menu-open')) {
           applyLogoTheme('dark');

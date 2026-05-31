@@ -1,12 +1,12 @@
 ---
-const intro =
-  'Mi pasión por la música viene prácticamente de nacimiento, ya que mis padres se conocieron en una coral. Desde pequeño, he vivido rodeado de música, tanto a nivel pasional como formativo, tomando clases de piano, guitarra y solfeo durante toda mi infancia y adolescencia.';
+import { getTranslations, type Locale } from '../../i18n';
 
-const career =
-  'Durante la adolescencia inicié mis primeros proyectos musicales, como artista e intérprete. Algunas de estas bandas siguen vigentes a día de hoy. Pese a que mi arranque universitario y laboral fue en el mundo empresarial, poco a poco mi carrera fue girando hacia la música, pasando por Ticketmaster, hasta llegar a graduarme con honores, en <strong>Producción Musical en Barcelona</strong>, en la escuela Microfusa.';
+interface Props {
+  locale: Locale;
+}
 
-const studio =
-  'En 2022, después de finalizar mis estudios en Microfusa y mudarme a Mallorca, decidí dar el paso a abrir mi propio estudio de música, lo que ahora ya conocéis como Estudi Norai. En esta etapa, he podido acompañar a artistas de muchas maneras, en proyectos maravillosos. Además, tengo la suerte de estar ligado a la música también como artista (Norai), intérprete (FincaMusicBand, Fonoll…), organizador de eventos (Rodautors) e incluso como profesor de guitarra y producción.';
+const { locale } = Astro.props;
+const t = getTranslations(locale);
 ---
 
 <section
@@ -18,7 +18,7 @@ const studio =
   >
     <img
       src="/images/conoceme.png"
-      alt="Timonel"
+      alt={t.home.conocemeSub}
       class="absolute inset-0 h-full w-full object-cover lg:object-contain"
     />
     <div
@@ -27,14 +27,14 @@ const studio =
     </div>
     <div class="absolute inset-0 flex items-end justify-center pb-5 md:pb-8 lg:pb-6">
       <h2 class="font-archivo text-5xl text-amber-50 sm:text-6xl lg:text-[5.5rem] xl:text-[6.5rem]">
-        CONÓCEME
+        {t.home.conocemeTitle}
       </h2>
     </div>
     <div class="absolute top-0 right-4 pt-10 sm:right-5 sm:pt-14 md:right-6 lg:right-5 lg:pt-15">
       <span
         class="font-archivo inline-block text-sm text-amber-50 [writing-mode:vertical-rl] sm:text-base lg:text-2xl"
       >
-        Timonel
+        {t.home.conocemeSub}
       </span>
     </div>
   </div>
@@ -45,23 +45,23 @@ const studio =
     <p
       class="text-base leading-7 text-zinc-800 sm:text-lg sm:leading-8 lg:mb-4 lg:text-inherit lg:leading-normal"
     >
-      {intro}
+      {t.home.conocemeIntro}
     </p>
 
     <div class="hidden lg:block">
-      <p class="mb-4" set:html={career} />
-      <p class="mb-4">{studio}</p>
+      <p class="mb-4" set:html={t.home.conocemeCareer} />
+      <p class="mb-4" set:html={t.home.conocemeStudio} />
     </div>
 
     <details class="group mt-4 lg:hidden">
       <summary class="font-archivo inline-flex cursor-pointer text-lg text-zinc-900 underline">
-        <span class="group-open:hidden">Leer más</span>
-        <span class="hidden group-open:inline">Leer menos</span>
+        <span class="group-open:hidden">{t.home.readMore}</span>
+        <span class="hidden group-open:inline">{t.home.readLess}</span>
       </summary>
 
       <div class="mt-4 space-y-4 text-base leading-7 text-zinc-800 sm:text-lg sm:leading-8">
-        <p set:html={career} />
-        <p>{studio}</p>
+        <p set:html={t.home.conocemeCareer} />
+        <p set:html={t.home.conocemeStudio} />
       </div>
     </details>
   </div>

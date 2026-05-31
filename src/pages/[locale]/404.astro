@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LanguageSwitcher from '../../components/shared/LanguageSwitcher.astro';
+import { pageGutter } from '../../data/layout';
+import { getLocaleFromParams, getTranslations, localizedPath } from '../../i18n';
+import { localeStaticPaths } from '../../i18n/routing';
+
+export const prerender = true;
+export const getStaticPaths = localeStaticPaths;
+
+const locale = getLocaleFromParams(Astro.params.locale)!;
+const t = getTranslations(locale);
+---
+
+<BaseLayout
+  locale={locale}
+  title={t.notFound.title}
+  description={t.notFound.description}
+  noindex={true}
+  hideHeaderLogo
+>
+  <header class="border-b border-zinc-200 bg-white">
+    <div class:list={[pageGutter, 'flex items-start justify-between py-6 md:py-8']}>
+      <a href={localizedPath('/', locale)} class="inline-block">
+        <img
+          src="/images/logo.svg"
+          alt={t.footer.logoAlt}
+          class="site-logo site-logo-dark h-14 w-auto max-w-[120px] sm:h-[4.8125rem] sm:max-w-[141px]"
+        />
+      </a>
+      <LanguageSwitcher locale={locale} currentPath={Astro.url.pathname} class="mt-1 shrink-0" />
+    </div>
+  </header>
+
+  <section class="flex min-h-[50vh] flex-col items-center justify-center px-6 py-20 text-center">
+    <p class="font-archivo text-sm uppercase tracking-[0.2em] text-zinc-500">{t.notFound.code}</p>
+    <h1 class="mt-4 font-archivo text-[clamp(1.75rem,5vw,2.5rem)] font-light text-zinc-900">
+      {t.notFound.title}
+    </h1>
+    <p class="mt-4 max-w-md text-base leading-relaxed text-zinc-700">
+      {t.notFound.description}
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <a href={localizedPath('/', locale)} class="font-archivo underline">{t.notFound.home}</a>
+      <a href={localizedPath('/servicios', locale)} class="font-archivo underline"
+        >{t.notFound.services}</a
+      >
+      <a href={localizedPath('/lestudi', locale)} class="font-archivo underline"
+        >{t.notFound.lestudi}</a
+      >
+    </div>
+  </section>
+</BaseLayout>

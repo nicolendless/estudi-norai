@@ -1,5 +1,13 @@
 ---
-import { cookieCategories } from '../../data/cookies';
+import { getTranslations, localizedPath, type Locale } from '../../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+const cookiePolicyPath = localizedPath('/politica-de-cookies', locale);
 ---
 
 <div
@@ -12,13 +20,11 @@ import { cookieCategories } from '../../data/cookies';
   <div class="mx-auto flex max-w-5xl flex-col gap-4 md:flex-row md:items-end md:justify-between">
     <div class="max-w-3xl text-sm leading-relaxed text-zinc-800 md:text-base">
       <p id="cookie-consent-title" class="font-archivo mb-2 text-base font-normal md:text-lg">
-        Cookies
+        {t.cookies.bannerTitle}
       </p>
       <p id="cookie-consent-description">
-        Utilizamos cookies propias y de terceros para mejorar la web y mostrar contenido externo
-        como Spotify o Google Maps. Puedes aceptar todas, rechazar las opcionales o configurar tus
-        preferencias. Más información en nuestra
-        <a href="/politica-de-cookies" class="underline">Política de cookies</a>.
+        {t.cookies.bannerText}
+        <a href={cookiePolicyPath} class="underline">{t.cookies.bannerPolicyLink}</a>.
       </p>
     </div>
     <div class="flex flex-wrap gap-2 md:justify-end">
@@ -27,21 +33,21 @@ import { cookieCategories } from '../../data/cookies';
         data-cookie-open-preferences
         class="font-archivo rounded-full border border-zinc-800 px-4 py-2 text-sm text-zinc-800 transition hover:bg-zinc-800 hover:text-[#f5efe6]"
       >
-        Configurar
+        {t.cookies.configure}
       </button>
       <button
         type="button"
         data-cookie-reject-all
         class="font-archivo rounded-full border border-zinc-800 px-4 py-2 text-sm text-zinc-800 transition hover:bg-zinc-800 hover:text-[#f5efe6]"
       >
-        Rechazar
+        {t.cookies.reject}
       </button>
       <button
         type="button"
         data-cookie-accept-all
         class="font-archivo rounded-full bg-zinc-800 px-4 py-2 text-sm text-[#f5efe6] transition hover:bg-zinc-700"
       >
-        Aceptar todas
+        {t.cookies.acceptAll}
       </button>
     </div>
   </div>
@@ -59,26 +65,25 @@ import { cookieCategories } from '../../data/cookies';
       <div class="mb-6 flex items-start justify-between gap-4">
         <div>
           <h2 id="cookie-preferences-title" class="font-archivo text-xl font-normal text-zinc-800">
-            Preferencias de cookies
+            {t.cookies.modalTitle}
           </h2>
           <p class="mt-2 text-sm leading-relaxed text-zinc-700">
-            Selecciona qué cookies opcionales quieres permitir. Las cookies necesarias no se pueden
-            desactivar.
+            {t.cookies.modalDescription}
           </p>
         </div>
         <button
           type="button"
           data-cookie-close-modal
           class="font-archivo shrink-0 text-sm text-zinc-600 underline"
-          aria-label="Cerrar preferencias de cookies"
+          aria-label={t.cookies.closeModalAria}
         >
-          Cerrar
+          {t.cookies.closeModal}
         </button>
       </div>
 
       <ul class="space-y-4">
         {
-          cookieCategories.map((category) => (
+          t.cookies.categories.map((category) => (
             <li class="rounded-xl border border-zinc-900/10 bg-white/60 p-4">
               <div class="flex items-start justify-between gap-4">
                 <div>
@@ -87,7 +92,7 @@ import { cookieCategories } from '../../data/cookies';
                 </div>
                 {category.required ? (
                   <span class="font-archivo shrink-0 text-xs uppercase tracking-wide text-zinc-500">
-                    Siempre activas
+                    {t.cookies.alwaysActive}
                   </span>
                 ) : (
                   <label class="inline-flex shrink-0 cursor-pointer items-center gap-2">
@@ -96,7 +101,9 @@ import { cookieCategories } from '../../data/cookies';
                       type="checkbox"
                       class="h-4 w-4 accent-zinc-800"
                     />
-                    <span class="sr-only">Activar cookies de {category.label}</span>
+                    <span class="sr-only">
+                      {t.cookies.enableCategory} {category.label}
+                    </span>
                   </label>
                 )}
               </div>
@@ -111,21 +118,21 @@ import { cookieCategories } from '../../data/cookies';
           data-cookie-save-preferences
           class="font-archivo rounded-full bg-zinc-800 px-4 py-2 text-sm text-[#f5efe6] transition hover:bg-zinc-700"
         >
-          Guardar preferencias
+          {t.cookies.savePreferences}
         </button>
         <button
           type="button"
           data-cookie-accept-all
           class="font-archivo rounded-full border border-zinc-800 px-4 py-2 text-sm text-zinc-800 transition hover:bg-zinc-800 hover:text-[#f5efe6]"
         >
-          Aceptar todas
+          {t.cookies.acceptAll}
         </button>
         <button
           type="button"
           data-cookie-reject-all
           class="font-archivo rounded-full border border-zinc-800 px-4 py-2 text-sm text-zinc-800 transition hover:bg-zinc-800 hover:text-[#f5efe6]"
         >
-          Rechazar opcionales
+          {t.cookies.rejectOptional}
         </button>
       </div>
     </div>

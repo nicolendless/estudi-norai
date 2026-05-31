@@ -1,0 +1,87 @@
+---
+import { localeLabels, switchLocalePath, type Locale } from '../../i18n';
+
+interface Props {
+  locale: Locale;
+  currentPath: string;
+  class?: string;
+  tone?: 'dark' | 'light';
+  'data-sync-scroll'?: string;
+}
+
+const { locale, currentPath, class: className = '', tone = 'dark', 'data-sync-scroll': syncScroll } =
+  Astro.props;
+
+const locales = (['es', 'ca', 'en'] as const).map((code) => ({
+  code,
+  label: localeLabels[code],
+  href: switchLocalePath(currentPath, code),
+}));
+---
+
+<nav
+  aria-label="Idioma"
+  data-sync-scroll={syncScroll}
+  class:list={[
+    'language-switcher font-archivo',
+    tone === 'light' && 'language-switcher--light',
+    className,
+  ]}
+>
+  {
+    locales.map(({ code, label, href }, index) => (
+      <>
+        {index > 0 && <span class="language-switcher__sep" aria-hidden="true">·</span>}
+        <a
+          href={href}
+          class:list={[
+            'language-switcher__link',
+            code === locale && 'language-switcher__link--active',
+          ]}
+          aria-current={code === locale ? 'true' : undefined}
+          hreflang={code}
+        >
+          {label}
+        </a>
+      </>
+    ))
+  }
+</nav>
+
+<style>
+  .language-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: clamp(0.75rem, 2.2vw, 0.9375rem);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #202d35;
+  }
+
+  .language-switcher__sep {
+    opacity: 0.45;
+    user-select: none;
+  }
+
+  .language-switcher__link {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 200;
+    transition: opacity 0.2s ease;
+  }
+
+  .language-switcher__link:hover {
+    opacity: 0.7;
+  }
+
+  .language-switcher__link--active {
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .language-switcher--light {
+    color: #f5efe6;
+  }
+</style>

@@ -1,12 +1,15 @@
 ---
 import { pageGutter } from '../../data/layout';
+import { getTranslations, type Locale } from '../../i18n';
 import CookieBlockedEmbed from '../shared/CookieBlockedEmbed.astro';
 
 interface Props {
+  locale: Locale;
   variant?: 'home' | 'subpage';
 }
 
-const { variant = 'home' } = Astro.props;
+const { locale, variant = 'home' } = Astro.props;
+const t = getTranslations(locale);
 
 const iframeClass = 'h-[152px] w-full sm:h-[232px] md:h-[352px]';
 ---
@@ -17,12 +20,13 @@ const iframeClass = 'h-[152px] w-full sm:h-[232px] md:h-[352px]';
       <CookieBlockedEmbed
         category="marketing"
         src="https://open.spotify.com/embed/playlist/6lFwLBYJZyImPdd8u8WwYU?utm_source=generator"
-        title="Spotify Player"
+        title={t.spotify.title}
         wrapperClass={iframeClass}
         class={iframeClass}
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        placeholderTitle="Reproductor de Spotify"
-        placeholderText="Para escuchar la playlist necesitamos tu consentimiento para cargar contenido externo de Spotify."
+        placeholderTitle={t.spotify.title}
+        placeholderText={t.spotify.placeholder}
+        configureLabel={t.footer.configureCookies}
       />
     </div>
   </div>

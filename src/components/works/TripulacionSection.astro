@@ -1,6 +1,6 @@
 ---
-import { crew } from '../../data/works';
 import { pageGutter, sectionTitleLg } from '../../data/layout';
+import { getTranslations, localizedPath, type Locale } from '../../i18n';
 
 /** Hover swatches aligned with site palette (dark slate, cream, sand). */
 const hoverPalette = [
@@ -9,15 +9,22 @@ const hoverPalette = [
   { bg: '#e5d9c7', fg: '#202d35' },
   { bg: '#202d35', fg: '#e5d9c7' },
 ] as const;
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
 ---
 
 <section id="tripulacion" class="scroll-mt-6 bg-white pt-12 md:pt-[90px]">
   <div class={pageGutter}>
-    <h2 class={sectionTitleLg}>Tripulación</h2>
+    <h2 class={sectionTitleLg}>{t.works.tripulacionTitle}</h2>
 
     <ul class="mt-[23px] grid grid-cols-1 gap-x-4 gap-y-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-y-[94px]">
       {
-        crew.map((member, index) => {
+        t.works.crew.map((member, index) => {
           const palette = hoverPalette[index % hoverPalette.length];
 
           return (
@@ -25,7 +32,7 @@ const hoverPalette = [
               <div
                 class="crew-card group aspect-[309/352] cursor-pointer overflow-hidden bg-zinc-100"
                 tabindex="0"
-                aria-label={`Ver ${member.name}`}
+                aria-label={`${t.works.viewMember} ${member.name}`}
               >
                 <img
                   src={member.image}
@@ -54,10 +61,10 @@ const hoverPalette = [
 
     <div class="mt-10 flex justify-center px-0 md:mt-[74px]">
       <a
-        href="/servicios#norai-sessions"
+        href={localizedPath('/servicios#norai-sessions', locale)}
         class="font-archivo flex min-h-[3.25rem] w-full max-w-[441px] items-center justify-center border border-[#202d35] bg-[#202d35] px-4 py-3 text-center text-[clamp(1rem,4.2vw,1.875rem)] font-normal leading-tight text-[#f5efe6]"
       >
-        Descúbre Norai Sessions
+        {t.works.discoverSessions}
       </a>
     </div>
   </div>

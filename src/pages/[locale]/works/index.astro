@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SiteNav from '../../../components/shared/SiteNav.astro';
+import TripulacionSection from '../../../components/works/TripulacionSection.astro';
+import EstudioFotosSection from '../../../components/works/EstudioFotosSection.astro';
+import NoraiSessionsSection from '../../../components/works/NoraiSessionsSection.astro';
+import SpotifySection from '../../../components/home/SpotifySection.astro';
+import ContactoSection from '../../../components/shared/ContactoSection.astro';
+import VisitanosSection from '../../../components/shared/VisitanosSection.astro';
+import { getLocaleFromParams, getTranslations } from '../../../i18n';
+import { localeStaticPaths } from '../../../i18n/routing';
+
+export const prerender = true;
+export const getStaticPaths = localeStaticPaths;
+
+const locale = getLocaleFromParams(Astro.params.locale)!;
+const t = getTranslations(locale);
+---
+
+<BaseLayout locale={locale} seoKey="works" logoMode="fixed-dark" hideHeaderLogo>
+  <SiteNav locale={locale} active="works" />
+  <h1 class="sr-only">{t.works.srOnlyH1}</h1>
+  <TripulacionSection locale={locale} />
+  <EstudioFotosSection locale={locale} />
+  <NoraiSessionsSection locale={locale} />
+  <SpotifySection locale={locale} variant="subpage" />
+  <ContactoSection locale={locale} />
+  <VisitanosSection locale={locale} />
+</BaseLayout>

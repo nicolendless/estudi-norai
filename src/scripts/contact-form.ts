@@ -7,6 +7,11 @@ declare global {
 const contactForm = document.querySelector<HTMLFormElement>('[data-contact-form]');
 const contactFeedback = document.getElementById('contact-feedback');
 
+function getFormMessage(form: HTMLFormElement, key: string, fallback: string): string {
+  const value = form.dataset[key];
+  return value && value.length > 0 ? value : fallback;
+}
+
 function setFeedback(type: 'ok' | 'error', message: string) {
   if (!contactFeedback) return;
 
@@ -22,10 +27,19 @@ if (contactForm) {
 
     const submitButton = contactForm.querySelector<HTMLButtonElement>('button[type="submit"]');
     const originalText = submitButton?.textContent;
+    const msgSubmitting = getFormMessage(contactForm, 'msgSubmitting', 'Enviando...');
+    const msgSuccess = getFormMessage(contactForm, 'msgSuccess', 'Mensaje enviado correctamente.');
+    const msgError = getFormMessage(contactForm, 'msgError', 'No se ha podido enviar el mensaje.');
+    const msgConnection = getFormMessage(
+      contactForm,
+      'msgConnection',
+      'Error de conexión. Vuelve a intentarlo.',
+    );
+    const msgSubmit = getFormMessage(contactForm, 'msgSubmit', 'Enviar');
 
     if (submitButton) {
       submitButton.disabled = true;
-      submitButton.textContent = 'Enviando...';
+      submitButton.textContent = msgSubmitting;
     }
 
     try {
@@ -41,7 +55,7 @@ if (contactForm) {
       const result = await response.json().catch(() => null);
 
       if (response.ok && result?.ok) {
-        setFeedback('ok', result.message ?? 'Mensaje enviado correctamente.');
+        setFeedback('ok', result.message ?? msgSuccess);
         contactForm.reset();
 
         if (typeof window.gtag === 'function') {
@@ -51,14 +65,14 @@ if (contactForm) {
           });
         }
       } else {
-        setFeedback('error', result?.message ?? 'No se ha podido enviar el mensaje.');
+        setFeedback('error', result?.message ?? msgError);
       }
     } catch {
-      setFeedback('error', 'Error de conexión. Vuelve a intentarlo.');
+      setFeedback('error', msgConnection);
     } finally {
       if (submitButton) {
         submitButton.disabled = false;
-        submitButton.textContent = originalText ?? 'Enviar';
+        submitButton.textContent = originalText ?? msgSubmit;
       }
     }
   });

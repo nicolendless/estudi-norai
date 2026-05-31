@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SiteNav from '../../../components/shared/SiteNav.astro';
+import ServicioBlock from '../../../components/servicios/ServicioBlock.astro';
+import InstrumentosIllustrationSection from '../../../components/shared/InstrumentosIllustrationSection.astro';
+import ContactoSection from '../../../components/shared/ContactoSection.astro';
+import VisitanosSection from '../../../components/shared/VisitanosSection.astro';
+import { getLocaleFromParams, getTranslations } from '../../../i18n';
+import { localeStaticPaths } from '../../../i18n/routing';
+
+export const prerender = true;
+export const getStaticPaths = localeStaticPaths;
+
+const locale = getLocaleFromParams(Astro.params.locale)!;
+const t = getTranslations(locale);
+---
+
+<BaseLayout locale={locale} seoKey="servicios" logoMode="fixed-dark" hideHeaderLogo>
+  <SiteNav locale={locale} active="servicios" />
+  <h1 class="sr-only">{t.servicios.srOnlyH1}</h1>
+  {
+    t.services.map((service) => (
+      <ServicioBlock locale={locale} {...service} />
+    ))
+  }
+  <InstrumentosIllustrationSection locale={locale} />
+  <ContactoSection locale={locale} />
+  <VisitanosSection locale={locale} />
+</BaseLayout>
+
+<script>
+  const scrollToHash = () => {
+    const { hash } = window.location;
+    if (!hash) return;
+
+    const target = document.querySelector<HTMLElement>(hash);
+    if (!target) return;
+
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  scrollToHash();
+  window.addEventListener('hashchange', scrollToHash);
+</script>

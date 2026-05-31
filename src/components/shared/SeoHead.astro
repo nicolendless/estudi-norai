@@ -2,25 +2,31 @@
 import {
   absoluteAssetUrl,
   absoluteUrl,
-  siteConfig,
+  getDefaultHreflang,
+  getHreflangUrls,
+  getSiteConfig,
   type PageSeo,
 } from '../../data/seo';
+import { htmlLang, ogLocale, type Locale } from '../../i18n';
 
 interface Props {
   seo: PageSeo;
   site: string;
   pathname: string;
+  locale: Locale;
   structuredData?: Record<string, unknown>;
 }
 
-const { seo, site, pathname, structuredData } = Astro.props;
+const { seo, site, pathname, locale, structuredData } = Astro.props;
 
+const siteConfig = getSiteConfig(locale);
 const canonical = absoluteUrl(site, pathname);
 const description = seo.description;
 const ogImage = absoluteAssetUrl(site, seo.ogImage ?? siteConfig.defaultOgImage);
 const robots = seo.noindex ? 'noindex, follow' : 'index, follow';
 const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const hreflangUrls = getHreflangUrls(site, pathname);
 ---
 
 <meta name="description" content={description} />
@@ -29,9 +35,16 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <meta name="theme-color" content="#202d35" />
 
+{
+  hreflangUrls.map(({ locale: hrefLang, href }) => (
+    <link rel="alternate" hreflang={htmlLang[hrefLang]} href={href} />
+  ))
+}
+<link rel="alternate" hreflang="x-default" href={getDefaultHreflang(site, pathname)} />
+
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content={siteConfig.name} />
-<meta property="og:locale" content={siteConfig.locale} />
+<meta property="og:locale" content={ogLocale[locale]} />
 <meta property="og:title" content={seo.title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />

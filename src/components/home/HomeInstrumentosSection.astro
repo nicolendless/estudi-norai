@@ -1,30 +1,38 @@
 ---
 import { pageGutter } from '../../data/layout';
+import { getTranslations, type Locale } from '../../i18n';
 
 /** Figma ICONES_FINALS — tira continua de 19 logos (4212×216). */
 const logosStripSrc = '/images/instruments/icones-finals.png';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
 ---
 
 <section id="material" class="w-full bg-white py-8 md:py-14">
   <div class:list={[pageGutter, 'flex flex-col items-start md:items-end']}>
     <div class="w-full max-w-[84.375rem] text-left md:text-right">
       <h2 class="font-archivo text-[clamp(1.375rem,5vw,1.875rem)] leading-[1.15] font-light text-[#202d35]">
-        Instrumentos y material disponible
+        {t.instruments.title}
       </h2>
-    <a
+      <a
         href="#contacto"
         class="font-archivo mt-2 inline-block text-base leading-[1.09] text-[#202d35] underline md:text-[18px]"
       >
-        Saber más
+        {t.instruments.saberMas}
       </a>
     </div>
   </div>
 
-  <div class="logos-bar mt-[15px]" aria-label="Logos de marcas de instrumentos">
+  <div class="logos-bar mt-[15px]" aria-label={t.instruments.ariaLabel}>
     <div class="logos-bar__track">
       <img
         src={logosStripSrc}
-        alt="Neumann, Apogee, Gibson, Fender, Heritage Audio y más marcas disponibles"
+        alt={t.home.instrumentsBrandsAlt}
         class="logos-bar__strip"
         width={4096}
         height={210}

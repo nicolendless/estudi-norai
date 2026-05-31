@@ -1,13 +1,17 @@
 ---
 import { navShell } from '../../data/layout';
+import { getTranslations, localizedPath, type Locale } from '../../i18n';
+import LanguageSwitcher from './LanguageSwitcher.astro';
 
 export type NavPage = 'servicios' | 'lestudi' | 'works';
 
 interface Props {
+  locale: Locale;
   active?: NavPage;
 }
 
-const { active } = Astro.props;
+const { locale, active } = Astro.props;
+const t = getTranslations(locale);
 
 const linkBase =
   'font-archivo text-[clamp(0.875rem,2.8vw,1.875rem)] leading-none text-[#202d35]';
@@ -15,43 +19,46 @@ const linkBase =
 
 <header class="bg-white">
   <div class={navShell}>
-    <a href="/" class="inline-block">
-      <img
-        src="/images/logo.svg"
-        alt="Estudi Norai"
-        class="site-logo site-logo-dark h-14 w-auto max-w-[120px] sm:h-[4.8125rem] sm:max-w-[141px]"
-      />
-    </a>
+    <div class="flex items-start justify-between gap-4">
+      <a href={localizedPath('/', locale)} class="inline-block">
+        <img
+          src="/images/logo.svg"
+          alt={t.footer.logoAlt}
+          class="site-logo site-logo-dark h-14 w-auto max-w-[120px] sm:h-[4.8125rem] sm:max-w-[141px]"
+        />
+      </a>
+      <LanguageSwitcher locale={locale} currentPath={Astro.url.pathname} class="mt-1 shrink-0" />
+    </div>
 
     <nav
-      aria-label="Principal"
+      aria-label={t.nav.ariaPrincipal}
       class="mt-3 grid w-full grid-cols-3 items-center gap-4"
     >
       <a
-        href="/servicios"
+        href={localizedPath('/servicios', locale)}
         class:list={[
           linkBase,
           'text-left',
           active === 'servicios' ? 'font-semibold' : 'font-extralight',
         ]}
       >
-        SERVICIOS
+        {t.nav.servicios}
       </a>
       <a
-        href="/lestudi"
+        href={localizedPath('/lestudi', locale)}
         class:list={[
           linkBase,
           'text-center',
           active === 'lestudi' ? 'font-semibold' : 'font-extralight',
         ]}
       >
-        L'ESTUDI
+        {t.nav.lestudi}
       </a>
       <a
-        href="/works"
+        href={localizedPath('/works', locale)}
         class:list={[linkBase, 'text-right', active === 'works' ? 'font-semibold' : 'font-light']}
       >
-        WORKS
+        {t.nav.works}
       </a>
     </nav>
   </div>

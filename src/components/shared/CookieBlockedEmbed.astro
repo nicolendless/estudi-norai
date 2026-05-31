@@ -9,6 +9,7 @@ interface Props {
   referrerPolicy?: string;
   placeholderTitle: string;
   placeholderText: string;
+  configureLabel: string;
 }
 
 const {
@@ -21,6 +22,7 @@ const {
   referrerPolicy,
   placeholderTitle,
   placeholderText,
+  configureLabel,
 } = Astro.props;
 ---
 
@@ -44,7 +46,7 @@ const {
       data-cookie-open-settings
       class="font-archivo rounded-full bg-zinc-800 px-4 py-2 text-sm text-[#f5efe6] transition hover:bg-zinc-700"
     >
-      Configurar cookies
+      {configureLabel}
     </button>
   </div>
 </div>

@@ -1,6 +1,14 @@
 ---
 import { socialLinks } from '../../data/social';
+import { getTranslations, type Locale } from '../../i18n';
 import CookieBlockedEmbed from './CookieBlockedEmbed.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getTranslations(locale);
 ---
 
 <section id="visitanos" class="w-full bg-white">
@@ -9,12 +17,13 @@ import CookieBlockedEmbed from './CookieBlockedEmbed.astro';
       <CookieBlockedEmbed
         category="marketing"
         src="https://www.google.com/maps?q=Carrer+del+Vi,+3A,+Palma&output=embed"
-        title="Mapa Estudi Norai"
+        title={t.visitanos.mapTitle}
         wrapperClass="h-[420px] w-full md:h-[455px]"
         class="h-[420px] w-full border-0 md:h-[455px]"
         referrerPolicy="no-referrer-when-downgrade"
-        placeholderTitle="Mapa de Google"
-        placeholderText="Para mostrar el mapa necesitamos tu consentimiento para cargar contenido externo de Google Maps."
+        placeholderTitle={t.visitanos.mapTitle}
+        placeholderText={t.visitanos.mapPlaceholder}
+        configureLabel={t.footer.configureCookies}
       />
     </div>
     <div
@@ -24,9 +33,9 @@ import CookieBlockedEmbed from './CookieBlockedEmbed.astro';
         href="#contacto"
         class="group font-archivo hidden text-center text-[clamp(1.125rem,2vw,1.625rem)] leading-tight font-light text-[#202d35] sm:absolute sm:top-[42%] sm:left-[32%] sm:inline-block sm:-translate-x-1/2 sm:-translate-y-1/2 sm:-rotate-[15deg]"
       >
-        <span class="block">o ponte</span>
+        <span class="block">{t.visitanos.contactCtaLine1}</span>
         <span class="block"
-          >en contacto<span class="ml-1 hidden group-hover:inline">:)</span></span
+          >{t.visitanos.contactCtaLine2}<span class="ml-1 hidden group-hover:inline">:)</span></span
         >
       </a>
       <div class="font-archivo w-full text-right text-[clamp(1.125rem,4vw,1.875rem)] leading-tight font-light text-[#202d35]">
@@ -36,7 +45,7 @@ import CookieBlockedEmbed from './CookieBlockedEmbed.astro';
             target="_blank"
             rel="noopener noreferrer"
             class="relative z-10 block size-[34px] shrink-0"
-            aria-label="Instagram de Estudi Norai"
+            aria-label={t.visitanos.instagramAria}
           >
             <img src="/images/visitanos/instagram.svg" alt="" class="size-[34px]" loading="lazy" />
           </a>
@@ -45,7 +54,7 @@ import CookieBlockedEmbed from './CookieBlockedEmbed.astro';
             target="_blank"
             rel="noopener noreferrer"
             class="relative z-0 -ml-7 block h-9 w-[74px] shrink-0"
-            aria-label="Canal de YouTube de Estudi Norai"
+            aria-label={t.visitanos.youtubeAria}
           >
             <img src="/images/visitanos/youtube.svg" alt="" class="h-9 w-[74px]" loading="lazy" />
           </a>
@@ -60,7 +69,7 @@ import CookieBlockedEmbed from './CookieBlockedEmbed.astro';
       <h2
         class="font-archivo pointer-events-none w-full text-center text-[clamp(2.5rem,11.5vw,10.25rem)] leading-none font-light text-[#e5d9c7]"
       >
-        VISÍTANOS
+        {t.visitanos.title}
       </h2>
     </div>
   </div>

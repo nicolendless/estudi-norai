@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SiteNav from '../../../components/shared/SiteNav.astro';
+import LestudiHero from '../../../components/lestudi/LestudiHero.astro';
+import EmbarcacionRooms from '../../../components/lestudi/EmbarcacionRooms.astro';
+import EquipoSection from '../../../components/lestudi/EquipoSection.astro';
+import SpotifySection from '../../../components/home/SpotifySection.astro';
+import InstrumentosIllustrationSection from '../../../components/shared/InstrumentosIllustrationSection.astro';
+import NoraiIllustration from '../../../components/lestudi/NoraiIllustration.astro';
+import ContactoSection from '../../../components/shared/ContactoSection.astro';
+import VisitanosSection from '../../../components/shared/VisitanosSection.astro';
+import { getLocaleFromParams, getTranslations } from '../../../i18n';
+import { localeStaticPaths } from '../../../i18n/routing';
+
+export const prerender = true;
+export const getStaticPaths = localeStaticPaths;
+
+const locale = getLocaleFromParams(Astro.params.locale)!;
+const t = getTranslations(locale);
+---
+
+<BaseLayout locale={locale} seoKey="lestudi" logoMode="fixed-dark" hideHeaderLogo>
+  <SiteNav locale={locale} active="lestudi" />
+  <h1 class="sr-only">{t.lestudi.srOnlyH1}</h1>
+  <LestudiHero locale={locale} />
+  <EmbarcacionRooms locale={locale} />
+  <EquipoSection locale={locale} />
+  <SpotifySection locale={locale} variant="subpage" />
+  <InstrumentosIllustrationSection locale={locale} />
+  <NoraiIllustration locale={locale} />
+  <ContactoSection locale={locale} showEmbarcate={false} />
+  <VisitanosSection locale={locale} />
+</BaseLayout>

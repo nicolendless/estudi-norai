@@ -1,14 +1,13 @@
 ---
 import { tripulacionCollage } from '../../data/tripulacionCollage';
+import { getTranslations, localizedPath, type Locale } from '../../i18n';
 
-const intro =
-  'Mi pasión por la música viene prácticamente de nacimiento, ya que mis padres se conocieron en una coral. Desde pequeño, he vivido rodeado de música, tanto a nivel pasional como formativo.';
+interface Props {
+  locale: Locale;
+}
 
-const career =
-  'Durante la adolescencia inicié mis primeros proyectos musicales, como artista e intérprete. Pese a que mi arranque universitario y laboral fue en el mundo empresarial, poco a poco mi carrera fue girando hacia la música, pasando por Ticketmaster, hasta llegar a graduarme con honores, en <strong>Producción Musical en Barcelona</strong>, en la escuela Microfusa.';
-
-const studio =
-  'En 2022, decidí mudarme a Mallorca para abrir mi propio estudio de música en la isla, lo que ahora ya conocéis como <strong class="font-extrabold">Estudi Norai.</strong> Desde este espacio, he podido acompañar a artistas de muchas maneras, en proyectos maravillosos. Además, tengo la suerte de seguir ligado a la música también como artista (Norai), intérprete (FincaMusicBand, Fonoll…), organizador de eventos (Rodautors) e incluso como profesor de guitarra y producción.';
+const { locale } = Astro.props;
+const t = getTranslations(locale);
 
 const cellClass = 'relative aspect-square w-full overflow-hidden';
 const creamTitle = 'text-[#e5d9c7]';
@@ -22,19 +21,19 @@ const worksTitleClass = `font-archivo text-[22vw] leading-none tracking-tight ${
     class:list={[cellClass, 'order-2 flex flex-col px-5 py-8 sm:px-8 md:order-1 md:px-10 md:py-10 lg:px-14']}
   >
     <div class="space-y-3 text-base leading-7 text-zinc-900 md:text-lg md:leading-8">
-      <p>{intro}</p>
+      <p>{t.home.conocemeIntro}</p>
       <div class="hidden md:block md:space-y-3">
-        <p set:html={career} />
-        <p set:html={studio} />
+        <p set:html={t.home.conocemeCareer} />
+        <p set:html={t.home.conocemeStudio} />
       </div>
       <details class="group md:hidden">
         <summary class="font-archivo inline-flex cursor-pointer text-lg text-zinc-900 underline">
-          <span class="group-open:hidden">Leer más</span>
-          <span class="hidden group-open:inline">Leer menos</span>
+          <span class="group-open:hidden">{t.home.readMore}</span>
+          <span class="hidden group-open:inline">{t.home.readLess}</span>
         </summary>
         <div class="mt-4 space-y-4">
-          <p set:html={career} />
-          <p set:html={studio} />
+          <p set:html={t.home.conocemeCareer} />
+          <p set:html={t.home.conocemeStudio} />
         </div>
       </details>
     </div>
@@ -49,7 +48,7 @@ const worksTitleClass = `font-archivo text-[22vw] leading-none tracking-tight ${
   <div class:list={[cellClass, 'order-1 bg-stone-100 md:order-2']}>
     <img
       src="/images/conoceme.png"
-      alt="Timonel"
+      alt={t.home.conocemeSub}
       class="absolute inset-0 h-full w-full object-cover"
     />
     <div
@@ -57,7 +56,7 @@ const worksTitleClass = `font-archivo text-[22vw] leading-none tracking-tight ${
     >
     </div>
     <div class="absolute inset-x-0 bottom-0 flex justify-center pb-5 md:pb-6 lg:pb-8">
-      <h2 class={conocemeTitleClass}>CONÓCEME</h2>
+      <h2 class={conocemeTitleClass}>{t.home.conocemeTitle}</h2>
     </div>
     <div class="absolute top-0 right-4 pt-8 sm:right-5 sm:pt-10 md:pt-12 lg:pt-14">
       <span
@@ -66,7 +65,7 @@ const worksTitleClass = `font-archivo text-[22vw] leading-none tracking-tight ${
           creamTitle,
         ]}
       >
-        Timonel
+        {t.home.conocemeSub}
       </span>
     </div>
   </div>
@@ -78,8 +77,10 @@ const worksTitleClass = `font-archivo text-[22vw] leading-none tracking-tight ${
       'order-3 flex flex-col items-center justify-end bg-[#202d35] pb-6 md:order-3 md:pb-8',
     ]}
   >
-    <h2 class={worksTitleClass}>WORKS</h2>
-    <a href="/works" class:list={['font-archivo mt-2 text-lg underline', creamTitle]}>Saber más</a>
+    <h2 class={worksTitleClass}>{t.home.worksTitle}</h2>
+    <a href={localizedPath('/works', locale)} class:list={['font-archivo mt-2 text-lg underline', creamTitle]}
+      >{t.home.worksSaberMas}</a
+    >
   </div>
 
   <div class:list={[cellClass, 'order-4 bg-white md:order-4']}>
@@ -89,7 +90,7 @@ const worksTitleClass = `font-archivo text-[22vw] leading-none tracking-tight ${
           tripulacionCollage.map((photo) => (
             <img
               src={photo.src}
-              alt={photo.alt}
+              alt={t.home.projectAlt}
               class="work-card absolute object-cover"
               style={`left: ${photo.left}; top: ${photo.top}; width: ${photo.width}; height: ${photo.height}; z-index: ${photo.zIndex}; --drop-delay: ${photo.dropDelay};`}
             />
@@ -101,7 +102,7 @@ const worksTitleClass = `font-archivo text-[22vw] leading-none tracking-tight ${
       <span
         class="font-archivo inline-block text-base text-[#202d35] [writing-mode:vertical-rl] md:text-lg lg:text-2xl"
       >
-        Tripulación
+        {t.home.worksSub}
       </span>
     </div>
   </div>

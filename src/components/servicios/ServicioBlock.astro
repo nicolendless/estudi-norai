@@ -1,10 +1,13 @@
 ---
-import type { Service, ServiceTheme } from '../../data/services';
+import type { ServiceTheme } from '../../data/services';
+import type { ServiceTranslation } from '../../i18n/types';
 import { pageGutter } from '../../data/layout';
+import { getTranslations, type Locale } from '../../i18n';
 
-type Props = Service;
+type Props = ServiceTranslation & { locale: Locale };
 
 const {
+  locale,
   slug,
   detailTitle,
   detailSubtitle,
@@ -14,6 +17,8 @@ const {
   panelTheme,
   body,
 } = Astro.props;
+
+const t = getTranslations(locale);
 
 const panelStyles: Record<ServiceTheme, string> = {
   dark: 'bg-[#202d35] text-white',
@@ -102,7 +107,7 @@ const imageFirst = imagePosition === 'left';
       href="#contacto"
       class="font-archivo mt-4 inline-block text-lg font-extralight text-[#202d35] underline sm:text-2xl"
     >
-      Pide más información
+      {t.common.moreInfo}
     </a>
   </div>
 </article>
