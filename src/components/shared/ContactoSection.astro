@@ -1,76 +1,132 @@
 ---
 const fieldClass =
-  'font-archivo w-full rounded-full bg-[#f5efe6] px-6 py-3 text-center text-[18px] font-light text-[#202d35] placeholder:text-[#202d35] outline-none shadow-[inset_0_0_4px_rgba(0,0,0,0.25)]';
+  'font-archivo w-full rounded-[60px] bg-[#f5efe6] px-6 text-center text-[18px] font-light text-[#202d35] placeholder:text-[#202d35] outline-none shadow-[inset_0_0_4px_rgba(0,0,0,0.25)]';
 const checkboxClass =
-  'mt-1 h-[14px] w-[17px] shrink-0 cursor-pointer appearance-none rounded-full border-0 bg-[#f5efe6] checked:bg-[#f5efe6] shadow-[inset_0_0_4px_rgba(0,0,0,0.25)]';
+  'mt-0.5 h-[14px] w-[17px] shrink-0 cursor-pointer appearance-none rounded-full border-0 bg-[#f5efe6] checked:bg-[#f5efe6] shadow-[inset_0_0_4px_rgba(0,0,0,0.25)]';
 
 interface Props {
   showEmbarcate?: boolean;
 }
 
 const { showEmbarcate = true } = Astro.props;
+const headingText = 'TRABA\nJEMOS\nJUNTOS';
 ---
 
-<section
-  id="contacto"
-  class="relative flex min-h-0 w-full flex-col bg-[#202d35] pt-12 pb-12 md:min-h-[544px] md:pt-[83px] md:pb-[83px] lg:flex-row"
->
-  <div class="order-2 flex w-full items-center justify-center px-4 md:px-16 lg:order-1 lg:w-1/2 lg:px-20 xl:px-24">
-    <form action="/api/contact" method="post" data-contact-form class="w-full max-w-[423px] space-y-2">
-      <input type="text" name="nombre" placeholder="Nombre*" required class={fieldClass} />
-      <input type="email" name="email" placeholder="E-mail*" required class={fieldClass} />
-      <input type="tel" name="telefono" placeholder="Teléfono" class={fieldClass} />
-
-      <div class="relative">
-        <textarea
-          name="mensaje"
-          rows="5"
-          placeholder="Proyecto / Idea&#10;Déjame un mensaje"
-          class="font-archivo w-full resize-none rounded-[28px] bg-[#f5efe6] px-6 pt-5 pb-14 text-center text-[18px] font-light text-[#202d35] placeholder:text-[#202d35] outline-none shadow-[inset_0_0_4px_rgba(0,0,0,0.25)]"
-        ></textarea>
-        <button
-          type="submit"
-          class="font-archivo absolute right-4 bottom-3 rounded-full bg-[#202d35] px-5 py-1 text-[13px] font-bold tracking-wide text-[#f5efe6] uppercase shadow-[inset_0_0_4px_rgba(0,0,0,0.25)] hover:bg-[#2a3a45]"
-        >
-          Enviar
-        </button>
-      </div>
-
-      <div class="space-y-1 pt-2 text-left text-base font-light text-[#f5efe6] sm:text-[18px]">
-        <label class="flex items-start gap-3">
-          <input type="checkbox" name="politica" class={checkboxClass} required />
-          <span>Acepto la política de protección de datos</span>
-        </label>
-        <label class="flex items-start gap-3">
-          <input type="checkbox" name="comerciales" class={checkboxClass} />
-          <span>Acepto recibir novedades comerciales</span>
-        </label>
-      </div>
-
-      <p id="contact-feedback" class="hidden rounded-xl px-4 py-2 text-sm text-[#f5efe6]"></p>
-    </form>
-  </div>
-
-  <div class="order-1 relative flex w-full items-center justify-center px-6 pb-6 md:px-16 md:pb-10 lg:order-2 lg:w-1/2 lg:px-20 lg:pb-0 xl:px-24">
-    <h2
-      class="font-archivo text-center text-[clamp(2.5rem,11vw,10.3125rem)] leading-[0.95] font-light tracking-[-0.04em] text-[#e5d9c7]"
-    >
-      <span class="block">TRABAJEMOS</span>
-      <span class="block">JUNTOS</span>
-    </h2>
-  </div>
-
+<section id="contacto" class="contact-section relative w-full bg-[#202d35]">
   {
     showEmbarcate && (
-      <div class="absolute top-0 right-4 hidden pt-10 md:right-5 md:pt-14 lg:block">
-        <span class="font-archivo inline-block text-[25px] font-normal text-[#e5d9c7] [writing-mode:vertical-rl]">
+      <div class="pointer-events-none absolute top-0 right-4 z-10 hidden pt-10 md:right-5 md:pt-14 lg:block">
+        <span
+          class="font-archivo inline-block text-base text-[#e5d9c7] [writing-mode:vertical-rl] md:text-lg lg:text-2xl"
+        >
           Embárcate
         </span>
       </div>
     )
   }
+
+  <div class="contact-section__frame relative mx-auto w-full max-w-[90.125rem] px-4 md:px-8 lg:px-12 xl:px-16">
+    <div class="contact-section__heading flex justify-center px-2 py-14 md:px-6 md:py-20 lg:absolute lg:inset-y-0 lg:left-1/2 lg:w-1/2 lg:px-8 lg:py-0 xl:px-10">
+      <h2 class="font-archivo text-center font-light text-[#e5d9c7]">
+        <span class="contact-section__title inline-block whitespace-pre-line">{headingText}</span>
+      </h2>
+    </div>
+
+    <div class="contact-section__form px-2 pb-14 md:px-6 md:pb-16 lg:absolute lg:px-0 lg:pb-0">
+      <form action="/api/contact" method="post" data-contact-form class="w-full max-w-[423px] space-y-2">
+        <input
+          type="text"
+          name="nombre"
+          placeholder="Nombre*"
+          required
+          class:list={[fieldClass, 'h-11 py-0']}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="E-mail*"
+          required
+          class:list={[fieldClass, 'h-[47px] py-0']}
+        />
+        <input type="tel" name="telefono" placeholder="Teléfono" class:list={[fieldClass, 'h-[47px] py-0']} />
+
+        <div class="relative">
+          <textarea
+            name="mensaje"
+            rows="4"
+            placeholder={'Proyecto / Idea\nDéjame un mensaje'}
+            class="font-archivo h-[129px] w-full resize-none rounded-[28px] bg-[#f5efe6] px-6 pt-5 pb-14 text-center text-[18px] font-light text-[#202d35] placeholder:text-[#202d35] outline-none shadow-[inset_0_0_4px_rgba(0,0,0,0.25)]"
+          ></textarea>
+          <button
+            type="submit"
+            class="font-archivo absolute right-4 bottom-3 rounded-[60px] bg-[#202d35] px-5 py-1 text-[13px] font-bold tracking-wide text-[#f5efe6] uppercase shadow-[inset_0_0_4px_rgba(0,0,0,0.25)] hover:bg-[#2a3a45]"
+          >
+            Enviar
+          </button>
+        </div>
+
+        <div class="space-y-1 pt-1 text-left text-[18px] font-light text-[#f5efe6]">
+          <label class="flex items-start gap-3 pl-2.5">
+            <input type="checkbox" name="politica" class={checkboxClass} required />
+            <span>Acepto la política de protección de datos</span>
+          </label>
+          <label class="flex items-start gap-3 pl-2.5">
+            <input type="checkbox" name="comerciales" class={checkboxClass} />
+            <span>Acepto recibir novedades comerciales</span>
+          </label>
+        </div>
+
+        <p id="contact-feedback" class="hidden rounded-xl px-4 py-2 text-sm text-[#f5efe6]"></p>
+      </form>
+    </div>
+  </div>
 </section>
 
 <script>
   import '../../scripts/contact-form';
 </script>
+
+<style>
+  /* Figma HOME node 27:20 — 1442×544 contact block */
+  .contact-section__frame {
+    min-height: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  @media (min-width: 1024px) {
+    .contact-section__frame {
+      min-height: 580px;
+      padding-top: 27px;
+      padding-bottom: 40px;
+    }
+  }
+
+  .contact-section__title {
+    font-size: clamp(2.5rem, 11.44vw, 10.3125rem);
+    line-height: 0.969697;
+    letter-spacing: -0.05em;
+    max-width: min(656px, 100%);
+    padding: 0 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .contact-section__title {
+      padding: 0 1rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .contact-section__heading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-section__form {
+      left: 9.431%;
+      top: calc(88 / 580 * 100%);
+      width: min(29.34%, 423px);
+    }
+  }
+</style>
