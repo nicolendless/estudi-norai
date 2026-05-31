@@ -1,0 +1,72 @@
+---
+/** Figma 651:79 — NORAI_INSTRUMENTS-03 + Component 22 (590:69). */
+const illustrationSrc = '/images/servicios/norai-instruments-03.png';
+---
+
+<section id="material" class="w-full bg-[#f5efe6]">
+  <div class="material-panel" aria-labelledby="material-heading">
+    <img
+      src={illustrationSrc}
+      alt="Instrumentos y material del estudio"
+      class="material-panel__art"
+      width={1446}
+      height={457}
+      loading="lazy"
+    />
+    <div class="material-panel__copy">
+      <h2
+        id="material-heading"
+        class="font-archivo text-[30px] leading-[1.09] font-light text-[#202d35]"
+      >
+        Instrumentos y material disponible
+      </h2>
+      <a
+        href="#contacto"
+        class="material-panel__link font-archivo mt-2 inline-block text-[18px] leading-[1.09] text-[#202d35] underline"
+      >
+        Saber más
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .material-panel {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1446 / 457;
+    min-height: clamp(16rem, 31.6vw, 28.5625rem);
+  }
+
+  .material-panel__art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+  }
+
+  .material-panel__copy {
+    position: absolute;
+    left: 3.45%;
+    top: 6.18%;
+    width: 93.04%;
+    text-align: right;
+    pointer-events: none;
+  }
+
+  .material-panel__link {
+    pointer-events: auto;
+  }
+
+  @media (max-width: 767px) {
+    .material-panel__copy h2 {
+      font-size: clamp(1.25rem, 5vw, 1.875rem);
+    }
+
+    .material-panel__link {
+      font-size: 1rem;
+    }
+  }
+</style>

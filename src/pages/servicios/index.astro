@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteNav from '../../components/shared/SiteNav.astro';
 import ServicioBlock from '../../components/servicios/ServicioBlock.astro';
-import MaterialSection from '../../components/home/MaterialSection.astro';
+import InstrumentosIllustrationSection from '../../components/shared/InstrumentosIllustrationSection.astro';
 import ContactoSection from '../../components/shared/ContactoSection.astro';
 import VisitanosSection from '../../components/shared/VisitanosSection.astro';
 import { services } from '../../data/services';
@@ -13,7 +13,7 @@ import { services } from '../../data/services';
   {services.map((service) => (
     <ServicioBlock {...service} />
   ))}
-  <MaterialSection />
+  <InstrumentosIllustrationSection />
   <ContactoSection />
   <VisitanosSection />
 </BaseLayout>
