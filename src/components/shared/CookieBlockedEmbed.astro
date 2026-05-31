@@ -1,0 +1,50 @@
+---
+interface Props {
+  category: 'analytics' | 'marketing';
+  src: string;
+  title: string;
+  wrapperClass?: string;
+  class?: string;
+  allow?: string;
+  referrerPolicy?: string;
+  placeholderTitle: string;
+  placeholderText: string;
+}
+
+const {
+  category,
+  src,
+  title,
+  wrapperClass = '',
+  class: className = 'h-full w-full border-0',
+  allow,
+  referrerPolicy,
+  placeholderTitle,
+  placeholderText,
+} = Astro.props;
+---
+
+<div
+  class:list={['relative w-full', wrapperClass]}
+  data-cookie-embed={category}
+  data-embed-src={src}
+  data-embed-title={title}
+  data-embed-class={className}
+  {...allow ? { 'data-embed-allow': allow } : {}}
+  {...referrerPolicy ? { 'data-embed-referrerpolicy': referrerPolicy } : {}}
+>
+  <div
+    data-cookie-embed-placeholder
+    class="flex h-full min-h-[inherit] w-full flex-col items-center justify-center gap-4 bg-[#f5efe6] px-6 py-10 text-center text-zinc-800"
+  >
+    <p class="font-archivo text-lg">{placeholderTitle}</p>
+    <p class="max-w-md text-sm leading-relaxed text-zinc-700">{placeholderText}</p>
+    <button
+      type="button"
+      data-cookie-open-settings
+      class="font-archivo rounded-full bg-zinc-800 px-4 py-2 text-sm text-[#f5efe6] transition hover:bg-zinc-700"
+    >
+      Configurar cookies
+    </button>
+  </div>
+</div>

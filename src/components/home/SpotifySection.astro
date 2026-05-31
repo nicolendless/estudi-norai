@@ -1,5 +1,6 @@
 ---
 import { pageGutter } from '../../data/layout';
+import CookieBlockedEmbed from '../shared/CookieBlockedEmbed.astro';
 
 interface Props {
   variant?: 'home' | 'subpage';
@@ -13,14 +14,15 @@ const iframeClass = 'h-[152px] w-full sm:h-[232px] md:h-[352px]';
 <section id="spotify" class="bg-white py-10 md:py-14">
   <div class={pageGutter}>
     <div class="mx-auto w-full max-w-[1120px]">
-      <iframe
-        title="Spotify Player"
+      <CookieBlockedEmbed
+        category="marketing"
         src="https://open.spotify.com/embed/playlist/6lFwLBYJZyImPdd8u8WwYU?utm_source=generator"
+        title="Spotify Player"
+        wrapperClass={iframeClass}
         class={iframeClass}
-        frameborder="0"
-        allowfullscreen=""
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy"
+        placeholderTitle="Reproductor de Spotify"
+        placeholderText="Para escuchar la playlist necesitamos tu consentimiento para cargar contenido externo de Spotify."
       />
     </div>
   </div>

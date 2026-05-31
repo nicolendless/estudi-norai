@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import CookieConsent from '../components/shared/CookieConsent.astro';
 
 interface Props {
   title?: string;
@@ -15,10 +16,6 @@ const { title = 'Estudi Norai', logoMode = 'scroll', hideHeaderLogo = false } = 
     <meta charset="utf-8" />
     <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@200;300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
   </head>
 
   <body class="font-archivo font-extralight" data-logo-mode={logoMode}>
@@ -49,11 +46,17 @@ const { title = 'Estudi Norai', logoMode = 'scroll', hideHeaderLogo = false } = 
         <span>-</span>
         <a href="/politica-de-privacidad" class="underline">Política de privacidad</a>
         <span>-</span>
-        <a href="#" class="underline">Política de cookies</a>
+        <a href="/politica-de-cookies" class="underline">Política de cookies</a>
+        <span>-</span>
+        <button type="button" data-cookie-open-settings class="underline">
+          Configurar cookies
+        </button>
         <span>-</span>
         <a href="#" class="underline">Política de privacidad de la app</a>
       </div>
     </footer>
+
+    <CookieConsent />
 
     <script>
       const logo = document.querySelector<HTMLImageElement>('[data-site-logo]');

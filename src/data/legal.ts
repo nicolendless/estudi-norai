@@ -157,3 +157,58 @@ export const politicaPrivacidad: LegalPage = {
     },
   ],
 };
+
+export const politicaCookies: LegalPage = {
+  title: 'POLÍTICA DE COOKIES',
+  sections: [
+    {
+      paragraphs: [
+        'La presente Política de Cookies explica qué son las cookies, qué tipos utilizamos en este sitio web y cómo puedes gestionarlas.',
+      ],
+    },
+    {
+      title: '1. ¿QUÉ SON LAS COOKIES?',
+      paragraphs: [
+        'Las cookies son pequeños archivos que se almacenan en tu dispositivo cuando visitas una página web. Permiten, entre otras cosas, recordar preferencias, facilitar la navegación o recopilar información estadística.',
+      ],
+    },
+    {
+      title: '2. TIPOS DE COOKIES QUE UTILIZAMOS',
+      bullets: [
+        'Cookies técnicas o necesarias: permiten guardar tu decisión sobre el uso de cookies.',
+        'Cookies analíticas: nos ayudan a comprender cómo se utiliza la web. Solo se activan si las aceptas.',
+        'Cookies de terceros / contenido externo: pueden instalarse al cargar servicios como Spotify o Google Maps. Solo se activan si las aceptas.',
+      ],
+    },
+    {
+      title: '3. COOKIES DE TERCEROS',
+      paragraphs: ['Este sitio puede cargar servicios externos que instalan sus propias cookies:'],
+      bullets: [
+        'Google Fonts: tipografías alojadas en servidores de Google (se cargan al confirmar tus preferencias).',
+        'Spotify: reproductor embebido de playlist.',
+        'Google Maps: mapa de ubicación del estudio.',
+      ],
+    },
+    {
+      title: '4. CONSERVACIÓN',
+      paragraphs: [
+        'Tu preferencia de cookies se guarda en tu navegador durante un máximo de 12 meses. Pasado ese plazo, volveremos a solicitarte el consentimiento.',
+      ],
+    },
+    {
+      title: '5. CÓMO GESTIONAR LAS COOKIES',
+      paragraphs: [
+        'Puedes aceptar, rechazar o configurar las cookies no necesarias desde el banner inicial o en cualquier momento mediante el enlace “Configurar cookies” del pie de página.',
+        'También puedes configurar tu navegador para bloquear o eliminar cookies. Ten en cuenta que, si desactivas las cookies necesarias, algunas funciones pueden dejar de estar disponibles.',
+      ],
+    },
+    {
+      title: '6. RESPONSABLE',
+      paragraphs: [
+        'Titular: Estudio Norai',
+        'Correo electrónico: estudionorai@gmail.com',
+        'Puedes consultar más información sobre el tratamiento de datos personales en nuestra Política de privacidad.',
+      ],
+    },
+  ],
+};
