@@ -1,6 +1,14 @@
 ---
 import { crew } from '../../data/works';
 import { pageGutter, sectionTitleLg } from '../../data/layout';
+
+/** Hover swatches aligned with site palette (dark slate, cream, sand). */
+const hoverPalette = [
+  { bg: '#202d35', fg: '#f5efe6' },
+  { bg: '#f5efe6', fg: '#202d35' },
+  { bg: '#e5d9c7', fg: '#202d35' },
+  { bg: '#202d35', fg: '#e5d9c7' },
+] as const;
 ---
 
 <section id="tripulacion" class="scroll-mt-6 bg-white pt-[90px]">
@@ -9,22 +17,38 @@ import { pageGutter, sectionTitleLg } from '../../data/layout';
 
     <ul class="mt-[23px] grid grid-cols-1 gap-x-4 gap-y-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-y-[94px]">
       {
-        crew.map((member) => (
-          <li>
-            <div class="aspect-[309/352] overflow-hidden bg-zinc-100">
-              <img
-                src={member.image}
-                alt={member.name}
-                class="h-full w-full object-cover"
-                loading="lazy"
-              />
-            </div>
-            <h3 class="font-archivo mt-3.5 text-2xl font-extralight text-[#202d35]">{member.name}</h3>
-            <p class="mt-0.5 text-[15px] leading-normal font-extralight text-[#202d35]">
-              {member.bio}
-            </p>
-          </li>
-        ))
+        crew.map((member, index) => {
+          const palette = hoverPalette[index % hoverPalette.length];
+
+          return (
+            <li>
+              <div
+                class="crew-card group aspect-[309/352] cursor-pointer overflow-hidden bg-zinc-100"
+                tabindex="0"
+                aria-label={`Ver ${member.name}`}
+              >
+                <img
+                  src={member.image}
+                  alt=""
+                  class="crew-card__photo h-full w-full object-cover"
+                  loading="lazy"
+                />
+                <div class="crew-card__overlay">
+                  <div
+                    class="crew-card__square font-archivo text-center text-2xl font-extralight leading-tight"
+                    style={`--crew-hover-bg: ${palette.bg}; --crew-hover-fg: ${palette.fg};`}
+                  >
+                    {member.name}
+                  </div>
+                </div>
+              </div>
+              <h3 class="font-archivo mt-3.5 text-2xl font-extralight text-[#202d35]">{member.name}</h3>
+              <p class="mt-0.5 text-[15px] leading-normal font-extralight text-[#202d35]">
+                {member.bio}
+              </p>
+            </li>
+          );
+        })
       }
     </ul>
 
@@ -38,3 +62,58 @@ import { pageGutter, sectionTitleLg } from '../../data/layout';
     </div>
   </div>
 </section>
+
+<style>
+  .crew-card__photo {
+    transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+
+  .crew-card__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .crew-card__square {
+    display: flex;
+    aspect-ratio: 1;
+    width: min(72%, 15rem);
+    align-items: center;
+    justify-content: center;
+    background-color: var(--crew-hover-bg);
+    color: var(--crew-hover-fg);
+    padding: 1rem;
+    transform: scale(0.88);
+    transition: transform 0.35s ease;
+  }
+
+  .crew-card {
+    position: relative;
+  }
+
+  .crew-card:hover .crew-card__photo,
+  .crew-card:focus-visible .crew-card__photo {
+    transform: scale(1.03);
+    opacity: 0.35;
+  }
+
+  .crew-card:hover .crew-card__overlay,
+  .crew-card:focus-visible .crew-card__overlay {
+    opacity: 1;
+  }
+
+  .crew-card:hover .crew-card__square,
+  .crew-card:focus-visible .crew-card__square {
+    transform: scale(1);
+  }
+
+  .crew-card:focus-visible {
+    outline: 2px solid #202d35;
+    outline-offset: 3px;
+  }
+</style>
