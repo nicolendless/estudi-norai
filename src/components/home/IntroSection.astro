@@ -1,11 +1,15 @@
+---
+import { homeIntro } from '../../data/seo';
+---
+
 <section id="intro" class="pt-12 pb-6 md:pt-16 md:pb-8">
   <div class="mx-auto max-w-3xl px-5 sm:px-8 lg:px-12">
     <p
       class="text-center text-[clamp(1.125rem,2.5vw,1.5625rem)] leading-8 text-zinc-900 md:leading-8"
     >
-      Estudi Norai es un espacio de <strong class="font-bold">acompañamiento musical Km 0</strong> en el
-      centro de Palma de Mallorca. Este lugar es el punto de amarre, para que tu proyecto musical
-      llegue a buen puerto. Un sitio donde las ideas toman forma y encuentran su propio ritmo.
+      {homeIntro.lead}
+      <strong class="font-bold">{homeIntro.highlight}</strong>
+      {homeIntro.rest}
     </p>
     <p class="mt-6 text-center md:mt-8">
       <a

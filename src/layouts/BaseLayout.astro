@@ -2,7 +2,12 @@
 import '../styles/global.css';
 import CookieConsent from '../components/shared/CookieConsent.astro';
 import SeoHead from '../components/shared/SeoHead.astro';
-import { getStructuredData, pagesSeo, type PageSeo } from '../data/seo';
+import {
+  getPageStructuredData,
+  getStructuredData,
+  pagesSeo,
+  type PageSeo,
+} from '../data/seo';
 
 interface Props {
   title?: string;
@@ -33,7 +38,12 @@ const pageSeo: PageSeo = {
   ...(ogImage ? { ogImage } : {}),
   ...(noindex !== undefined ? { noindex } : {}),
 };
-const structuredData = seoKey === 'home' ? getStructuredData(site) : undefined;
+const structuredData =
+  seoKey === 'home'
+    ? getStructuredData(site)
+    : pageSeo.noindex
+      ? undefined
+      : getPageStructuredData(site, pageSeo);
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 ---
 
@@ -54,10 +64,10 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
       !hideHeaderLogo && (
         <header class="pointer-events-none fixed inset-x-0 top-0 z-[60]">
           <div class="flex justify-end px-4 pt-5 md:px-8 md:pt-8">
-            <a href="/" class="pointer-events-auto">
+            <a href="/" class="pointer-events-auto" aria-label="Estudi Norai — inicio">
               <img
                 src="/images/logo.svg"
-                alt="Estudi Norai logo"
+                alt=""
                 data-site-logo
                 class="site-logo h-18 w-auto transition-[filter] duration-300 md:h-20"
               />
